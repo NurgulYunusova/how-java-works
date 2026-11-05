@@ -1,8 +1,9 @@
-# Java Memory Map
+# How Java Works
 
-Write Java code and follow, line by line, where each variable lands in memory: Stack, Heap, String Pool and the wrapper cache.
+Interactive topics that show what happens inside Java, in Azerbaijani, Turkish and English.
 
-The page is available in Azerbaijani, Turkish and English.
+- **JVM: Stack and Heap**: write Java code and follow, line by line, where each variable lands in memory.
+- **How HashMap works**: follow a key from `hashCode` to its bucket, bit by bit, through collisions, `resize` and trees.
 
 ## What it shows
 
