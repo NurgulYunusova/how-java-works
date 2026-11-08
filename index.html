@@ -525,6 +525,57 @@ svg.wires { position: absolute; inset: 0; width: 100%; height: 100%; pointer-eve
 .barrow { display: grid; grid-template-columns: 62px minmax(0, 1fr) 62px; gap: 8px; align-items: center; font-size: 14px; }
 .hbar { height: 12px; background: var(--night); border-radius: 99px; overflow: hidden; }
 .hbar i { display: block; height: 100%; min-width: 3px; background: var(--sun); }
+.tg-pink { color: var(--pink); border-color: var(--pink); }
+.tg-sky { color: var(--sky); border-color: var(--sky); }
+/* Objects in memory */
+.lyhex { margin: 0; font: 700 17px var(--code); color: var(--sun); overflow-wrap: anywhere; }
+.lymw { display: grid; gap: 4px; }
+.lymw > div { display: grid; grid-template-columns: repeat(32, minmax(0, 1fr)); gap: 1px; }
+.lymw i { font: 700 11px/20px var(--code); font-style: normal; text-align: center; border-radius: 3px; background: var(--night); color: #7C82B8; min-width: 0; }
+.lymw i.b-hash { background: rgba(255,155,207,.22); color: var(--pink); }
+.lymw i.b-age { background: rgba(98,232,174,.2); color: var(--mint); }
+.lymw i.b-lock { background: rgba(255,212,38,.25); color: var(--sun); }
+.lymw i.b-ptr { background: rgba(127,205,255,.18); color: var(--sky); }
+.lygrid { display: grid; gap: 4px; }
+.lyrow { display: grid; grid-template-columns: 30px repeat(8, minmax(0, 1fr)); gap: 3px; }
+.lyrow > small { grid-column: 1; align-self: center; text-align: right; padding-right: 4px; color: #7C82B8; font: 400 11.5px var(--code); }
+.lyc { min-height: 40px; min-width: 0; border-radius: 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2px; overflow: hidden; color: var(--ink); text-align: center; line-height: 1.15; }
+.lyc b, .lyc small { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lyc b { font: 700 12.5px var(--code); }
+.lyc small { font: 400 10.5px var(--code); opacity: .8; }
+.k-mark { background: var(--ultra); color: #fff; }
+.k-klass { background: var(--ultra-deep); color: #fff; box-shadow: inset 0 0 0 1.5px var(--ultra); }
+.k-len { background: #4A3AA8; color: #fff; }
+.k-f1 { background: var(--pink); }
+.k-f2 { background: var(--lilac); }
+.k-f4 { background: var(--sky); }
+.k-f8 { background: var(--sun); }
+.k-ref { background: var(--mint); }
+.k-gap { color: var(--error); border: 1px dashed rgba(255,124,150,.6); background: repeating-linear-gradient(135deg, transparent 0 6px, rgba(255,124,150,.16) 6px 8px); }
+.k-pad { color: var(--soft); border: 1px dashed var(--line); background: repeating-linear-gradient(135deg, transparent 0 6px, rgba(179,184,226,.12) 6px 8px); }
+.k-gap b, .k-pad b { font-weight: 400; font-size: 11.5px; }
+.lybars { display: grid; gap: 8px; }
+.lybars .barrow { grid-template-columns: minmax(0, 190px) minmax(0, 1fr) 82px; }
+.lybars .barrow > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; }
+.lybars .barrow > b { text-align: right; font: 700 13px var(--code); white-space: nowrap; }
+/* Virtual threads */
+.vtcar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.vtc { background: var(--night); border: 1px solid var(--line); border-radius: 10px; padding: 10px; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; min-height: 96px; min-width: 0; }
+.vtc h3 { margin: 0; font: 500 12px var(--code); color: var(--soft); overflow-wrap: anywhere; }
+.vtv { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 99px; font: 700 13px var(--code); color: var(--ink); background: var(--c); border: 1.5px solid var(--c); }
+.vtv.io, .vtv.park { background: transparent; color: var(--c); border-style: dashed; }
+.vtv.done { opacity: .5; }
+.vtnote { color: var(--sky); font-size: 12.5px; }
+.vtrow { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.vtbox h4 { margin: 0 0 6px; font: 500 13px var(--body); color: var(--soft); }
+.vtpool { display: flex; flex-wrap: wrap; gap: 5px; min-height: 28px; align-items: center; }
+.vtl { display: grid; gap: 2px; align-items: center; }
+.vtl-h { font: 400 11.5px var(--code); color: var(--soft); white-space: nowrap; overflow: hidden; }
+.vtl i { height: 26px; min-width: 0; border-radius: 4px; font: 700 11px/26px var(--code); font-style: normal; text-align: center; overflow: hidden; }
+.vtl i.cpu { background: var(--c); color: var(--ink); }
+.vtl i.io { color: var(--c); background: repeating-linear-gradient(135deg, transparent 0 4px, rgba(127,205,255,.22) 4px 6px); box-shadow: inset 0 0 0 1.5px var(--c); }
+.vtl i.idle { background: var(--night); }
+.vtl i.fut { box-shadow: inset 0 0 0 1px var(--line); }
 /* Home */
 .home-groups { display: flex; flex-direction: column; gap: 26px; }
 .home-group > h2 { margin: 0 0 10px; font: 600 15px var(--body); color: var(--soft); }
@@ -574,7 +625,8 @@ svg.wires { position: absolute; inset: 0; width: 100%; height: 100%; pointer-eve
         </div>
       </button><button class="door d-ls" type="button" data-go="gc"><h2 data-ls-title="gc"></h2><p data-ls-door="gc"></p><pre class="snip" aria-hidden="true">o = null;
 // no root, GC can remove it</pre></button><button class="door d-ls" type="button" data-go="strings"><h2 data-ls-title="strings"></h2><p data-ls-door="strings"></p><pre class="snip" aria-hidden="true">"çörek"  5 byte
-"çörək" 10 byte</pre></button></div></section><section class="home-group"><h2 data-s="gColl"></h2><div class="doors"><button class="door d-hm" type="button" data-go="hashmap">
+"çörək" 10 byte</pre></button><button class="door d-ls" type="button" data-go="layout"><h2 data-ls-title="layout"></h2><p data-ls-door="layout"></p><pre class="snip" aria-hidden="true">new Object();
+// 12 byte header + 4 padding</pre></button></div></section><section class="home-group"><h2 data-s="gColl"></h2><div class="doors"><button class="door d-hm" type="button" data-go="hashmap">
         <h2 data-s="doorHm"></h2>
         <p data-s="doorHmText"></p>
         <div class="mini" aria-hidden="true">
@@ -585,7 +637,8 @@ svg.wires { position: absolute; inset: 0; width: 100%; height: 100%; pointer-eve
       </button><button class="door d-ls" type="button" data-go="treemap"><h2 data-ls-title="treemap"></h2><p data-ls-door="treemap"></p><pre class="snip" aria-hidden="true">m.floorKey(35);
 // O(log n)</pre></button></div></section><section class="home-group"><h2 data-s="gConc"></h2><div class="doors"><button class="door d-ls" type="button" data-go="threads"><h2 data-ls-title="threads"></h2><p data-ls-door="threads"></p><pre class="snip" aria-hidden="true">count++;
 // read, add, write</pre></button><button class="door d-ls" type="button" data-go="chm"><h2 data-ls-title="chm"></h2><p data-ls-door="chm"></p><pre class="snip" aria-hidden="true">map.merge("c", 1, Integer::sum);
-// CAS or a bucket lock</pre></button></div></section><section class="home-group"><h2 data-s="gHood"></h2><div class="doors"><button class="door d-ls" type="button" data-go="bytecode"><h2 data-ls-title="bytecode"></h2><p data-ls-door="bytecode"></p><pre class="snip" aria-hidden="true">iload_0
+// CAS or a bucket lock</pre></button><button class="door d-ls" type="button" data-go="vthreads"><h2 data-ls-title="vthreads"></h2><p data-ls-door="vthreads"></p><pre class="snip" aria-hidden="true">Thread.ofVirtual().start(task);
+// 1 000 000 threads: 5.4 s</pre></button></div></section><section class="home-group"><h2 data-s="gHood"></h2><div class="doors"><button class="door d-ls" type="button" data-go="bytecode"><h2 data-ls-title="bytecode"></h2><p data-ls-door="bytecode"></p><pre class="snip" aria-hidden="true">iload_0
 iinc 0, 1
 istore_0</pre></button><button class="door d-ls" type="button" data-go="classload"><h2 data-ls-title="classload"></h2><p data-ls-door="classload"></p><pre class="snip" aria-hidden="true">static { ... }
 super();</pre></button><button class="door d-ls" type="button" data-go="stream"><h2 data-ls-title="stream"></h2><p data-ls-door="stream"></p><pre class="snip" aria-hidden="true">.filter(...).map(...)
@@ -733,7 +786,7 @@ super();</pre></button><button class="door d-ls" type="button" data-go="stream">
   <section class="ls-right"><div id="ls-stage"></div></section>
 </div>
 
-<script id="engine">
+<script>
 let LANG = 'az';
 const I18N = {tr:{"String-in sonunda dırnaq (\") çatmır.": "String'in sonunda tırnak (\") eksik.", "Character-in sonunda dırnaq (') çatmır.": "Character'in sonunda tırnak (') eksik.", "char type-ı tək character saxlayır. Mətn üçün String və \"...\" yaz.": "char tek bir character tutar. Metin için String ve \"...\" yaz.", "Sətrin sonunda semicolon (;) çatmır.": "Satırın sonunda semicolon (;) eksik.", "Burada `{}` gözlənilirdi.": "Burada `{0}` bekleniyordu.", "ad": "ad", "Burada {} gözlənilirdi.": "Burada {0} bekleniyordu.", "Burada type gözlənilirdi.": "Burada type bekleniyordu.", "Type yarımçıq yazılıb: bağlanan > çatmır.": "Type yarım kalmış: kapanan > eksik.", "Generic type kimi primitive olmaz: {} yerinə {} yaz.": "Generic type olarak primitive kullanılamaz: {0} yerine {1} yaz.", "{} hələ dəstəklənmir. Sadə class istifadə et.": "{0} henüz desteklenmiyor. Basit bir class kullan.", "class adı": "class adı", "Inheritance (extends/implements) hələ dəstəklənmir.": "Inheritance (extends/implements) henüz desteklenmiyor.", "{} class-ının sonunda } çatmır.": "{0} class'ının sonunda } eksik.", "field adı": "field adı", "method adı": "method adı", "parameter adı": "parameter adı", "Block-un sonunda } çatmır.": "Block'un sonunda } eksik.", "`{}` hələ dəstəklənmir. Variable-lar, object-lər, array-lər, if, for, while və method-lar işləyir.": "`{0}` henüz desteklenmiyor. Variable'lar, object'ler, array'ler, if, for, while ve method'lar çalışıyor.", "variable adı": "variable adı", "Bu ifadəyə value yazmaq olmaz.": "Bu ifadeye value atanamaz.", "member adı": "member adı", "{} int üçün çox böyükdür. long üçün sonuna L yaz.": "{0}, int için çok büyük. long için sonuna L yaz.", "Sətir yarımçıq qalıb.": "Satır yarım kalmış.", "`{}` burada gözlənilmirdi.": "`{0}` burada beklenmiyordu.", "type": "type", "Proqram {} addımı keçdi, ona görə dayandırıldı. Sonsuz loop ola bilər.": "Program {0} adımı geçtiği için durduruldu. Sonsuz loop olabilir.", "Bir object-ə heç bir reference qalmadı. Garbage Collector onu istənilən vaxt silə bilər.": "Bir object'e hiç reference kalmadı. Garbage Collector onu her an silebilir.", "{} object-ə heç bir reference qalmadı. Garbage Collector onları istənilən vaxt silə bilər.": "{0} object'e hiç reference kalmadı. Garbage Collector onları her an silebilir.", "Proqram başlayır": "Program başlıyor", "{} class-ının static field-ləri stack-də deyil, heap-dəki class object-ində saxlanır.": "{0} class'ının static field'ları stack'te değil, heap'teki class object'inde saklanır.", "Block bitdi: {} stack-dən silindi.": "Block bitti: {0} stack'ten silindi.", "Condition {} oldu.": "Condition {0} oldu.", "Loop bitdi: {} stack-dən silindi.": "Loop bitti: {0} stack'ten silindi.", "{} növbəti elementi aldı ({} / {}).": "{0} sıradaki element'i aldı ({1} / {2}).", "{} bu method-da artıq declare olunub. Başqa ad seç.": "{0} bu method'da zaten declare edilmiş. Başka bir ad seç.", "var variable-ına null vermək olmaz: type müəyyən olunmur.": "var variable'ına null verilemez: type belirlenemez.", "var variable-ı dərhal value almalıdır.": "var variable'ı hemen bir value almalıdır.", "{} üçün stack-də yer ayrıldı, amma value hələ yoxdur. Local variable-lar avtomatik 0 və ya null almır.": "{0} için stack'te yer ayrıldı ama henüz value'su yok. Local variable'lar otomatik olarak 0 veya null almaz.", "{} primitive-dir: {} value-su birbaşa stack-dəki slot-un içində saxlanır. Heap-ə heç nə getmir.": "{0} primitive: {1} value'su doğrudan stack'teki slot'un içinde saklanır. Heap'e hiçbir şey gitmez.", "{} slot-unda {} var: heç bir object-ə baxmır.": "{0} slot'unda {1} var: hiçbir object'i göstermiyor.", "{} slot-u stack-dədir, amma içində object-in özü yox, ona reference saxlanır.": "{0} slot'u stack'te, ama içinde object'in kendisi değil, ona bir reference saklanır.", "NullPointerException: null Boolean true/false-a çevrilə bilmir.": "NullPointerException: null Boolean, true/false value'suna çevrilemez.", "Condition boolean olmalıdır, {} verildi.": "Condition boolean olmalı, {0} verildi.", "Bu method heç nə qaytarmır (void), onun nəticəsini saxlamaq olmaz.": "Bu method hiçbir şey döndürmüyor (void), sonucu saklanamaz.", "Variable-ın type-ı {}-dir, Java onu avtomatik {} etmir. Collection-ın type-ını yaz (məsələn {}) və ya cast et: {}.": "Variable'ın type'ı {0}, Java onu otomatik olarak {1} yapmaz. Collection'ın type'ını yaz (örneğin {2}) veya cast et: {3}.", "Primitive {} type-ına {} vermək olmaz. Primitive həmişə value saxlayır.": "Primitive {0} type'ına {1} verilemez. Primitive her zaman bir value tutar.", "NullPointerException: {} null-dur, ondan {} value-su çıxarmaq (unboxing) mümkün deyil.": "NullPointerException: {0} null, ondan {1} value'su çıkarılamaz (unboxing).", "Type-lar uyğun gəlmir: {} type-ını {} type-ına yazmaq olmaz.": "Type'lar uyuşmuyor: {0} type'ı {1} type'ına atanamaz.", "Unboxing: {} object-inin içindəki value çıxarıldı.": "Unboxing: {0} object'inin içindeki value çıkarıldı.", "{} value-su {} type-ına sığmır ({} ... {}).": "{0} value'su {1} type'ına sığmaz ({2} ... {3}).", "{} value-sunu {} type-ına yazanda məlumat itə bilər. Java buna özü icazə vermir: {} ilə cast et.": "{0} value'su {1} type'ına atanırken veri kaybolabilir. Java buna kendiliğinden izin vermez: {2} ile cast et.", " Sonuna L yaz: 4L.": " Sonuna L yaz: 4L.", " Nöqtə ilə yaz: 4.0.": " Noktayla yaz: 4.0.", " Sonuna f yaz: 4f.": " Sonuna f yaz: 4f.", "{} {} type-ındadır və avtomatik {} olmur. Autoboxing yalnız öz cütü ilə işləyir: {} → {}.{}": "{0} value'su {1} type'ındadır ve otomatik olarak {2} olmaz. Autoboxing yalnızca kendi eşiyle çalışır: {3} → {4}.{5}", "Type-lar uyğun gəlmir: {} primitive-ini {} type-ına yazmaq olmaz.": "Type'lar uyuşmuyor: {0} primitive'i {1} type'ına atanamaz.", "{} type-ı tanınmır. Əvvəlcə class {} { ... } yaz.": "{0} type'ı tanınmıyor. Önce class {1} { ... } yaz.", "Generic type-lar uyğun gəlmir: {} type-ını {} type-ına yazmaq olmaz.": "Generic type'lar uyuşmuyor: {0} type'ı {1} type'ına atanamaz.", "Autoboxing: {} çağırılır. {} cache aralığındadır ({}), ona görə yeni object yaradılmır, hazır cache object-i qaytarılır.": "Autoboxing: {0} çağrılır. {1} cache aralığında ({2}), bu yüzden yeni object oluşturulmaz, hazır cache object'i döndürülür.", "Autoboxing: {} üçün cache yoxdur, heap-də yeni object yaradıldı.": "Autoboxing: {0} için cache yok, heap'te yeni object oluşturuldu.", "Autoboxing: {} cache aralığından kənardır, heap-də yeni {} object-i yaradıldı.": "Autoboxing: {0} cache aralığının dışında, heap'te yeni {1} object'i oluşturuldu.", "{} String Pool-da yox idi, orada yeni object yaradıldı.": "{0} String Pool'da yoktu, orada yeni object oluşturuldu.", "{} artıq String Pool-dadır. Yeni object yaranmadı, mövcud olan istifadə olundu.": "{0} zaten String Pool'da. Yeni object oluşmadı, mevcut olan kullanıldı.", "2147483648 int üçün çox böyükdür. long üçün sonuna L yaz.": "2147483648, int için çok büyük. long için sonuna L yaz.", "`this` yalnız object-in method-u daxilində var.": "`this` yalnızca bir object'in method'u içinde vardır.", "{} adlı variable tapılmadı. Əvvəlcə onu declare et.": "{0} adında variable bulunamadı. Önce onu declare et.", "{} hələ value almayıb, onu oxumaq olmaz.": "{0} henüz value almadı, okunamaz.", "Array syntax-ı {...} yalnız declaration zamanı işləyir. new int[]{1, 2} yaz.": "{...} array syntax'ı yalnızca declaration sırasında çalışır. new int[]{1, 2} yaz.", "! yalnız boolean ilə işləyir.": "! yalnızca boolean ile çalışır.", "{} yalnız number-lərlə işləyir.": "{0} yalnızca number'larla çalışır.", "boolean başqa type-a çevrilmir.": "boolean başka bir type'a çevrilemez.", "Array size-ı int olmalıdır.": "Array size'ı int olmalıdır.", "NegativeArraySizeException: array size-ı {} ola bilməz.": "NegativeArraySizeException: array size'ı {0} olamaz.", "Array-in size-ını yaz: new int[3].": "Array'in size'ını yaz: new int[3].", "Görüntü üçün array size-ı burada 64-lə məhdudlaşdırılıb.": "Görsel için array size'ı burada 64 ile sınırlı.", "Bu ifadə dəstəklənmir.": "Bu ifade desteklenmiyor.", "Array object-dir: {} heap-də yaradıldı. Elementləri primitive olsa da, value-lar array-in içindədir, yəni heap-də.": "Array bir object'tir: {0} heap'te oluşturuldu. Element'leri primitive olsa da value'lar array'in içindedir, yani heap'te.", "{} heap-də yaradıldı. Elementlərdə object-lər yox, reference-lər saxlanır (hələlik {}).": "{0} heap'te oluşturuldu. Element'lerde object'ler değil reference'lar saklanır (şimdilik {1}).", "{...} syntax-ı yalnız array type-ı üçündür, burada isə type: {}.": "{...} syntax'ı yalnızca array type'ı içindir, burada type: {0}.", "{} heap-də yaradıldı. Elementlərdə object-lər yox, reference-lər saxlanır.": "{0} heap'te oluşturuldu. Element'lerde object'ler değil reference'lar saklanır.", "[] yalnız array ilə işləyir.": "[] yalnızca array ile çalışır.", "NullPointerException: array variable-ı null-dur.": "NullPointerException: array variable'ı null.", "ArrayIndexOutOfBoundsException: {} index-i yoxdur. Array-in length-i: {}.": "ArrayIndexOutOfBoundsException: {0} index'i yok. Array'in length'i: {1}.", " value-su null": " value'su null", "NullPointerException: {} ilə operation aparmaq olmaz.": "NullPointerException: {0} ile operation yapılamaz.", "{} ilə bu operation olmaz.": "{0} ile bu operation yapılamaz.", "Concatenation runtime-da baş verir, ona görə {} pool-a yox, heap-də yeni object-ə yazıldı.": "Concatenation runtime'da yapılır, bu yüzden {0} pool'a değil, heap'te yeni bir object'e yazıldı.", "{} reference-ləri müqayisə edir: hər ikisi eyni object-ə baxır.": "{0} reference'ları karşılaştırır: ikisi de aynı object'i gösteriyor.", ", value-ları eyni olsa belə": ", value'ları aynı olsa bile", "{} reference-ləri müqayisə edir: bunlar fərqli object-lərə baxır{}.": "{0} reference'ları karşılaştırır: bunlar farklı object'leri gösteriyor{1}.", "{} ilə {} müqayisə olunmur.": "{0} ile {1} karşılaştırılamaz.", "{} burada value-ları müqayisə edir, çünki ən azı bir tərəf primitive-dir.": "{0} burada value'ları karşılaştırır, çünkü en az bir taraf primitive.", "{} operation-ı {} və {} üçün işləmir.": "{0} operation'ı {1} ve {2} için çalışmaz.", "ArithmeticException: integer-i sıfıra bölmək olmaz.": "ArithmeticException: integer sıfıra bölünemez.", "{} hələ value almayıb.": "{0} henüz value almadı.", "{} class-ında {} field-i yoxdur.": "{0} class'ında {1} field'ı yok.", "{} primitive-dir, onun field-i olmur.": "{0} primitive, field'ı olmaz.", "NullPointerException: variable null-dur, {} field-inə çatmaq olmaz.": "NullPointerException: variable null, {0} field'ına erişilemez.", " Method-dan istifadə et, məsələn ": " Bir method kullan, örneğin ", "{} object-inin {} field-i private-dır, ona birbaşa çatmaq olmaz.{}": "{0} object'inin {1} field'ı private, doğrudan erişilemez.{2}", "{} final-dır, ona yenidən value vermək olmaz.": "{0} final, ona yeniden value verilemez.", "heap-dəki object-in içində": "heap'teki object'in içinde", "stack-dəki slot-da": "stack'teki slot'ta", "{}: {} köhnə value ({}) yerinə {} yazıldı.": "{0}: {1} eski value'nun ({2}) yerine {3} yazıldı.", "{}: {} {} saxlanır.": "{0}: {1} {2} saklanıyor.", "{} artıq heç bir object-ə baxmır ({}).": "{0} artık hiçbir object'i göstermiyor ({1}).", "{}: {} indi yeni reference var. Köhnə object-in özü dəyişmir.": "{0}: {1} artık yeni bir reference var. Eski object'in kendisi değişmez.", "{} final-dır, onu dəyişmək olmaz.": "{0} final, değiştirilemez.", "{} type-ında {} field-i yoxdur.": "{0} type'ında {1} field'ı yok.", "`new String()` heap-də yeni boş object yaratdı.": "`new String()` heap'te yeni boş bir object oluşturdu.", "{} həmişə pool-dan kənarda, heap-də yeni object yaradır. Eyni mətn olsa belə bu ayrı object-dir.": "{0} her zaman pool'un dışında, heap'te yeni object oluşturur. Metin aynı olsa bile bu ayrı bir object'tir.", "new {}(...) bir value almalıdır.": "new {0}(...) bir value almalıdır.", "{} cache-ə baxmır, həmişə yeni object yaradır. Bu yazılış deprecated-dir: {} istifadə et.": "{0} cache'e bakmaz, her zaman yeni object oluşturur. Bu yazım deprecated: {1} kullan.", "{} heap-də yeni object yaratdı.": "{0} heap'te yeni object oluşturdu.", "{} class-ı tanınmır. Əvvəlcə {} yaz. Collection-lardan {} və {} işləyir.": "{0} class'ı tanınmıyor. Önce {1} yaz. Collection'lardan {2} ve {3} çalışıyor.", "{} üçün {} parameter-li constructor yoxdur.": "{0} için {1} parameter'li constructor yok.", "{} heap-də yeni {} object-i yaratdı. Field-ləri (primitive-lər də daxil) object-in içindədir, yəni heap-də, və initial value alıblar.": "{0} heap'te yeni {1} object'i oluşturdu. Field'ları (primitive'ler dahil) object'in içindedir, yani heap'te, ve initial value'larını aldı.", "StackOverflowError: method-lar bitmədən yeni frame-lər yaranır və stack dolur. Bu alət {} frame-də dayanır, real JVM-də limit adətən minlərlədir.": "StackOverflowError: method'lar bitmeden yeni frame'ler oluşuyor ve stack doluyor. Bu araç {0} frame'de durur, gerçek JVM'de limit genellikle binlercedir.", "{} {} parameter gözləyir, {} verildi.": "{0} {1} parameter bekliyor, {2} verildi.", " Parameter-lər argument-lərin kopyasıdır.": " Parameter'lar, argument'lerin kopyasıdır.", "Method çağırıldı: stack-in üstünə yeni frame əlavə olundu.{}": "Method çağrıldı: stack'in üstüne yeni bir frame eklendi.{0}", "{} method-u value qaytarmalıdır.": "{0} method'u value döndürmelidir.", "{} void-dur, value qaytara bilməz.": "{0} void, value döndüremez.", " Nəticə çağıran method-a qaytarıldı.": " Sonuç, çağıran method'a döndürüldü.", "{} bitdi: onun frame-i bütün local variable-larla birlikdə stack-dən silindi.{}": "{0} bitti: frame'i tüm local variable'larıyla birlikte stack'ten silindi.{1}", "System.out.{} dəstəklənmir: println və ya print yaz.": "System.out.{0} desteklenmiyor: println veya print yaz.", "{} static deyil, onu object olmadan çağırmaq olmaz.": "{0} static değil, object olmadan çağrılamaz.", "{} adlı method tapılmadı.": "{0} adında method bulunamadı.", "{} class-ında {} method-u yoxdur.": "{0} class'ında {1} method'u yok.", "{} static deyil, onu object üzərindən çağır.": "{0} static değil, onu bir object üzerinden çağır.", "{} adlı variable və ya class tapılmadı.": "{0} adında variable veya class bulunamadı.", "NullPointerException: variable null-dur, {} çağırmaq olmaz.": "NullPointerException: variable null, {0} çağrılamaz.", "{} üçün {} method-u hələ dəstəklənmir.": "{0} için {1} method'u henüz desteklenmiyor.", "{} heap-də object yaratdı, amma hələ öz array-i yoxdur: {} shared boş array-ə baxır. 10 yerlik array ilk {}-də yaranacaq.": "{0} heap'te object oluşturdu ama henüz kendi array'i yok: {1} shared boş array'i gösteriyor. 10 yerlik array ilk {2} çağrısında oluşacak.", "Burada yalnız {} və {} dəstəklənir.": "Burada yalnızca {0} ve {1} destekleniyor.", "IllegalArgumentException: capacity {} ola bilməz.": "IllegalArgumentException: capacity {0} olamaz.", "{} heap-də object və {} yerlik {} array-i yaratdı. {} hələ 0-dır: capacity və size fərqli şeylərdir.": "{0} heap'te object ve {1} yerlik {2} array'i oluşturdu. {3} hâlâ 0: capacity ve size farklı şeylerdir.", "Array boş idi: heap-də {} yerlik yeni {} yaradıldı.": "Array boştu: heap'te {0} yerlik yeni {1} oluşturuldu.", "Array doldu ({} yer). Array-in size-ı dəyişə bilmir, ona görə {} yerlik yeni array yaradıldı və elementlər ora köçürüldü.": "Array doldu ({0} yer). Array'in size'ı değişemez, bu yüzden {1} yerlik yeni array oluşturuldu ve element'ler oraya kopyalandı.", "{} {} argument gözləyir, {} verildi.": "{0} {1} argument bekliyor, {2} verildi.", " Sağdakı {} element bir cell sürüşdürüldü.": " Sağdaki {0} element bir cell kaydırıldı.", "Element {} cell-inə yazıldı: array-də object-in özü yox, reference saxlanır.{} {}: {}.": "Element {0} cell'ine yazıldı: array'de object'in kendisi değil, reference saklanır.{1} {2}: {3}.", "{} {} cell-indəki reference-i qaytardı. Yeni object yaranmadı.": "{0}, {1} cell'indeki reference'ı döndürdü. Yeni object oluşmadı.", "{} cell-inə yeni reference yazıldı.": "{0} cell'ine yeni reference yazıldı.", "Argument primitive {} olduğu üçün {} çağırıldı: value yox, {} index-i silinir.": "Argument primitive {0} olduğu için {1} çağrıldı: value değil, {2} index'i siliniyor.", "Argument object olduğu üçün {} çağırıldı: value-ya görə axtarılır.": "Argument object olduğu için {0} çağrıldı: value'ya göre aranıyor.", "Sağdakı elementlər sola sürüşdü. Array kiçilmir: capacity {} olaraq qalır.": "Sağdaki element'ler sola kaydı. Array küçülmez: capacity {0} olarak kalır.", "Cell-lər {} oldu, {} 0-a düşdü. Array-in özü silinmir.": "Cell'ler {0} oldu, {1} 0 oldu. Array'in kendisi silinmez.", "ArrayList üçün {} hələ dəstəklənmir. İşləyənlər: add, get, set, remove, size, isEmpty, contains, indexOf, clear.": "ArrayList için {0} henüz desteklenmiyor. Çalışanlar: add, get, set, remove, size, isEmpty, contains, indexOf, clear.", "{} heap-də object yaratdı. {} hələ {}-dur: bucket array-i ilk {}-da yaranacaq.": "{0} heap'te object oluşturdu. {1} hâlâ {2}: bucket array'i ilk {3} çağrısında oluşacak.", "{} öz {} method-unu yazmayıb. Real JVM-də bu hash hər işə salmada fərqli ola bilər, burada nümunə value-dur.": "{0} kendi {1} method'unu yazmamış. Gerçek JVM'de bu hash her çalıştırmada farklı olabilir, buradaki örnek bir value'dur.", "{} threshold-u keçdi: {} bucket-lik yeni array yaradıldı. Node-lar köçürüldü və index-ləri yeni capacity-yə görə yenidən hesablandı.": "{0} threshold'u aştı: {1} bucket'lık yeni array oluşturuldu. Node'lar taşındı ve index'leri yeni capacity'ye göre yeniden hesaplandı.", "Heap-də {} bucket-lik {} array-i yaradıldı. Yeni threshold: {} (capacity-nin 75%-i).": "Heap'te {0} bucket'lık {1} array'i oluşturuldu. Yeni threshold: {2} (capacity'nin %75'i).", "{} key-inin hash-i həmişə 0-dır, ona görə bucket 0 seçilir.": "{0} key'inin hash'i her zaman 0'dır, bu yüzden bucket 0 seçilir.", "{} = {}, spread hash = {}. Bucket: {} = {}.": "{0} = {1}, spread hash = {2}. Bucket: {3} = {4}.", "Bu key artıq var: yeni Node yaranmadı, mövcud Node-un value reference-i dəyişdi.": "Bu key zaten var: yeni Node oluşmadı, mevcut Node'un value reference'ı değişti.", "Bucket {} boş idi: yeni {} birbaşa ora yazıldı. Key və value Node-un içində yox, reference ilə saxlanır.": "Bucket {0} boştu: yeni {1} doğrudan oraya yazıldı. Key ve value Node'un içinde değil, reference ile saklanır.", "Collision: bucket {} artıq doludur və key-lər fərqlidir. Yeni {} list-in sonuna {} ilə bağlandı.": "Collision: bucket {0} zaten dolu ve key'ler farklı. Yeni {1} list'in sonuna {2} ile bağlandı.", "Bu bucket-də 8-dən çox Node oldu. Real HashMap burada list-i tree-yə çevirir, bu alət onu sadəlik üçün list kimi göstərir.": "Bu bucket'ta 8'den fazla Node oldu. Gerçek HashMap burada list'i tree'ye çevirir, bu araç sadelik için list olarak gösterir.", "Key tapıldı.": "Key bulundu.", "Key tapılmadı.": "Key bulunamadı.", "Hash birbaşa bucket {} cell-inə aparır: bütün table gəzilmir, yalnız bu bucket yoxlanır. {}": "Hash doğrudan bucket {0} cell'ine götürür: tüm table gezilmez, yalnızca bu bucket kontrol edilir. {1}", "{} hələ {}-dur, key tapılmadı.": "{0} hâlâ {1}, key bulunamadı.", "{} bucket-dən çıxarıldı. Table kiçilmir.": "{0} bucket'tan çıkarıldı. Table küçülmez.", "Bütün bucket-lər boşaldı. Table-ın özü silinmir.": "Tüm bucket'lar boşaldı. Table'ın kendisi silinmez.", "{} hələlik yalnız for-each daxilində işləyir: {}.": "{0} şimdilik yalnızca for-each içinde çalışır: {1}.", "HashMap üçün {} hələ dəstəklənmir. İşləyənlər: put, get, getOrDefault, containsKey, containsValue, remove, size, isEmpty, clear, keySet, values, entrySet.": "HashMap için {0} henüz desteklenmiyor. Çalışanlar: put, get, getOrDefault, containsKey, containsValue, remove, size, isEmpty, clear, keySet, values, entrySet.", "{} üçün {} dəstəklənmir. İşləyənlər: getKey, getValue, setValue.": "{0} için {1} desteklenmiyor. Çalışanlar: getKey, getValue, setValue.", "HashMap elementləri bucket sırası ilə gəzilir, ona görə sıra əlavə etdiyin sıra ilə eyni olmaya bilər.": "HashMap element'leri bucket sırasıyla gezilir, bu yüzden sıra ekleme sıranla aynı olmayabilir.", "for-each array və ya collection ilə işləyir.": "for-each array veya collection ile çalışır.", "NullPointerException: null üzərində loop etmək olmaz.": "NullPointerException: null üzerinde loop kurulamaz.", "for-each {} ilə işləmir.": "for-each {0} ile çalışmaz.", "{} reference-lərə yox, object-lərin content-inə baxır.": "{0} reference'lara değil, object'lerin content'ine bakar.", "{} {} method-unu özü yazmayıb, ona görə {} kimi reference-ləri müqayisə edir.": "{0} kendi {1} method'unu yazmamış, bu yüzden {2} gibi reference'ları karşılaştırır.", "Mətn dəyişmədi, ona görə {} eyni object-i qaytardı.": "Metin değişmedi, bu yüzden {0} aynı object'i döndürdü.", "String immutable-dır: {} köhnə object-i dəyişmir, heap-də yeni object yaradır.": "String immutable'dır: {0} eski object'i değiştirmez, heap'te yeni object oluşturur.", "StringIndexOutOfBoundsException: {} index-i yoxdur. String-in length-i: {}.": "StringIndexOutOfBoundsException: {0} index'i yok. String'in length'i: {1}.", "{} pool-dakı eyni mətnli object-i qaytardı.": "{0}, pool'daki aynı metinli object'i döndürdü.", "{} bu mətni pool-a əlavə etdi.": "{0} bu metni pool'a ekledi.", "String üçün {} hələ dəstəklənmir.": "String için {0} henüz desteklenmiyor.", "new ArrayList<>(capacity)": "new ArrayList<>(capacity)", "new HashMap<>(capacity)": "new HashMap<>(capacity)", "boolean Number deyil.": "boolean bir Number değildir.", "{} primitive-dir, onun method-u olmur.": "{0} primitive, method'u olmaz.", "IndexOutOfBoundsException: {} index-i yoxdur. {}: {}.": "IndexOutOfBoundsException: {0} index'i yok. {1}: {2}.", "Burada yalnız sadə enum dəstəklənir: {}.": "Burada yalnızca basit enum destekleniyor: {0}.", "{} block-undan sonra {} və ya {} yaz.": "{0} block'undan sonra {1} veya {2} yaz.", "`{}` hələ dəstəklənmir. Variable-lar, object-lər, array-lər, if, for, while, try və method-lar işləyir.": "`{0}` henüz desteklenmiyor. Variable'lar, object'ler, array'ler, if, for, while, try ve method'lar çalışıyor.", "Hər enum constant-ı heap-də tək bir object-dir və proqram boyu eyni qalır. Ona görə enum-ları {} ilə müqayisə etmək təhlükəsizdir.": "Her enum constant'ı heap'te tek bir object'tir ve program boyunca aynı kalır. Bu yüzden enum'ları {0} ile karşılaştırmak güvenlidir.", "{} yalnız exception object-i ilə işləyir.": "{0} yalnızca exception object ile çalışır.", "NullPointerException: null atmaq olmaz.": "NullPointerException: null throw edilemez.", "Stack unwinding: exception catch olunana qədər {} frame silindi.": "Stack unwinding: exception catch edilene kadar {0} frame silindi.", "{} catch olundu. Exception da heap-də object-dir, {} ona reference saxlayır. Proqram dayanmır, {} block-undan davam edir.": "{0} catch edildi. Exception da heap'te bir object'tir, {1} ona reference tutar. Program durmaz, {2} block'undan devam eder.", "{} xəta olsa da, olmasa da işləyir.": "{0} hata olsa da olmasa da çalışır.", "{} variable-ı avtomatik {} olmur, object elə olsa belə. Cast et: {}.": "{0} variable'ı, object öyle olsa bile otomatik olarak {1} olmaz. Cast et: {2}.", "ClassCastException: {} object-i {} type-ına cast olunmur.": "ClassCastException: {0} object'i {1} type'ına cast edilemez.", "{} primitive ilə işləmir.": "{0} primitive ile çalışmaz.", "Exception adi object-dir: {} heap-də yaradıldı. {} olmadan heç nə baş vermir.": "Exception sıradan bir object'tir: {0} heap'te oluşturuldu. {1} olmadan hiçbir şey olmaz.", "{} abstract-dır, ondan object yaratmaq olmaz.": "{0} abstract, ondan object oluşturulamaz.", "Enum-dan {} ilə object yaratmaq olmaz. Onun constant-larını istifadə et.": "Enum'dan {0} ile object oluşturulamaz. Constant'larını kullan.", "Inheritance ikinci object yaratmır: parent class-ın field-ləri eyni object-in içindədir.": "Inheritance ikinci bir object oluşturmaz: parent class'ın field'ları aynı object'in içindedir.", "Record-un field-ləri {}-dır: object yaradıldıqdan sonra dəyişmir.": "Record field'ları {0}: object oluşturulduktan sonra değişmez.", "{} parent constructor-unu çağırır: stack-də yeni frame açılır, amma object eyni qalır.": "{0} parent class'ın constructor'ını çağırır: stack'te yeni frame açılır ama object aynı kalır.", "NumberFormatException: {} number-ə çevrilmir.": "NumberFormatException: {0} number'a çevrilemez.", "Variable-ın type-ı {}, amma object-in özü {}-dir. Java hansı method-un işləyəcəyini object-ə görə seçir.": "Variable'ın type'ı {0}, ama object'in kendisi {1}. Java hangi method'un çalışacağını object'e göre seçer.", "Record {} method-unu özü yaradır: field-ləri müqayisə edir.": "Record, {0} method'unu kendisi oluşturur: field'ları karşılaştırır.", "HashSet elementləri bucket sırası ilə gəzilir, ona görə sıra əlavə etdiyin sıra ilə eyni olmaya bilər.": "HashSet element'leri bucket sırasıyla gezilir, bu yüzden sıra ekleme sıranla aynı olmayabilir.", "StringIndexOutOfBoundsException: {} ... {} aralığı yoxdur. String-in length-i: {}.": "StringIndexOutOfBoundsException: {0} ... {1} aralığı yok. String'in length'i: {2}.", "{} heap-də object və {} yerlik array yaratdı. String-dən fərqli olaraq bu array dəyişə bilir. Real array {}-dir, burada oxunaqlı olsun deyə character-lər göstərilir.": "{0} heap'te object ve {1} yerlik array oluşturdu. String'in aksine bu array değişebilir. Gerçek array {2}, burada okunaklı olsun diye character'ler gösteriliyor.", "Array doldu ({} yer). {} yerlik yeni array yaradıldı və character-lər ora köçürüldü. Formula: köhnə capacity × 2 + 2.": "Array doldu ({0} yer). {1} yerlik yeni array oluşturuldu ve character'ler oraya kopyalandı. Formül: eski capacity × 2 + 2.", "Yeni String yaranmadı: character-lər eyni array-ə yazıldı və eyni object qaytarıldı.": "Yeni String oluşmadı: character'ler aynı array'e yazıldı ve aynı object döndürüldü.", "{} array-dəki character-ləri kopyalayır: heap-də yeni String yaranır, pool-a düşmür.": "{0} array'deki character'leri kopyalar: heap'te yeni String oluşur, pool'a gitmez.", "StringBuilder üçün {} hələ dəstəklənmir. İşləyənlər: append, insert, reverse, deleteCharAt, setCharAt, charAt, length, isEmpty, capacity, toString.": "StringBuilder için {0} henüz desteklenmiyor. Çalışanlar: append, insert, reverse, deleteCharAt, setCharAt, charAt, length, isEmpty, capacity, toString.", "{} daxildə {} işlədir: elementlər key olur, value isə hamısı üçün eyni {} object-idir.": "{0} içinde {1} kullanır: element'ler key olur, value ise hepsi için aynı {2} object'idir.", "Bu element artıq var: set dəyişmədi, {} {} qaytardı.": "Bu element zaten var: set değişmedi, {0} {1} döndürdü.", "HashSet üçün {} hələ dəstəklənmir. İşləyənlər: add, contains, remove, size, isEmpty, clear.": "HashSet için {0} henüz desteklenmiyor. Çalışanlar: add, contains, remove, size, isEmpty, clear.", "Burada yalnız {} dəstəklənir.": "Burada yalnızca {0} destekleniyor.", "{} heap-də object yaratdı. {}-dən fərqli olaraq array-i yoxdur: hər element ayrıca {} object-ində olacaq.": "{0} heap'te object oluşturdu. {1} class'ının aksine array'i yok: her element ayrı bir {2} object'inde olacak.", "Heap-də yeni {} yaradıldı. Heç bir element sürüşmədi: yalnız qonşu Node-ların {} və {} reference-ləri dəyişdi.": "Heap'te yeni {0} oluşturuldu. Hiçbir element kaymadı: yalnızca komşu Node'ların {1} ve {2} reference'ları değişti.", "{} chain-dən çıxarıldı: qonşular bir-birinə bağlandı.": "{0} chain'den çıkarıldı: komşular birbirine bağlandı.", "{} index-inə çatmaq üçün {} addım Node-dan Node-a keçildi. Array-dən fərqli olaraq birbaşa keçid yoxdur.": "{0} index'ine ulaşmak için Node'dan Node'a {1} adım gidildi. Array'in aksine doğrudan erişim yok.", "NoSuchElementException: list boşdur.": "NoSuchElementException: list boş.", "LinkedList üçün {} hələ dəstəklənmir. İşləyənlər: add, addFirst, addLast, get, set, getFirst, getLast, remove, removeFirst, removeLast, push, pop, peek, poll, offer, size, isEmpty, contains, indexOf, clear.": "LinkedList için {0} henüz desteklenmiyor. Çalışanlar: add, addFirst, addLast, get, set, getFirst, getLast, remove, removeFirst, removeLast, push, pop, peek, poll, offer, size, isEmpty, contains, indexOf, clear."}, en:{"String-in sonunda dırnaq (\") çatmır.": "The closing quote (\") is missing.", "Character-in sonunda dırnaq (') çatmır.": "The closing quote (') is missing.", "char type-ı tək character saxlayır. Mətn üçün String və \"...\" yaz.": "A char holds a single character. For text, use String and \"...\".", "Sətrin sonunda semicolon (;) çatmır.": "A semicolon (;) is missing at the end of this line.", "Burada `{}` gözlənilirdi.": "Expected `{0}` here.", "ad": "a name", "Burada {} gözlənilirdi.": "Expected {0} here.", "Burada type gözlənilirdi.": "Expected a type here.", "Type yarımçıq yazılıb: bağlanan > çatmır.": "This type is incomplete: the closing > is missing.", "Generic type kimi primitive olmaz: {} yerinə {} yaz.": "A primitive cannot be a generic type: use {1} instead of {0}.", "{} hələ dəstəklənmir. Sadə class istifadə et.": "{0} is not supported yet. Use a plain class.", "class adı": "a class name", "Inheritance (extends/implements) hələ dəstəklənmir.": "Inheritance (extends/implements) is not supported yet.", "{} class-ının sonunda } çatmır.": "The closing } of class {0} is missing.", "field adı": "a field name", "method adı": "a method name", "parameter adı": "a parameter name", "Block-un sonunda } çatmır.": "The closing } of this block is missing.", "`{}` hələ dəstəklənmir. Variable-lar, object-lər, array-lər, if, for, while və method-lar işləyir.": "`{0}` is not supported yet. Variables, objects, arrays, if, for, while and methods all work.", "variable adı": "a variable name", "Bu ifadəyə value yazmaq olmaz.": "You cannot assign a value to this expression.", "member adı": "a member name", "{} int üçün çox böyükdür. long üçün sonuna L yaz.": "{0} is too large for an int. For a long, add L at the end.", "Sətir yarımçıq qalıb.": "This line is incomplete.", "`{}` burada gözlənilmirdi.": "`{0}` was not expected here.", "type": "a type", "Proqram {} addımı keçdi, ona görə dayandırıldı. Sonsuz loop ola bilər.": "The program passed {0} steps, so it was stopped. This may be an infinite loop.", "Bir object-ə heç bir reference qalmadı. Garbage Collector onu istənilən vaxt silə bilər.": "One object has no references left. The Garbage Collector can remove it at any time.", "{} object-ə heç bir reference qalmadı. Garbage Collector onları istənilən vaxt silə bilər.": "{0} objects have no references left. The Garbage Collector can remove them at any time.", "Proqram başlayır": "The program starts", "{} class-ının static field-ləri stack-də deyil, heap-dəki class object-ində saxlanır.": "The static fields of class {0} are not on the stack. They live in the class object on the heap.", "Block bitdi: {} stack-dən silindi.": "The block ended: {0} removed from the stack.", "Condition {} oldu.": "The condition is {0}.", "Loop bitdi: {} stack-dən silindi.": "The loop ended: {0} removed from the stack.", "{} növbəti elementi aldı ({} / {}).": "{0} took the next element ({1} / {2}).", "{} bu method-da artıq declare olunub. Başqa ad seç.": "{0} is already declared in this method. Choose another name.", "var variable-ına null vermək olmaz: type müəyyən olunmur.": "You cannot give null to a var: the type cannot be inferred.", "var variable-ı dərhal value almalıdır.": "A var must get a value right away.", "{} üçün stack-də yer ayrıldı, amma value hələ yoxdur. Local variable-lar avtomatik 0 və ya null almır.": "Space for {0} was reserved on the stack, but it has no value yet. Local variables do not default to 0 or null.", "{} primitive-dir: {} value-su birbaşa stack-dəki slot-un içində saxlanır. Heap-ə heç nə getmir.": "{0} is a primitive: the value {1} is stored directly in its stack slot. Nothing goes to the heap.", "{} slot-unda {} var: heç bir object-ə baxmır.": "The slot of {0} holds {1}: it points to no object.", "{} slot-u stack-dədir, amma içində object-in özü yox, ona reference saxlanır.": "The slot of {0} is on the stack, but it holds a reference to the object, not the object itself.", "NullPointerException: null Boolean true/false-a çevrilə bilmir.": "NullPointerException: a null Boolean cannot be converted to true/false.", "Condition boolean olmalıdır, {} verildi.": "A condition must be boolean, but got {0}.", "Bu method heç nə qaytarmır (void), onun nəticəsini saxlamaq olmaz.": "This method returns nothing (void), so its result cannot be stored.", "Variable-ın type-ı {}-dir, Java onu avtomatik {} etmir. Collection-ın type-ını yaz (məsələn {}) və ya cast et: {}.": "The variable has type {0}, and Java does not turn it into {1} automatically. Declare the collection type (for example {2}) or cast it: {3}.", "Primitive {} type-ına {} vermək olmaz. Primitive həmişə value saxlayır.": "You cannot give {1} to the primitive type {0}. A primitive always holds a value.", "NullPointerException: {} null-dur, ondan {} value-su çıxarmaq (unboxing) mümkün deyil.": "NullPointerException: this {0} is null, so a {1} value cannot be taken out of it (unboxing).", "Type-lar uyğun gəlmir: {} type-ını {} type-ına yazmaq olmaz.": "Incompatible types: {0} cannot be assigned to {1}.", "Unboxing: {} object-inin içindəki value çıxarıldı.": "Unboxing: the value inside the {0} object was taken out.", "{} value-su {} type-ına sığmır ({} ... {}).": "The value {0} does not fit in {1} ({2} ... {3}).", "{} value-sunu {} type-ına yazanda məlumat itə bilər. Java buna özü icazə vermir: {} ilə cast et.": "Assigning a {0} to a {1} could lose data, so Java does not allow it on its own. Cast it explicitly with {2}.", " Sonuna L yaz: 4L.": " Add L at the end: 4L.", " Nöqtə ilə yaz: 4.0.": " Write it with a decimal point: 4.0.", " Sonuna f yaz: 4f.": " Add f at the end: 4f.", "{} {} type-ındadır və avtomatik {} olmur. Autoboxing yalnız öz cütü ilə işləyir: {} → {}.{}": "{0} has type {1} and does not become {2} automatically. Autoboxing only works with its own pair: {3} → {4}.{5}", "Type-lar uyğun gəlmir: {} primitive-ini {} type-ına yazmaq olmaz.": "Incompatible types: the primitive {0} cannot be assigned to {1}.", "{} type-ı tanınmır. Əvvəlcə class {} { ... } yaz.": "The type {0} is unknown. Write class {1} { ... } first.", "Generic type-lar uyğun gəlmir: {} type-ını {} type-ına yazmaq olmaz.": "Incompatible generic types: {0} cannot be assigned to {1}.", "Autoboxing: {} çağırılır. {} cache aralığındadır ({}), ona görə yeni object yaradılmır, hazır cache object-i qaytarılır.": "Autoboxing: {0} is called. {1} is in the cache range ({2}), so no new object is created and the ready-made cached object is returned.", "Autoboxing: {} üçün cache yoxdur, heap-də yeni object yaradıldı.": "Autoboxing: {0} has no cache, so a new object was created on the heap.", "Autoboxing: {} cache aralığından kənardır, heap-də yeni {} object-i yaradıldı.": "Autoboxing: {0} is outside the cache range, so a new {1} object was created on the heap.", "{} String Pool-da yox idi, orada yeni object yaradıldı.": "{0} was not in the String Pool, so a new object was created there.", "{} artıq String Pool-dadır. Yeni object yaranmadı, mövcud olan istifadə olundu.": "{0} is already in the String Pool. No new object was created; the existing one is used.", "2147483648 int üçün çox böyükdür. long üçün sonuna L yaz.": "2147483648 is too large for an int. For a long, add L at the end.", "`this` yalnız object-in method-u daxilində var.": "`this` only exists inside an object's method.", "{} adlı variable tapılmadı. Əvvəlcə onu declare et.": "No variable named {0} was found. Declare it first.", "{} hələ value almayıb, onu oxumaq olmaz.": "{0} has no value yet, so it cannot be read.", "Array syntax-ı {...} yalnız declaration zamanı işləyir. new int[]{1, 2} yaz.": "The {...} array syntax only works in a declaration. Write new int[]{1, 2}.", "! yalnız boolean ilə işləyir.": "! only works with boolean.", "{} yalnız number-lərlə işləyir.": "{0} only works with numbers.", "boolean başqa type-a çevrilmir.": "boolean cannot be converted to another type.", "Array size-ı int olmalıdır.": "An array size must be an int.", "NegativeArraySizeException: array size-ı {} ola bilməz.": "NegativeArraySizeException: an array size cannot be {0}.", "Array-in size-ını yaz: new int[3].": "Give the array a size: new int[3].", "Görüntü üçün array size-ı burada 64-lə məhdudlaşdırılıb.": "For the drawing, array size is limited to 64 here.", "Bu ifadə dəstəklənmir.": "This expression is not supported.", "Array object-dir: {} heap-də yaradıldı. Elementləri primitive olsa da, value-lar array-in içindədir, yəni heap-də.": "An array is an object: {0} was created on the heap. Even with primitive elements, the values are inside the array, so they are on the heap.", "{} heap-də yaradıldı. Elementlərdə object-lər yox, reference-lər saxlanır (hələlik {}).": "{0} was created on the heap. Its elements hold references, not objects (for now, {1}).", "{...} syntax-ı yalnız array type-ı üçündür, burada isə type: {}.": "The {...} syntax is only for array types, but the type here is {0}.", "{} heap-də yaradıldı. Elementlərdə object-lər yox, reference-lər saxlanır.": "{0} was created on the heap. Its elements hold references, not objects.", "[] yalnız array ilə işləyir.": "[] only works with arrays.", "NullPointerException: array variable-ı null-dur.": "NullPointerException: the array variable is null.", "ArrayIndexOutOfBoundsException: {} index-i yoxdur. Array-in length-i: {}.": "ArrayIndexOutOfBoundsException: there is no index {0}. Array length: {1}.", " value-su null": " value that is null", "NullPointerException: {} ilə operation aparmaq olmaz.": "NullPointerException: cannot operate on a {0}.", "{} ilə bu operation olmaz.": "This operation does not work with {0}.", "Concatenation runtime-da baş verir, ona görə {} pool-a yox, heap-də yeni object-ə yazıldı.": "This concatenation happens at runtime, so {0} went into a new heap object, not the pool.", "{} reference-ləri müqayisə edir: hər ikisi eyni object-ə baxır.": "{0} compares references: both point to the same object.", ", value-ları eyni olsa belə": ", even if their values are equal", "{} reference-ləri müqayisə edir: bunlar fərqli object-lərə baxır{}.": "{0} compares references: these point to different objects{1}.", "{} ilə {} müqayisə olunmur.": "{0} and {1} cannot be compared.", "{} burada value-ları müqayisə edir, çünki ən azı bir tərəf primitive-dir.": "Here {0} compares values, because at least one side is a primitive.", "{} operation-ı {} və {} üçün işləmir.": "The {0} operator does not work on {1} and {2}.", "ArithmeticException: integer-i sıfıra bölmək olmaz.": "ArithmeticException: an integer cannot be divided by zero.", "{} hələ value almayıb.": "{0} has no value yet.", "{} class-ında {} field-i yoxdur.": "Class {0} has no field {1}.", "{} primitive-dir, onun field-i olmur.": "{0} is a primitive, so it has no fields.", "NullPointerException: variable null-dur, {} field-inə çatmaq olmaz.": "NullPointerException: the variable is null, so field {0} cannot be reached.", " Method-dan istifadə et, məsələn ": " Use a method, for example ", "{} object-inin {} field-i private-dır, ona birbaşa çatmaq olmaz.{}": "Field {1} of {0} is private and cannot be reached directly.{2}", "{} final-dır, ona yenidən value vermək olmaz.": "{0} is final, so it cannot get a new value.", "heap-dəki object-in içində": "inside the object on the heap", "stack-dəki slot-da": "in the stack slot", "{}: {} köhnə value ({}) yerinə {} yazıldı.": "{0}: {1}, the old value ({2}) was replaced with {3}.", "{}: {} {} saxlanır.": "{0}: {1} is stored {2}.", "{} artıq heç bir object-ə baxmır ({}).": "{0} no longer points to any object ({1}).", "{}: {} indi yeni reference var. Köhnə object-in özü dəyişmir.": "{0}: {1} there is now a new reference. The old object itself does not change.", "{} final-dır, onu dəyişmək olmaz.": "{0} is final, so it cannot change.", "{} type-ında {} field-i yoxdur.": "Type {0} has no field {1}.", "`new String()` heap-də yeni boş object yaratdı.": "`new String()` created a new empty object on the heap.", "{} həmişə pool-dan kənarda, heap-də yeni object yaradır. Eyni mətn olsa belə bu ayrı object-dir.": "{0} always creates a new heap object outside the pool. Even with the same text, this is a separate object.", "new {}(...) bir value almalıdır.": "new {0}(...) needs one value.", "{} cache-ə baxmır, həmişə yeni object yaradır. Bu yazılış deprecated-dir: {} istifadə et.": "{0} ignores the cache and always creates a new object. This form is deprecated: use {1}.", "{} heap-də yeni object yaratdı.": "{0} created a new object on the heap.", "{} class-ı tanınmır. Əvvəlcə {} yaz. Collection-lardan {} və {} işləyir.": "Class {0} is unknown. Write {1} first. Among collections, {2} and {3} work.", "{} üçün {} parameter-li constructor yoxdur.": "{0} has no constructor with {1} parameters.", "{} heap-də yeni {} object-i yaratdı. Field-ləri (primitive-lər də daxil) object-in içindədir, yəni heap-də, və initial value alıblar.": "{0} created a new {1} object on the heap. Its fields, primitives included, are inside the object, so they are on the heap, and they got their initial values.", "StackOverflowError: method-lar bitmədən yeni frame-lər yaranır və stack dolur. Bu alət {} frame-də dayanır, real JVM-də limit adətən minlərlədir.": "StackOverflowError: new frames keep arriving before methods finish, and the stack fills up. This tool stops at {0} frames; on a real JVM the limit is usually in the thousands.", "{} {} parameter gözləyir, {} verildi.": "{0} expects {1} parameters, but got {2}.", " Parameter-lər argument-lərin kopyasıdır.": " Parameters are copies of the arguments.", "Method çağırıldı: stack-in üstünə yeni frame əlavə olundu.{}": "The method was called: a new frame was added on top of the stack.{0}", "{} method-u value qaytarmalıdır.": "Method {0} must return a value.", "{} void-dur, value qaytara bilməz.": "{0} is void, so it cannot return a value.", " Nəticə çağıran method-a qaytarıldı.": " The result was returned to the caller.", "{} bitdi: onun frame-i bütün local variable-larla birlikdə stack-dən silindi.{}": "{0} finished: its frame and all its local variables were removed from the stack.{1}", "System.out.{} dəstəklənmir: println və ya print yaz.": "System.out.{0} is not supported: use println or print.", "{} static deyil, onu object olmadan çağırmaq olmaz.": "{0} is not static, so it cannot be called without an object.", "{} adlı method tapılmadı.": "No method named {0} was found.", "{} class-ında {} method-u yoxdur.": "Class {0} has no method {1}.", "{} static deyil, onu object üzərindən çağır.": "{0} is not static. Call it on an object.", "{} adlı variable və ya class tapılmadı.": "No variable or class named {0} was found.", "NullPointerException: variable null-dur, {} çağırmaq olmaz.": "NullPointerException: the variable is null, so {0} cannot be called.", "{} üçün {} method-u hələ dəstəklənmir.": "Method {1} is not supported for {0} yet.", "{} heap-də object yaratdı, amma hələ öz array-i yoxdur: {} shared boş array-ə baxır. 10 yerlik array ilk {}-də yaranacaq.": "{0} created an object on the heap, but it has no array of its own yet: {1} points to a shared empty array. The 10-slot array will appear on the first {2}.", "Burada yalnız {} və {} dəstəklənir.": "Only {0} and {1} are supported here.", "IllegalArgumentException: capacity {} ola bilməz.": "IllegalArgumentException: the capacity cannot be {0}.", "{} heap-də object və {} yerlik {} array-i yaratdı. {} hələ 0-dır: capacity və size fərqli şeylərdir.": "{0} created an object and a {2} with {1} slots on the heap. {3} is still 0: capacity and size are different things.", "Array boş idi: heap-də {} yerlik yeni {} yaradıldı.": "The array was empty: a new {1} with {0} slots was created on the heap.", "Array doldu ({} yer). Array-in size-ı dəyişə bilmir, ona görə {} yerlik yeni array yaradıldı və elementlər ora köçürüldü.": "The array is full ({0} slots). An array cannot change size, so a new {1}-slot array was created and the elements were copied into it.", "{} {} argument gözləyir, {} verildi.": "{0} expects {1} arguments, but got {2}.", " Sağdakı {} element bir cell sürüşdürüldü.": " The {0} elements on the right moved over by one cell.", "Element {} cell-inə yazıldı: array-də object-in özü yox, reference saxlanır.{} {}: {}.": "The element was written to {0}: the array holds a reference, not the object itself.{1} {2}: {3}.", "{} {} cell-indəki reference-i qaytardı. Yeni object yaranmadı.": "{0} returned the reference in {1}. No new object was created.", "{} cell-inə yeni reference yazıldı.": "A new reference was written to {0}.", "Argument primitive {} olduğu üçün {} çağırıldı: value yox, {} index-i silinir.": "The argument is a primitive {0}, so {1} was called: index {2} is removed, not that value.", "Argument object olduğu üçün {} çağırıldı: value-ya görə axtarılır.": "The argument is an object, so {0} was called: it searches by value.", "Sağdakı elementlər sola sürüşdü. Array kiçilmir: capacity {} olaraq qalır.": "The elements on the right moved left. The array does not shrink: capacity stays {0}.", "Cell-lər {} oldu, {} 0-a düşdü. Array-in özü silinmir.": "The cells became {0} and {1} dropped to 0. The array itself stays.", "ArrayList üçün {} hələ dəstəklənmir. İşləyənlər: add, get, set, remove, size, isEmpty, contains, indexOf, clear.": "{0} is not supported for ArrayList yet. These work: add, get, set, remove, size, isEmpty, contains, indexOf, clear.", "{} heap-də object yaratdı. {} hələ {}-dur: bucket array-i ilk {}-da yaranacaq.": "{0} created an object on the heap. {1} is still {2}: the bucket array will appear on the first {3}.", "{} öz {} method-unu yazmayıb. Real JVM-də bu hash hər işə salmada fərqli ola bilər, burada nümunə value-dur.": "{0} does not define its own {1}. On a real JVM this hash can differ on every run; the value here is only an example.", "{} threshold-u keçdi: {} bucket-lik yeni array yaradıldı. Node-lar köçürüldü və index-ləri yeni capacity-yə görə yenidən hesablandı.": "{0} passed the threshold: a new array with {1} buckets was created. The Nodes moved over, and their indexes were recalculated for the new capacity.", "Heap-də {} bucket-lik {} array-i yaradıldı. Yeni threshold: {} (capacity-nin 75%-i).": "A {1} array with {0} buckets was created on the heap. New threshold: {2} (75% of capacity).", "{} key-inin hash-i həmişə 0-dır, ona görə bucket 0 seçilir.": "The hash of a {0} key is always 0, so bucket 0 is chosen.", "{} = {}, spread hash = {}. Bucket: {} = {}.": "{0} = {1}, spread hash = {2}. Bucket: {3} = {4}.", "Bu key artıq var: yeni Node yaranmadı, mövcud Node-un value reference-i dəyişdi.": "This key already exists: no new Node was created, and the existing Node's value reference changed.", "Bucket {} boş idi: yeni {} birbaşa ora yazıldı. Key və value Node-un içində yox, reference ilə saxlanır.": "Bucket {0} was empty: the new {1} went straight in. The key and value are not inside the Node; it holds references to them.", "Collision: bucket {} artıq doludur və key-lər fərqlidir. Yeni {} list-in sonuna {} ilə bağlandı.": "Collision: bucket {0} is already taken and the keys differ. The new {1} was linked to the end of the list through {2}.", "Bu bucket-də 8-dən çox Node oldu. Real HashMap burada list-i tree-yə çevirir, bu alət onu sadəlik üçün list kimi göstərir.": "This bucket now has more than 8 Nodes. A real HashMap turns the list into a tree here; this tool keeps drawing a list for simplicity.", "Key tapıldı.": "The key was found.", "Key tapılmadı.": "The key was not found.", "Hash birbaşa bucket {} cell-inə aparır: bütün table gəzilmir, yalnız bu bucket yoxlanır. {}": "The hash leads straight to bucket {0}: only this bucket is checked, not the whole table. {1}", "{} hələ {}-dur, key tapılmadı.": "{0} is still {1}, so the key was not found.", "{} bucket-dən çıxarıldı. Table kiçilmir.": "The {0} was removed from its bucket. The table does not shrink.", "Bütün bucket-lər boşaldı. Table-ın özü silinmir.": "All buckets are empty now. The table itself stays.", "{} hələlik yalnız for-each daxilində işləyir: {}.": "{0} only works inside for-each for now: {1}.", "HashMap üçün {} hələ dəstəklənmir. İşləyənlər: put, get, getOrDefault, containsKey, containsValue, remove, size, isEmpty, clear, keySet, values, entrySet.": "{0} is not supported for HashMap yet. These work: put, get, getOrDefault, containsKey, containsValue, remove, size, isEmpty, clear, keySet, values, entrySet.", "{} üçün {} dəstəklənmir. İşləyənlər: getKey, getValue, setValue.": "{1} is not supported for {0}. These work: getKey, getValue, setValue.", "HashMap elementləri bucket sırası ilə gəzilir, ona görə sıra əlavə etdiyin sıra ilə eyni olmaya bilər.": "HashMap elements are visited in bucket order, so the order may differ from the order you added them.", "for-each array və ya collection ilə işləyir.": "for-each works with arrays and collections.", "NullPointerException: null üzərində loop etmək olmaz.": "NullPointerException: you cannot loop over null.", "for-each {} ilə işləmir.": "for-each does not work with {0}.", "{} reference-lərə yox, object-lərin content-inə baxır.": "{0} looks at the content of the objects, not at the references.", "{} {} method-unu özü yazmayıb, ona görə {} kimi reference-ləri müqayisə edir.": "{0} does not define its own {1}, so it compares references, like {2}.", "Mətn dəyişmədi, ona görə {} eyni object-i qaytardı.": "The text did not change, so {0} returned the same object.", "String immutable-dır: {} köhnə object-i dəyişmir, heap-də yeni object yaradır.": "String is immutable: {0} does not change the old object; it creates a new one on the heap.", "StringIndexOutOfBoundsException: {} index-i yoxdur. String-in length-i: {}.": "StringIndexOutOfBoundsException: there is no index {0}. Text length: {1}.", "{} pool-dakı eyni mətnli object-i qaytardı.": "{0} returned the object with the same text from the pool.", "{} bu mətni pool-a əlavə etdi.": "{0} added this text to the pool.", "String üçün {} hələ dəstəklənmir.": "{0} is not supported for String yet.", "new ArrayList<>(capacity)": "new ArrayList<>(capacity)", "new HashMap<>(capacity)": "new HashMap<>(capacity)", "boolean Number deyil.": "boolean is not a Number.", "{} primitive-dir, onun method-u olmur.": "{0} is a primitive, so it has no methods.", "IndexOutOfBoundsException: {} index-i yoxdur. {}: {}.": "IndexOutOfBoundsException: there is no index {0}. {1}: {2}.", "Burada yalnız sadə enum dəstəklənir: {}.": "Only simple enums are supported here: {0}.", "{} block-undan sonra {} və ya {} yaz.": "Add {1} or {2} after the {0} block.", "`{}` hələ dəstəklənmir. Variable-lar, object-lər, array-lər, if, for, while, try və method-lar işləyir.": "`{0}` is not supported yet. Variables, objects, arrays, if, for, while, try and methods all work.", "Hər enum constant-ı heap-də tək bir object-dir və proqram boyu eyni qalır. Ona görə enum-ları {} ilə müqayisə etmək təhlükəsizdir.": "Each enum constant is a single object on the heap and stays the same for the whole program. That is why comparing enums with {0} is safe.", "{} yalnız exception object-i ilə işləyir.": "{0} only works with an exception object.", "NullPointerException: null atmaq olmaz.": "NullPointerException: you cannot throw null.", "Stack unwinding: exception catch olunana qədər {} frame silindi.": "The stack unwinds: {0} frames were removed until the exception was caught.", "{} catch olundu. Exception da heap-də object-dir, {} ona reference saxlayır. Proqram dayanmır, {} block-undan davam edir.": "{0} was caught. An exception is an object on the heap too, and {1} holds a reference to it. The program does not stop; it continues from the {2} block.", "{} xəta olsa da, olmasa da işləyir.": "{0} runs whether or not there was an error.", "{} variable-ı avtomatik {} olmur, object elə olsa belə. Cast et: {}.": "A {0} variable does not become {1} automatically, even if the object is one. Cast it: {2}.", "ClassCastException: {} object-i {} type-ına cast olunmur.": "ClassCastException: a {0} object cannot be cast to {1}.", "{} primitive ilə işləmir.": "{0} does not work with primitives.", "Exception adi object-dir: {} heap-də yaradıldı. {} olmadan heç nə baş vermir.": "An exception is an ordinary object: {0} was created on the heap. Nothing happens without {1}.", "{} abstract-dır, ondan object yaratmaq olmaz.": "{0} is abstract, so you cannot create an object from it.", "Enum-dan {} ilə object yaratmaq olmaz. Onun constant-larını istifadə et.": "You cannot create an enum object with {0}. Use its constants.", "Inheritance ikinci object yaratmır: parent class-ın field-ləri eyni object-in içindədir.": "Inheritance does not create a second object: the parent class fields live inside the same object.", "Record-un field-ləri {}-dır: object yaradıldıqdan sonra dəyişmir.": "Record fields are {0}: they do not change after the object is created.", "{} parent constructor-unu çağırır: stack-də yeni frame açılır, amma object eyni qalır.": "{0} calls the parent constructor: a new stack frame opens, but the object stays the same.", "NumberFormatException: {} number-ə çevrilmir.": "NumberFormatException: {0} cannot be converted to a number.", "Variable-ın type-ı {}, amma object-in özü {}-dir. Java hansı method-un işləyəcəyini object-ə görə seçir.": "The variable has type {0}, but the object itself is a {1}. Java picks the method to run based on the object.", "Record {} method-unu özü yaradır: field-ləri müqayisə edir.": "A record generates {0} for you: it compares the fields.", "HashSet elementləri bucket sırası ilə gəzilir, ona görə sıra əlavə etdiyin sıra ilə eyni olmaya bilər.": "HashSet elements are visited in bucket order, so the order may differ from the order you added them.", "StringIndexOutOfBoundsException: {} ... {} aralığı yoxdur. String-in length-i: {}.": "StringIndexOutOfBoundsException: the range {0} ... {1} does not exist. Text length: {2}.", "{} heap-də object və {} yerlik array yaratdı. String-dən fərqli olaraq bu array dəyişə bilir. Real array {}-dir, burada oxunaqlı olsun deyə character-lər göstərilir.": "{0} created an object and a {1}-slot array on the heap. Unlike a String, this array can change. The real array is a {2}; characters are shown here for readability.", "Array doldu ({} yer). {} yerlik yeni array yaradıldı və character-lər ora köçürüldü. Formula: köhnə capacity × 2 + 2.": "The array is full ({0} slots). A new {1}-slot array was created and the characters were copied into it. Formula: old capacity × 2 + 2.", "Yeni String yaranmadı: character-lər eyni array-ə yazıldı və eyni object qaytarıldı.": "No new String was created: the characters went into the array and the same object was returned.", "{} array-dəki character-ləri kopyalayır: heap-də yeni String yaranır, pool-a düşmür.": "{0} copies the characters from the array: a new String appears on the heap, not in the pool.", "StringBuilder üçün {} hələ dəstəklənmir. İşləyənlər: append, insert, reverse, deleteCharAt, setCharAt, charAt, length, isEmpty, capacity, toString.": "{0} is not supported for StringBuilder yet. These work: append, insert, reverse, deleteCharAt, setCharAt, charAt, length, isEmpty, capacity, toString.", "{} daxildə {} işlədir: elementlər key olur, value isə hamısı üçün eyni {} object-idir.": "{0} uses a {1} inside: the elements become keys, and every value is the same {2} object.", "Bu element artıq var: set dəyişmədi, {} {} qaytardı.": "This element already exists: the set did not change and {0} returned {1}.", "HashSet üçün {} hələ dəstəklənmir. İşləyənlər: add, contains, remove, size, isEmpty, clear.": "{0} is not supported for HashSet yet. These work: add, contains, remove, size, isEmpty, clear.", "Burada yalnız {} dəstəklənir.": "Only {0} is supported here.", "{} heap-də object yaratdı. {}-dən fərqli olaraq array-i yoxdur: hər element ayrıca {} object-ində olacaq.": "{0} created an object on the heap. Unlike {1}, it has no array: each element will live in its own {2} object.", "Heap-də yeni {} yaradıldı. Heç bir element sürüşmədi: yalnız qonşu Node-ların {} və {} reference-ləri dəyişdi.": "A new {0} was created on the heap. No element moved: only the {1} and {2} references of the neighbouring Nodes changed.", "{} chain-dən çıxarıldı: qonşular bir-birinə bağlandı.": "The {0} left the chain: its neighbours were linked to each other.", "{} index-inə çatmaq üçün {} addım Node-dan Node-a keçildi. Array-dən fərqli olaraq birbaşa keçid yoxdur.": "Reaching index {0} took {1} hops from Node to Node. Unlike an array, there is no direct access.", "NoSuchElementException: list boşdur.": "NoSuchElementException: the list is empty.", "LinkedList üçün {} hələ dəstəklənmir. İşləyənlər: add, addFirst, addLast, get, set, getFirst, getLast, remove, removeFirst, removeLast, push, pop, peek, poll, offer, size, isEmpty, contains, indexOf, clear.": "{0} is not supported for LinkedList yet. These work: add, addFirst, addLast, get, set, getFirst, getLast, remove, removeFirst, removeLast, push, pop, peek, poll, offer, size, isEmpty, contains, indexOf, clear."}};
 /* The Azerbaijani text is the key; {0}, {1} in a translation stand for the template's values in source order. */
@@ -744,7 +797,6 @@ function TX(strs, ...vals) {
   return strs.reduce((a, s, i) => a + vals[i - 1] + s);
 }
 TX.missing = new Set();
-
 /* ---------- Mini Java: tokenizer, parser, interpreter producing memory snapshots ---------- */
 const PRIMS = ['byte','short','char','int','long','float','double','boolean'];
 const BOX = {Byte:'byte',Short:'short',Character:'char',Integer:'int',Long:'long',Float:'float',Double:'double',Boolean:'boolean'};
@@ -1221,7 +1273,6 @@ class Parser {
     return {x:'new', cls:name, gt:gt.replace('<>', ''), args:this.args(), line};
   }
 }
-
 /* ---------- Interpreter ---------- */
 class Signal { constructor(kind, val) { this.kind = kind; this.val = val; } }
 
@@ -2805,10 +2856,6 @@ class Interp {
 /* value placeholder used by compound assignment */
 const _eval = Interp.prototype.eval;
 Interp.prototype.eval = function (e) { return e.x === '__v' ? e.v : _eval.call(this, e); };
-</script>
-
-<script id="ui">
-
 const UI = {
   az: {
     title:'JVM: Stack və Heap', lede:'Java kodu yaz və hər variable-ın yaddaşda hara düşdüyünü sətir-sətir izlə.',
@@ -3348,8 +3395,6 @@ $('inner').addEventListener('focusout', () => setHot(null));
 const redraw = () => { fitHeap(); drawWires(null); };
 window.addEventListener('resize', redraw);
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(redraw);
-
-
 /* ---------- Site: topics and the HashMap lesson ---------- */
 const SITE = {
   az: {site:'Java necə işləyir', siteLede:'Mövzu seç, kod yaz və daxildə nə baş verdiyini addım-addım gör.', topics:'Mövzular', gMem:"Memory", gColl:"Collection-lar", gConc:"Concurrency", gHood:"Dil və JVM",
@@ -3621,10 +3666,9 @@ $('hm-open').onclick = () => {
   $('samples').value = 'own';
   saveDraft(); compile(); go('jvm');
 };
-
 /* ---------- Lessons: one view, each topic brings its own stage ---------- */
 const LS = {};
-const LS_ORDER = ['gc', 'threads', 'chm', 'bytecode', 'classload', 'stream', 'treemap', 'strings'];
+const LS_ORDER = ['gc', 'threads', 'chm', 'bytecode', 'classload', 'stream', 'treemap', 'strings', 'layout', 'vthreads'];
 const LS_UI = {
   az: {step:'Addım', reset:'Əvvələ qaytar', chapter:'Bölmə', out:'Çıxış', code:'Kod', measured:'Real JVM ölçüsü', simplified:'Sadələşdirilmiş model'},
   tr: {step:'Adım', reset:'Başa dön', chapter:'Bölüm', out:'Çıktı', code:'Kod', measured:'Gerçek JVM ölçümü', simplified:'Basitleştirilmiş model'},
@@ -3707,7 +3751,6 @@ document.addEventListener('submit', e => {
   LS[lsId].act(lsState, f.dataset.submit, new FormData(f), lsCh);
   lsRender();
 });
-
 /* ---------- Garbage Collection ---------- */
 const GC_SCRIPTS = {
   0: {roots:['o', 'c'], objs:{A:['Order', 210, 40], B:['Customer', 500, 130]},
@@ -3910,7 +3953,6 @@ LS.gc = {
       ]},
   },
 };
-
 /* ---------- Threads: the reader picks which thread runs next ---------- */
 const TH_INC = [{c:'r = count;', op:'read'}, {c:'r = r + 1;', op:'add'}, {c:'count = r;', op:'write'}];
 const TH_SYNC = [{c:'synchronized (lock) {', op:'lock', l:'lock'}, {c:'  r = count;', op:'read'}, {c:'  r = r + 1;', op:'add'}, {c:'  count = r;', op:'write'}, {c:'}', op:'unlock', l:'lock'}];
@@ -4056,7 +4098,6 @@ LS.threads = {
       ]},
   },
 };
-
 /* ---------- ConcurrentHashMap: a port of the JDK 21 put, remove and transfer logic ---------- */
 const chmSpread = h => (h ^ (h >>> 16)) & 0x7fffffff;
 function chmNew() { return {tab:null, size:0, ctl:0, trees:{}, moved:{}}; }
@@ -4267,7 +4308,6 @@ map.merge("c", 1, Integer::sum);      // ${esc(lu('c2'))}</pre>` + measured(rich
       ]},
   },
 };
-
 /* ---------- Bytecode: real javap output, run by a small stack machine ---------- */
 const BC_M = {
   addVars:{sig:'static int addVars()', names:['a', 'b', 'c'], java:['static int addVars() {', '  int a = 2;', '  int b = 3;', '  int c = a + b;', '  return c;', '}'],
@@ -4395,7 +4435,6 @@ LS.bytecode = {
       ]},
   },
 };
-
 /* ---------- Class loading: scripted traces, each compared with a real java run ---------- */
 const CL_ORDER_SRC = ['class P {', '  static int ps = log("P static field");', '  int pf = log("P instance field");', '  static { log("P static block"); }', '  { log("P instance block"); }', '  P() { log("P constructor"); }', '  static int log(String s) { System.out.println(s); return 1; }', '}', 'class C extends P {', '  static int cs = log("C static field");', '  int cf = log("C instance field");', '  static { log("C static block"); }', '  { log("C instance block"); }', '  C() { log("C constructor"); }', '}', 'public class Main {', '  public static void main(String[] a) {', '    new C();', '    new C();', '  }', '}'];
 const CL_INST = [[2, 'P instance field', 'if', 'P'], [4, 'P instance block', 'ib', 'P'], [5, 'P constructor', 'ct', 'P'], [10, 'C instance field', 'if', 'C'], [12, 'C instance block', 'ib', 'C'], [13, 'C constructor', 'ct', 'C']];
@@ -4524,7 +4563,6 @@ LS.classload = {
       ]},
   },
 };
-
 /* ---------- Stream: the same Sink chain the JDK builds ---------- */
 const ST_OPS = {
   even:{java:'filter(x -> x % 2 == 0)', k:'filter', f:x => x % 2 === 0},
@@ -4703,7 +4741,6 @@ s.toList();   // IllegalStateException</pre>`)
       ]},
   },
 };
-
 /* ---------- TreeMap: a port of put, deleteEntry and both fix-up methods from JDK 21 ---------- */
 const RED = false, BLACK = true;
 const tmColor = p => p ? p.c : BLACK, tmP = p => p ? p.p : null, tmL = p => p ? p.l : null, tmR = p => p ? p.r : null;
@@ -4923,7 +4960,6 @@ System.out.println(c);             // {Ali=3, Aysel=2}</pre>` + measured(rich(lu
       ]},
   },
 };
-
 /* ---------- String: real field layout ---------- */
 function sInfo(s) {
   const latin = [...Array(s.length).keys()].every(i => s.charCodeAt(i) < 256);
@@ -5022,7 +5058,486 @@ for (int i = 0; i &lt; 100_000; i++) b.append("x"); // ${esc(lu('c2'))}</pre><di
       ]},
   },
 };
-
+/* ---------- Objects in memory ---------- */
+const LY_SIZE = {byte:1, boolean:1, char:2, short:2, int:4, float:4, long:8, double:8};
+const ly8 = n => Math.ceil(n / 8) * 8;
+/* HotSpot 15+ field layout (FieldLayoutBuilder): primitives largest first, then references, each into the smallest hole that fits.
+   Checked against 600 random classes on JDK 21: sizes and slots match. JDK 21 sorts with an unstable qsort,
+   so fields of the same size may swap places with each other on a real JVM. */
+function lyLayout(types, coops) {
+  const sz = t => LY_SIZE[t] || (coops ? 4 : 8);
+  const blocks = [{off:0, size:12, kind:'h'}, {off:12, size:Infinity, kind:'e'}];
+  const all = types.map((t, i) => ({t, i, size:sz(t)}));
+  const prim = all.filter(f => LY_SIZE[f.t]).sort((a, b) => b.size - a.size || a.i - b.i);
+  const refs = all.filter(f => !LY_SIZE[f.t]);
+  const offs = [];
+  const add = list => {
+    let lastSize = 0, lastOk = false;
+    for (const f of list) {
+      const pad = b => b.off % f.size ? f.size - b.off % f.size : 0;
+      let cand = null;
+      if (f.size === lastSize && !lastOk) cand = blocks[blocks.length - 1];
+      else {
+        lastSize = f.size; lastOk = true;
+        for (let k = blocks.length - 2; k > 0; k--) { const b = blocks[k]; if (b.kind === 'e' && b.size >= f.size + pad(b) && (!cand || b.size < cand.size)) cand = b; }
+        if (!cand) { cand = blocks[blocks.length - 1]; lastOk = false; }
+      }
+      let k = blocks.indexOf(cand);
+      const adj = pad(cand);
+      if (adj) { blocks.splice(k, 0, {off:cand.off, size:adj, kind:'e'}); k++; cand.off += adj; cand.size -= adj; }
+      blocks.splice(k, 0, {off:cand.off, size:f.size, kind:'f'});
+      offs[f.i] = cand.off; cand.off += f.size; cand.size -= f.size;
+      if (cand.size === 0) blocks.splice(k + 1, 1);
+    }
+  };
+  add(prim); add(refs);
+  return {offs, size:ly8(blocks[blocks.length - 1].off)};
+}
+/* What the size would be if fields stayed in declared order, as a C struct would. */
+function lyNaive(types, coops) {
+  let off = 12;
+  types.forEach(t => { const s = LY_SIZE[t] || (coops ? 4 : 8); off = Math.ceil(off / s) * s + s; });
+  return ly8(off);
+}
+const LY_TYPES = ['byte', 'boolean', 'char', 'short', 'int', 'float', 'long', 'double', 'String'];
+const LY_PRESET = {
+  Mixed:[['byte', 'b'], ['long', 'l'], ['int', 'i'], ['boolean', 'f'], ['Object', 'o']],
+  Person:[['String', 'name'], ['int', 'age'], ['boolean', 'active']],
+  Point:[['int', 'x'], ['int', 'y']],
+  Flags:[['boolean', 'a'], ['long', 'id'], ['boolean', 'b'], ['long', 'ts'], ['boolean', 'c']],
+};
+const lyKind = t => LY_SIZE[t] ? 'k-f' + LY_SIZE[t] : 'k-ref';
+/* segs: [{off, len, cls, label, sub}] that cover 0..size. Fields never cross an 8-byte row, gaps can. */
+function lyGrid(segs, size) {
+  const parts = [];
+  segs.forEach(s => {
+    let o = s.off, left = s.len;
+    while (left > 0) { const room = 8 - o % 8, n = Math.min(room, left); parts.push({...s, off:o, len:n, cont:o !== s.off}); o += n; left -= n; }
+  });
+  let html = '';
+  for (let r = 0; r < size; r += 8) {
+    const cells = parts.filter(p => p.off >= r && p.off < r + 8).map(p => `<span class="lyc ${p.cls}" style="grid-column:${p.off % 8 + 2} / span ${p.len}" title="${esc(p.label)} · ${p.off}">${p.cont && p.cls !== 'k-gap' && p.cls !== 'k-pad' ? '' : `<b>${esc(p.label)}</b>`}${p.sub && !p.cont ? `<small>${esc(p.sub)}</small>` : ''}</span>`).join('');
+    html += `<div class="lyrow"><small>${r}</small>${cells}</div>`;
+  }
+  return `<div class="lygrid" role="img" aria-label="${size} byte">${html}</div>`;
+}
+function lyObjSegs(fields, coops) {
+  const L = lyLayout(fields.map(f => f[0]), coops);
+  const segs = [{off:0, len:8, cls:'k-mark', label:'mark word', sub:'8'}, {off:8, len:4, cls:'k-klass', label:'class', sub:'4'}];
+  const placed = fields.map((f, i) => ({off:L.offs[i], len:LY_SIZE[f[0]] || (coops ? 4 : 8), cls:lyKind(f[0]), label:f[1], sub:f[0]})).sort((a, b) => a.off - b.off);
+  let at = 12;
+  placed.forEach(p => { if (p.off > at) segs.push({off:at, len:p.off - at, cls:'k-gap', label:lu('gap')}); segs.push(p); at = p.off + p.len; });
+  if (L.size > at) segs.push({off:at, len:L.size - at, cls:'k-pad', label:'padding'});
+  const used = placed.reduce((s, p) => s + p.len, 0);
+  return {segs, L, used, placed};
+}
+const LY_MW = {thin:0x16b932aa0n, fat:0x7d28a8e02n, hash:0x63947c6bn};
+function lyMark(st) {
+  if (st.lock === 'thin') return LY_MW.thin;
+  if (st.lock === 'fat') return LY_MW.fat;
+  return (st.hash ? LY_MW.hash << 8n : 0n) | (BigInt(st.age) << 3n) | 1n;
+}
+const lyHex = v => '0x' + v.toString(16).padStart(16, '0').replace(/(.{4})(?=.)/g, '$1 ');
+function lyBits(st) {
+  const v = lyMark(st), locked = st.lock !== 'none';
+  const cls = b => b < 2 ? 'b-lock' : locked ? 'b-ptr' : b >= 3 && b <= 6 ? 'b-age' : b >= 8 && b <= 38 ? 'b-hash' : 'b-un';
+  const row = from => Array.from({length:32}, (_, k) => { const b = from - k; return `<i class="${cls(b)}">${(v >> BigInt(b)) & 1n}</i>`; }).join('');
+  return `<div class="lymw" aria-label="${lyHex(v)}"><div>${row(63)}</div><div>${row(31)}</div></div>`;
+}
+const LY_ARR = {int:[4, 0], long:[8, 0], byte:[1, 0], boolean:[1, 0], 'Integer (-128..127)':[4, 0], 'Integer (1000+)':[4, 16]};
+const LY_COLL = [['int[]', 4016, 4016], ['Integer[]', 20016, 24016], ['ArrayList<Integer>', 20976, 25920], ['LinkedList<Integer>', 40032, 56040], ['TreeMap<Integer,Integer>', 56048, 72080], ['HashMap<Integer,Integer>', 56256, 72464], ['HashSet<Integer>', 56288, 72504]];
+const LY_32 = [['new Object()', 16, 16], ['Integer', 16, 16], ['Long', 24, 24], ['String', 24, 32], ['ArrayList', 24, 32], ['HashMap', 48, 64], ['HashMap.Node', 32, 40], ['Integer[100]', 416, 816]];
+function lyBars(rows, unit) {
+  const max = Math.max(...rows.map(r => r[1]));
+  return `<div class="lybars">${rows.map(r => `<div class="barrow"><span><code class="bare">${esc(r[0])}</code></span><div class="hbar"><i style="width:${(r[1] / max * 100).toFixed(1)}%${r[2] ? ';background:' + r[2] : ''}"></i></div><b>${esc(r[3] || r[1].toLocaleString('en-US').replace(/,/g, ' ') + ' ' + unit)}</b></div>`).join('')}</div>`;
+}
+LS.layout = {
+  init(i) {
+    if (i === 0) return {hash:false, age:0, lock:'none', saved:null, ev:'new'};
+    if (i === 1) return {f:LY_PRESET.Mixed.map(x => x.slice()), p:'Mixed'};
+    if (i === 2) return {t:'Integer (1000+)', n:3};
+    if (i === 4) return {big:false};
+    return {};
+  },
+  controls(st, ch) {
+    const b = (act, v, label, sel, dis) => `<button class="btn${sel ? ' sel' : ''}" type="button" data-act="${act}"${v !== undefined ? ` data-v="${esc(v)}"` : ''}${sel !== undefined ? ` aria-pressed="${!!sel}"` : ''}${dis ? ' disabled' : ''}>${label}</button>`;
+    if (ch === 0) {
+      const un = st.lock === 'none';
+      return `<div class="stepbar">${b('hash', undefined, '<code class="bare">o.hashCode()</code>', undefined, !un || st.hash)}${b('gc', undefined, esc(lu('survive')), undefined, !un || st.age >= 15)}${b('lock', undefined, '<code class="bare">synchronized (o) {</code>', undefined, !un)}${b('contend', undefined, esc(lu('contend')), undefined, st.lock !== 'thin')}${b('unlock', undefined, '<code class="bare">}</code>', undefined, un)}<button class="btn ghost" type="button" data-act="reset">${esc(LS_UI[LANG].reset)}</button></div>`;
+    }
+    if (ch === 1) {
+      const full = st.f.length >= 10;
+      return `<div class="stepbar"><span class="seg">${Object.keys(LY_PRESET).map(k => b('preset', k, `<code class="bare">${k}</code>`, st.p === k)).join('')}</span><span class="seg">${LY_TYPES.map(t => b('add', t, `<code class="bare">+ ${t}</code>`, undefined, full)).join('')}</span>${b('undo', undefined, esc(lu('undo')), undefined, !st.f.length)}${b('clear', undefined, esc(lu('clear')), undefined, !st.f.length)}</div>`;
+    }
+    if (ch === 2) return `<div class="stepbar"><span class="seg">${Object.keys(LY_ARR).map(k => b('type', k, `<code class="bare">${esc(k)}</code>`, st.t === k)).join('')}</span><span class="seg">${[0, 1, 3, 8, 100, 1000].map(n => b('len', n, `<code class="bare">[${n}]</code>`, st.n === n)).join('')}</span></div>`;
+    if (ch === 4) return `<div class="stepbar"><span class="seg">${b('heap', '0', '<code class="bare">-Xmx31g</code>', !st.big)}${b('heap', '1', '<code class="bare">-Xmx32g</code>', st.big)}</span></div>`;
+    return '';
+  },
+  stage(st, ch) {
+    if (ch === 0) {
+      const v = lyMark(st), lk = {none:'01', thin:'00', fat:'10'}[st.lock];
+      const legend = st.lock === 'none'
+        ? `<div class="legend">${tag('dead', 'unused')}${tag('pink', 'hash · 31 bit')}${tag('mint', 'age · 4 bit')}${tag('sun', 'lock · 2 bit')}</div>`
+        : `<div class="legend">${tag('sky', st.lock === 'thin' ? lu('ptrThin') : lu('ptrFat'))}${tag('sun', 'lock · 2 bit')}</div>`;
+      const facts = `<div class="gtext"><span><code>lock</code> <b>${lk}</b></span><span><code>age</code> <b>${st.lock === 'none' ? st.age : '–'}</b></span><span><code>hash</code> <b>${st.hash ? '0x63947c6b' : '0'}</b></span></div>`;
+      const saved = st.lock !== 'none' ? `<p class="muted small">${rich(ls$('displaced', lyHex((st.hash ? LY_MW.hash << 8n : 0n) | (BigInt(st.age) << 3n) | 1n)))}</p>` : '';
+      return pnl('Mark word', `<p class="lyhex">${lyHex(v)}</p>${lyBits(st)}${legend}${facts}<p class="explain-s">${rich(ls$(st.ev, st.age))}</p>${saved}`)
+        + pnl('new Object()', lyGrid(lyObjSegs([], true).segs, 16) + `<p class="muted small">${rich(lu('objTotal'))}</p>`)
+        + pnl('', measured(rich(lu('m0'))));
+    }
+    if (ch === 1) {
+      const types = st.f.map(f => f[0]), o = lyObjSegs(st.f, true), naive = lyNaive(types, true);
+      const src = `class Demo {\n${st.f.map(f => `    ${f[0]} ${f[1]};`).join('\n') || '    // ' + lu('noFields')}\n}`;
+      const order = o.placed.map(p => `<span class="ch"><b>${esc(p.label)}</b><small>${p.off}</small></span>`).join('');
+      const waste = o.L.size - 12 - o.used;
+      const say = !st.f.length ? lu('emptyCls') : naive > o.L.size ? ls$('saved', naive, o.L.size) : waste ? ls$('waste', waste) : lu('tight');
+      return pnl(lu('srcT'), `<pre class="logv">${esc(src)}</pre>`)
+        + pnl(lu('memT'), `${lyGrid(o.segs, o.L.size)}<div class="gtext"><span><code>size</code> <b>${o.L.size} byte</b></span><span><code>header</code> <b>12</b></span><span><code>field</code> <b>${o.used}</b></span><span><code>${esc(lu('gapPad'))}</code> <b>${waste}</b></span><span><code>${esc(lu('declOrder'))}</code> <b>${naive} byte</b></span></div>${st.f.length ? `<h3 class="subh">${esc(lu('memOrder'))}</h3><div class="chars">${order}</div>` : ''}<p class="explain-s">${rich(say)}</p>`)
+        + pnl('', measured(rich(lu('m1'))));
+    }
+    if (ch === 2) {
+      const [es, box] = LY_ARR[st.t], shallow = ly8(16 + st.n * es), boxes = st.n * box, ref = /Integer/.test(st.t);
+      let grid = '';
+      if (st.n <= 8) {
+        const segs = [{off:0, len:8, cls:'k-mark', label:'mark word', sub:'8'}, {off:8, len:4, cls:'k-klass', label:'class', sub:'4'}, {off:12, len:4, cls:'k-len', label:'length', sub:String(st.n)}];
+        for (let i = 0; i < st.n; i++) segs.push({off:16 + i * es, len:es, cls:ref ? 'k-ref' : 'k-f' + es, label:`[${i}]`, sub:ref ? 'ref' : ''});
+        if (shallow > 16 + st.n * es) segs.push({off:16 + st.n * es, len:shallow - 16 - st.n * es, cls:'k-pad', label:'padding'});
+        grid = lyGrid(segs, shallow);
+      } else grid = `<p class="muted">${rich(ls$('bigArr', st.n))}</p>`;
+      const name = `${st.t.split(' ')[0]}[${st.n}]`;
+      const rows = Object.keys(LY_ARR).map(k => { const [e, bx] = LY_ARR[k], tot = ly8(16 + st.n * e) + st.n * bx; return [`${k.split(' ')[0]}[] ${k.includes('(') ? k.slice(k.indexOf('(')) : ''}`.trim(), tot, k === st.t ? 'var(--sun)' : 'var(--lilac)']; });
+      return pnl(name, `${grid}<div class="gtext"><span><code>${esc(lu('arrObj'))}</code> <b>${shallow} byte</b></span>${ref ? `<span><code>Integer object</code> <b>${st.n} × ${box} = ${boxes} byte</b></span>` : ''}<span><code>${esc(lu('total'))}</code> <b>${shallow + boxes} byte</b></span></div><p class="explain-s">${rich(st.t === 'boolean' ? lu('boolNote') : st.t === 'Integer (-128..127)' ? lu('cacheNote') : st.t === 'Integer (1000+)' ? ls$('boxNote', st.n) : ls$('primNote', es))}</p>`)
+        + pnl(ls$('cmpT', st.n), lyBars(rows, 'byte') + measured(rich(lu('m2'))));
+    }
+    if (ch === 3) {
+      const rows = LY_COLL.map(r => [r[0], r[1], r[0] === 'int[]' ? 'var(--sun)' : 'var(--lilac)', `${(r[1] / 1000).toFixed(1)} KB`]);
+      return pnl(lu('collT'), lyBars(rows) + `<table class="demo"><thead><tr><th></th><th>${esc(lu('perEl'))}</th></tr></thead><tbody>${LY_COLL.map(r => `<tr><td><code>${esc(r[0])}</code></td><td><b>${(r[1] / 1000).toFixed(1)}</b> byte</td></tr>`).join('')}</tbody></table>` + measured(rich(lu('m3'))))
+        + pnl(lu('nodeT'), lyGrid(lyObjSegs([['int', 'hash'], ['Object', 'key'], ['Object', 'value'], ['Object', 'next']], true).segs, 32) + `<p class="muted small">${rich(lu('nodeText'))}</p>`);
+    }
+    const co = !st.big, P = lyObjSegs(LY_PRESET.Person, co);
+    return pnl(`Person · ${st.big ? '-Xmx32g' : '-Xmx31g'}`, `${lyGrid(P.segs, P.L.size)}<div class="gtext"><span><code>UseCompressedOops</code> <b>${co}</b></span><span><code>reference</code> <b>${co ? 4 : 8} byte</b></span><span><code>size</code> <b>${P.L.size} byte</b></span></div><p class="explain-s">${rich(co ? lu('coopsOn') : lu('coopsOff'))}</p>`)
+      + pnl(lu('t32'), `<table class="demo"><thead><tr><th></th><th>-Xmx31g</th><th>-Xmx32g</th></tr></thead><tbody>${LY_32.map(r => `<tr><td><code>${esc(r[0])}</code></td><td>${co ? `<b>${r[1]}</b>` : r[1]}</td><td>${co ? r[2] : `<b>${r[2]}</b>`}</td></tr>`).join('')}<tr><td><code>HashMap&lt;Integer,Integer&gt;</code> × 1000</td><td>${co ? '<b>56 256</b>' : '56 256'}</td><td>${co ? '72 464' : '<b>72 464</b>'}</td></tr></tbody></table>` + measured(rich(lu('m4'))));
+  },
+  act(st, a, v, ch) {
+    if (ch === 0) {
+      if (a === 'reset') Object.assign(st, LS.layout.init(0));
+      if (a === 'hash') { st.hash = true; st.ev = 'evHash'; }
+      if (a === 'gc') { st.age = Math.min(15, st.age + 1); st.ev = st.age >= 15 ? 'evAgeMax' : 'evAge'; }
+      if (a === 'lock') { st.lock = 'thin'; st.ev = 'evThin'; }
+      if (a === 'contend') { st.lock = 'fat'; st.ev = 'evFat'; }
+      if (a === 'unlock') { st.ev = st.lock === 'fat' ? 'evUnFat' : 'evUnThin'; st.lock = 'none'; }
+    }
+    if (ch === 1) {
+      if (a === 'preset') { st.f = LY_PRESET[v].map(x => x.slice()); st.p = v; }
+      if (a === 'add' && st.f.length < 10) { const used = new Set(st.f.map(f => f[1])); let n = 0; while (used.has('abcdefghijklmnopqrstuvwxyz'[n])) n++; st.f.push([v, 'abcdefghijklmnopqrstuvwxyz'[n]]); st.p = null; }
+      if (a === 'undo') { st.f.pop(); st.p = null; }
+      if (a === 'clear') { st.f = []; st.p = null; }
+    }
+    if (ch === 2) { if (a === 'type') st.t = v; if (a === 'len') st.n = +v; }
+    if (ch === 4 && a === 'heap') st.big = v === '1';
+  },
+  text: {
+    az: {title:'Object yaddaşda', door:'Bir object neçə byte tutur: header, mark word, padding, field sırası, array-lər və 32 GB sərhədi.',
+      ui:{survive:'GC-dən sağ çıxdı', contend:'2-ci thread gözləyir', ptrThin:'thread stack-ində lock record-a pointer', ptrFat:'ObjectMonitor-a pointer',
+        new:'Yeni object: hash hələ hesablanmayıb, age 0-dır, lock bit-ləri `01`, yəni kilidsizdir. Mark word-un dəyəri sadəcə `1`-dir.',
+        evHash:'İlk `hashCode()` identity hash-i hesabladı və mark word-a yazdı: 31 bit, 8-ci bit-dən başlayır. Sonrakı çağırışlar onu buradan oxuyur.',
+        evAge:a => `Object Young GC-dən sağ çıxdı və age ${a} oldu. Age 4 bit-dir, ona görə 15-dən böyük ola bilməz.`,
+        evAgeMax:'Age 15-ə çatdı, 4 bit-ə daha böyük rəqəm sığmır. `MaxTenuringThreshold`-un ən böyük dəyərinin 15 olmasının səbəbi budur.',
+        evThin:'Rəqabət yoxdur, ona görə thin lock işə düşdü. Köhnə mark word thread-in stack-indəki lock record-a köçürülür. Mark word-un özü isə o record-a pointer olur və sonu `00` ilə bitir.',
+        evFat:'İkinci thread eyni object-i istədi, thin lock artıq bəs etmir. JVM `ObjectMonitor` yaradır, mark word ona pointer olur və sonu `10` ilə bitir. Gözləyən thread monitor-un növbəsində dayanır.',
+        evUnThin:'Kilid buraxıldı: köhnə mark word stack-dən geri yazıldı. Hash və age itmir.',
+        evUnFat:'Kilid buraxıldı. Sadələşdirilmiş model: real JVM monitor-u dərhal yox, sonra deflate edir.',
+        displaced:h => `Stack-də saxlanan köhnə mark word: \`${h}\``,
+        objTotal:'Mark word 8 byte, class pointer 4 byte tutur. Object 8-ə bölünən ünvanda başlamalıdır, ona görə 12 byte 16-ya qədər doldurulur.',
+        m0:'Dəyərlər JDK 21-də `Unsafe.getLong(o, 0)` ilə oxunub: yeni object `0x1`, `hashCode()`-dan sonra `0x63947c6b01`, bir neçə Young GC-dən sonra age 7, 14 və 15. Thin lock-un sonu `00`, rəqabətli lock-un sonu `10` oldu.',
+        gap:'boşluq', undo:'Sonuncunu sil', clear:'Təmizlə', srcT:'Kodda', memT:'Yaddaşda', noFields:'field yoxdur', gapPad:'boşluq', declOrder:'elan sırası ilə', memOrder:'Yaddaşdakı sıra və offset',
+        emptyCls:'Field olmayan object də 16 byte tutur: 12 byte header və 4 byte padding.',
+        saved:(n, s) => `Field-lər yazıldığı sıra ilə düzülsəydi, object ${n} byte tutardı. JVM onları ölçüyə görə düzür, boşluqları kiçik field-lərlə doldurur və object ${s} byte olur.`,
+        waste:w => `${w} byte boşluq qaldı: object-in ölçüsü 8-ə bölünməlidir.`, tight:'Boşluq yoxdur: field-lər header-dən sonrakı yerə tam sığdı.',
+        m1:'Bu düzülüş HotSpot-un alqoritmidir. 600 təsadüfi class-da JDK 21 ilə yoxlanılıb: ölçü və hər ölçünün yeri hamısında uyğun gəldi. Eyni ölçülü field-lər real JVM-də bəzən öz aralarında yer dəyişir, çünki JDK 21 onları qeyri-sabit `qsort` ilə sıralayır.',
+        arrObj:'array object-i', total:'cəmi', bigArr:n => `${n} element şəkildə göstərmək üçün çoxdur. Ölçü yenə eyni qayda ilə hesablanır: 16 byte header və element-lər.`,
+        boolNote:'`boolean` 1 bit yox, 1 byte tutur. Çoxlu bayraq lazımdırsa, `BitSet` hər birinə 1 bit verir.',
+        cacheNote:'-128-dən 127-yə qədər `Integer`-lər cache-dən gəlir: array yalnız reference saxlayır, yeni object yaranmır.',
+        boxNote:n => `Array-də yalnız reference-lər var. ${n} \`Integer\` heap-də ayrıca object-dir və hər biri 16 byte tutur: 12 byte header və 4 byte \`int\`.`,
+        primNote:es => `Primitive array dəyərləri birbaşa özündə saxlayır: hər element ${es} byte. Header-dən sonra boşluq yoxdur.`,
+        cmpT:n => `${n} element: hamısı birlikdə`, m2:'JDK 21-də ölçülüb: `int[0]` 16, `byte[3]` 24, `long[3]` 40, `boolean[10]` 32, `int[100]` 416 byte. `Integer[100]` 416 byte, üstəlik 100 `Integer` 1600 byte, cəmi 2016.',
+        collT:'1000 ədəd (1000-1999) saxlamaq', perEl:'bir element üçün', nodeT:'HashMap.Node',
+        nodeText:'Hər `put` belə bir Node yaradır: `hash`, `key`, `value` və `next`. Üstəlik key və value-nun öz `Integer` object-ləri var.',
+        m3:'Hər collection reflection ilə dərindən gəzildi və bütün object-lərin ölçüsü `Instrumentation.getObjectSize` ilə toplandı. JDK 21, compressed oops açıqdır.',
+        coopsOn:'Heap 32 GB-dan kiçikdir, ona görə reference 4 byte-dır. JVM 32 bit-lik offset saxlayır və onu 8-ə vurur: 2³² × 8 = 32 GB. Bu, object-lərin 8-ə bölünən ünvanda başlaması sayəsində mümkündür.',
+        coopsOff:'Heap 32 GB oldu, 4 byte-lıq offset artıq çatmır. JVM compressed oops-u özü söndürür və hər reference 8 byte olur. Ona görə 32 GB-lıq heap-ə 31 GB-lıqdan az object sığa bilər.',
+        t32:'Eyni object-lər, iki heap ölçüsü',
+        m4:'`-Xmx31g` ilə `UseCompressedOops = true`, `-Xmx32g` ilə `false` oldu. Ölçülər hər iki halda JDK 21-də götürülüb. Class pointer hər iki halda 4 byte qalır.'},
+      ch:[
+        ['Header: hər object-in 12 byte-ı', ['Heap-dəki hər object header ilə başlayır. 8 byte mark word, 4 byte isə class pointer-dir, yəni object-in class-ı.', 'Mark word bir neçə iş görür: identity hash, GC age və kilid vəziyyəti. Hamısı eyni 64 bit-də yerləşir. Kilid tutulanda bu bit-lər pointer-ə çevrilir.', 'Düymələri bas və bit-lərin necə dəyişdiyinə bax. Java 18-dən biased locking yoxdur, ona görə burada da göstərilmir.']],
+        ['Field-lər və padding', ['Field-lər yazıldığı sıra ilə düzülmür. JVM əvvəl böyük primitive-ləri, sonra kiçikləri, ən sonda reference-ləri yerləşdirir. Hər field üçün ona sığan ən kiçik boşluğu seçir.', 'Hər field öz ölçüsünə bölünən offset-də başlayır: `long` 8-ə, `int` 4-ə bölünən yerdə. Object-in ölçüsü isə 8-ə bölünməlidir.', 'Öz class-ını qur və byte-ların necə yerləşdiyinə bax. Header-dən sonrakı 4 byte-ı çox vaxt bir `int` və ya reference doldurur.']],
+        ['Array-lər', ['Array-in header-i 16 byte-dır: mark word, class pointer və 4 byte `length`. Element-lər onun ardınca gəlir.', 'Primitive array dəyərləri özündə saxlayır. `Integer[]` isə yalnız reference saxlayır, hər `Integer` heap-də ayrıca 16 byte-lıq object-dir.', 'Ona görə 100 ədəd üçün `int[]` 416 byte tutur, `Integer[]` isə 2016 byte.']],
+        ['Collection-ların qiyməti', ['Collection-lar primitive saxlaya bilmir, hər ədəd `Integer` olur. Üstəlik hər element üçün daxili object-lər yaranır: HashMap-də `Node`, LinkedList-də ikiqat bağlı Node.', '1000 ədəd `int[]`-də 4 KB, `HashSet<Integer>`-də isə 56 KB tutur, yəni 14 dəfə çox. Milyonlarla element olanda bu fərq vacibdir.', 'Primitive-lər üçün xüsusi collection-lar var, məsələn Eclipse Collections və fastutil kitabxanalarında. Onlar `int[]` kimi az yer tutur.']],
+        ['32 GB sərhədi', ['64-bit JVM-də pointer 8 byte-dır, amma heap kiçikdirsə JVM onu 4 byte-a sıxır: compressed oops.', '4 byte-a 2³² fərqli dəyər sığır. JVM bunu 8-ə vurur, çünki object-lər 8-ə bölünən ünvanda başlayır. Nəticədə 32 GB-a qədər ünvan almaq olur.', 'Heap-i 31 GB-dan 32 GB-a qaldır və reference-lərin ölçüsünə bax. Java 25-də compact object headers də var: header 12 byte əvəzinə 8 byte tutur.']],
+      ]},
+    tr: {title:'Object bellekte', door:'Bir object kaç byte tutar: header, mark word, padding, field sırası, array’ler ve 32 GB sınırı.',
+      ui:{survive:"GC'den sağ çıktı", contend:'2. thread bekliyor', ptrThin:"thread stack'indeki lock record'a pointer", ptrFat:"ObjectMonitor'a pointer",
+        new:"Yeni object: hash henüz hesaplanmadı, age 0, lock bit'leri `01`, yani kilitsiz. Mark word'ün değeri sadece `1`.",
+        evHash:"İlk `hashCode()` identity hash'i hesapladı ve mark word'e yazdı: 31 bit, 8. bit'ten başlıyor. Sonraki çağrılar onu buradan okur.",
+        evAge:a => `Object Young GC'den sağ çıktı ve age ${a} oldu. Age 4 bit'tir, bu yüzden 15'ten büyük olamaz.`,
+        evAgeMax:"Age 15'e ulaştı, 4 bit'e daha büyük sayı sığmaz. `MaxTenuringThreshold`'un en büyük değerinin 15 olmasının nedeni budur.",
+        evThin:"Rekabet yok, bu yüzden thin lock devreye girdi. Eski mark word thread'in stack'indeki lock record'a taşınır. Mark word'ün kendisi ise o record'a pointer olur ve `00` ile biter.",
+        evFat:"İkinci thread aynı object'i istedi, thin lock artık yetmez. JVM bir `ObjectMonitor` oluşturur, mark word ona pointer olur ve `10` ile biter. Bekleyen thread monitor'ün kuyruğunda durur.",
+        evUnThin:"Kilit bırakıldı: eski mark word stack'ten geri yazıldı. Hash ve age kaybolmaz.",
+        evUnFat:"Kilit bırakıldı. Basitleştirilmiş model: gerçek JVM monitor'ü hemen değil, sonra deflate eder.",
+        displaced:h => `Stack'te saklanan eski mark word: \`${h}\``,
+        objTotal:"Mark word 8 byte, class pointer 4 byte tutar. Object 8'e bölünen bir adreste başlamalı, bu yüzden 12 byte 16'ya tamamlanır.",
+        m0:"Değerler JDK 21'de `Unsafe.getLong(o, 0)` ile okundu: yeni object `0x1`, `hashCode()` sonrası `0x63947c6b01`, birkaç Young GC sonrası age 7, 14 ve 15. Thin lock `00`, rekabetli lock `10` ile bitti.",
+        gap:'boşluk', undo:'Sonuncuyu sil', clear:'Temizle', srcT:'Kodda', memT:'Bellekte', noFields:'field yok', gapPad:'boşluk', declOrder:'tanım sırasıyla', memOrder:'Bellekteki sıra ve offset',
+        emptyCls:"Field'ı olmayan object de 16 byte tutar: 12 byte header ve 4 byte padding.",
+        saved:(n, s) => `Field'lar yazıldıkları sırayla dizilseydi object ${n} byte tutardı. JVM onları boyuta göre dizer, boşlukları küçük field'larla doldurur ve object ${s} byte olur.`,
+        waste:w => `${w} byte boşluk kaldı: object'in boyutu 8'e bölünmeli.`, tight:"Boşluk yok: field'lar header'dan sonraki yere tam sığdı.",
+        m1:"Bu dizilim HotSpot'un algoritmasıdır. 600 rastgele class'ta JDK 21 ile karşılaştırıldı: boyut ve her boyutun yeri hepsinde tuttu. Aynı boyuttaki field'lar gerçek JVM'de bazen kendi aralarında yer değiştirir, çünkü JDK 21 onları kararsız bir `qsort` ile sıralar.",
+        arrObj:"array object'i", total:'toplam', bigArr:n => `${n} element şekilde göstermek için çok fazla. Boyut yine aynı kuralla hesaplanır: 16 byte header ve element'ler.`,
+        boolNote:"`boolean` 1 bit değil, 1 byte tutar. Çok sayıda bayrak gerekiyorsa `BitSet` her birine 1 bit verir.",
+        cacheNote:"-128 ile 127 arasındaki `Integer`'lar cache'ten gelir: array sadece reference tutar, yeni object oluşmaz.",
+        boxNote:n => `Array'de sadece reference'lar var. ${n} \`Integer\` heap'te ayrı bir object'tir ve her biri 16 byte tutar: 12 byte header ve 4 byte \`int\`.`,
+        primNote:es => `Primitive array değerleri doğrudan kendisinde tutar: her element ${es} byte. Header'dan sonra boşluk yok.`,
+        cmpT:n => `${n} element: hepsi birlikte`, m2:"JDK 21'de ölçüldü: `int[0]` 16, `byte[3]` 24, `long[3]` 40, `boolean[10]` 32, `int[100]` 416 byte. `Integer[100]` 416 byte, ayrıca 100 `Integer` 1600 byte, toplam 2016.",
+        collT:'1000 sayı (1000-1999) saklamak', perEl:'element başına', nodeT:'HashMap.Node',
+        nodeText:"Her `put` böyle bir Node oluşturur: `hash`, `key`, `value` ve `next`. Ayrıca key ve value'nun kendi `Integer` object'leri var.",
+        m3:"Her collection reflection ile derinlemesine gezildi ve tüm object'lerin boyutu `Instrumentation.getObjectSize` ile toplandı. JDK 21, compressed oops açık.",
+        coopsOn:"Heap 32 GB'tan küçük, bu yüzden reference 4 byte. JVM 32 bit'lik bir offset tutar ve onu 8 ile çarpar: 2³² × 8 = 32 GB. Bu, object'lerin 8'e bölünen adreste başlaması sayesinde mümkün.",
+        coopsOff:"Heap 32 GB oldu, 4 byte'lık offset artık yetmez. JVM compressed oops'u kendisi kapatır ve her reference 8 byte olur. Bu yüzden 32 GB'lık heap'e 31 GB'lıktan daha az object sığabilir.",
+        t32:"Aynı object'ler, iki heap boyutu",
+        m4:"`-Xmx31g` ile `UseCompressedOops = true`, `-Xmx32g` ile `false` oldu. Boyutlar iki durumda da JDK 21'de alındı. Class pointer iki durumda da 4 byte kalır."},
+      ch:[
+        ["Header: her object'in 12 byte'ı", ["Heap'teki her object bir header ile başlar. 8 byte mark word, 4 byte ise class pointer'dır, yani object'in class'ı.", "Mark word birkaç iş görür: identity hash, GC age ve kilit durumu. Hepsi aynı 64 bit'te durur. Kilit alınınca bu bit'ler bir pointer'a dönüşür.", "Düğmelere bas ve bit'lerin nasıl değiştiğine bak. Java 18'den beri biased locking yok, bu yüzden burada da gösterilmiyor."]],
+        ['Field’lar ve padding', ["Field'lar yazıldıkları sırayla dizilmez. JVM önce büyük primitive'leri, sonra küçükleri, en sonda reference'ları yerleştirir. Her field için ona sığan en küçük boşluğu seçer.", "Her field kendi boyutuna bölünen bir offset'te başlar: `long` 8'e, `int` 4'e bölünen yerde. Object'in boyutu ise 8'e bölünmeli.", "Kendi class'ını kur ve byte'ların nasıl yerleştiğine bak. Header'dan sonraki 4 byte'ı çoğu zaman bir `int` veya reference doldurur."]],
+        ['Array’ler', ["Array'in header'ı 16 byte'tır: mark word, class pointer ve 4 byte `length`. Element'ler onun ardından gelir.", "Primitive array değerleri kendisinde tutar. `Integer[]` ise sadece reference tutar, her `Integer` heap'te ayrı 16 byte'lık bir object'tir.", "Bu yüzden 100 sayı için `int[]` 416 byte, `Integer[]` ise 2016 byte tutar."]],
+        ["Collection'ların bedeli", ["Collection'lar primitive tutamaz, her sayı bir `Integer` olur. Ayrıca her element için iç object'ler oluşur: HashMap'te `Node`, LinkedList'te çift bağlı Node.", "1000 sayı `int[]`'de 4 KB, `HashSet<Integer>`'da ise 56 KB tutar, yani 14 kat fazla. Milyonlarca element olunca bu fark önemlidir.", "Primitive'ler için özel collection'lar var, örneğin Eclipse Collections ve fastutil kütüphanelerinde. Onlar `int[]` gibi az yer tutar."]],
+        ['32 GB sınırı', ["64-bit JVM'de pointer 8 byte'tır, ama heap küçükse JVM onu 4 byte'a sıkıştırır: compressed oops.", "4 byte'a 2³² farklı değer sığar. JVM bunu 8 ile çarpar, çünkü object'ler 8'e bölünen adreste başlar. Sonuçta 32 GB'a kadar adreslenebilir.", "Heap'i 31 GB'tan 32 GB'a çıkar ve reference'ların boyutuna bak. Java 25'te compact object headers da var: header 12 byte yerine 8 byte tutar."]],
+      ]},
+    en: {title:'Objects in memory', door:'How many bytes an object takes: header, mark word, padding, field order, arrays and the 32 GB line.',
+      ui:{survive:'Survived a GC', contend:'A 2nd thread waits', ptrThin:'pointer to a lock record on the thread stack', ptrFat:'pointer to an ObjectMonitor',
+        new:'A new object: no hash yet, age 0, lock bits `01`, which means unlocked. The mark word is just `1`.',
+        evHash:'The first `hashCode()` computed the identity hash and wrote it into the mark word: 31 bits, starting at bit 8. Later calls read it from there.',
+        evAge:a => `The object survived a young GC and its age is now ${a}. Age has 4 bits, so it cannot go above 15.`,
+        evAgeMax:'Age reached 15, and a larger number does not fit in 4 bits. That is why the largest value of `MaxTenuringThreshold` is 15.',
+        evThin:'There is no contention, so a thin lock is used. The old mark word moves to a lock record on the thread stack. The mark word itself becomes a pointer to that record and ends in `00`.',
+        evFat:'A second thread wants the same object, so a thin lock is no longer enough. The JVM creates an `ObjectMonitor`, the mark word points to it and ends in `10`. The waiting thread queues on the monitor.',
+        evUnThin:'The lock is released and the old mark word is written back from the stack. The hash and age are kept.',
+        evUnFat:'The lock is released. Simplified model: a real JVM deflates the monitor later, not right away.',
+        displaced:h => `The old mark word saved on the stack: \`${h}\``,
+        objTotal:'The mark word takes 8 bytes and the class pointer 4. An object must start at an address divisible by 8, so 12 bytes are padded to 16.',
+        m0:'Values were read on JDK 21 with `Unsafe.getLong(o, 0)`: a new object is `0x1`, after `hashCode()` it is `0x63947c6b01`, and after several young GCs the age was 7, 14 and 15. A thin lock ended in `00` and a contended lock in `10`.',
+        gap:'gap', undo:'Remove last', clear:'Clear', srcT:'In code', memT:'In memory', noFields:'no fields', gapPad:'gaps', declOrder:'in declared order', memOrder:'Order and offset in memory',
+        emptyCls:'An object with no fields still takes 16 bytes: a 12-byte header and 4 bytes of padding.',
+        saved:(n, s) => `In declared order, the object would take ${n} bytes. The JVM sorts fields by size, fills gaps with small fields, and the object takes ${s} bytes.`,
+        waste:w => `${w} bytes are left empty, because the object size must be divisible by 8.`, tight:'No gaps: the fields fit exactly after the header.',
+        m1:'This is the HotSpot algorithm. It was compared with JDK 21 on 600 random classes: the size and the slot of each field size matched in all of them. On a real JVM, fields of the same size sometimes swap places with each other, because JDK 21 sorts them with an unstable `qsort`.',
+        arrObj:'array object', total:'total', bigArr:n => `${n} elements are too many to draw. The size follows the same rule: a 16-byte header plus the elements.`,
+        boolNote:'A `boolean` takes 1 byte, not 1 bit. If you need many flags, a `BitSet` gives each one 1 bit.',
+        cacheNote:'`Integer` values from -128 to 127 come from a cache: the array holds only references and no new objects are created.',
+        boxNote:n => `The array holds only references. Each of the ${n} \`Integer\` values is a separate heap object of 16 bytes: a 12-byte header and a 4-byte \`int\`.`,
+        primNote:es => `A primitive array holds the values directly: ${es} bytes per element, with no gap after the header.`,
+        cmpT:n => `${n} elements, everything included`, m2:'Measured on JDK 21: `int[0]` 16, `byte[3]` 24, `long[3]` 40, `boolean[10]` 32 and `int[100]` 416 bytes. `Integer[100]` is 416 bytes, plus 1600 bytes for 100 `Integer` objects, 2016 in total.',
+        collT:'Storing 1000 numbers (1000-1999)', perEl:'per element', nodeT:'HashMap.Node',
+        nodeText:'Every `put` creates a Node like this one: `hash`, `key`, `value` and `next`. The key and value also have their own `Integer` objects.',
+        m3:'Each collection was walked deeply with reflection, and the sizes of all objects were summed with `Instrumentation.getObjectSize`. JDK 21, compressed oops on.',
+        coopsOn:'The heap is below 32 GB, so a reference takes 4 bytes. The JVM stores a 32-bit offset and multiplies it by 8: 2³² × 8 = 32 GB. This works because objects start at addresses divisible by 8.',
+        coopsOff:'The heap is now 32 GB and a 4-byte offset is no longer enough. The JVM turns compressed oops off by itself and every reference takes 8 bytes. So a 32 GB heap can hold fewer objects than a 31 GB one.',
+        t32:'The same objects, two heap sizes',
+        m4:'With `-Xmx31g`, `UseCompressedOops = true`; with `-Xmx32g`, it is `false`. Sizes were measured on JDK 21 in both cases. The class pointer stays 4 bytes in both.'},
+      ch:[
+        ['The header: 12 bytes in every object', ['Every object on the heap starts with a header: an 8-byte mark word and a 4-byte class pointer, which says what class the object is.', 'The mark word does several jobs: the identity hash, the GC age and the lock state, all in the same 64 bits. When the object is locked, those bits become a pointer.', 'Press the buttons and watch the bits change. Biased locking has been gone since Java 18, so it is not shown here.']],
+        ['Fields and padding', ['Fields are not stored in the order you write them. The JVM places large primitives first, then smaller ones, and references last. Each field goes into the smallest gap it fits.', 'Each field starts at an offset divisible by its size: a `long` at a multiple of 8, an `int` at a multiple of 4. The object size must be divisible by 8.', 'Build your own class and watch where the bytes go. The 4 bytes right after the header are often filled by an `int` or a reference.']],
+        ['Arrays', ['An array header takes 16 bytes: the mark word, the class pointer and a 4-byte `length`. The elements follow it.', 'A primitive array holds the values itself. An `Integer[]` holds only references, and each `Integer` is a separate 16-byte object on the heap.', 'That is why 100 numbers take 416 bytes in an `int[]` and 2016 bytes in an `Integer[]`.']],
+        ['What collections cost', ['Collections cannot hold primitives, so every number becomes an `Integer`. Each element also gets internal objects: a `Node` in HashMap, a doubly linked Node in LinkedList.', '1000 numbers take 4 KB in an `int[]` and 56 KB in a `HashSet<Integer>`, 14 times more. With millions of elements, that difference matters.', 'Libraries such as Eclipse Collections and fastutil have collections for primitives. They take about as little space as an `int[]`.']],
+        ['The 32 GB line', ['On a 64-bit JVM a pointer is 8 bytes, but when the heap is small the JVM squeezes it into 4 bytes: compressed oops.', '4 bytes hold 2³² different values. The JVM multiplies them by 8, because objects start at addresses divisible by 8. That reaches up to 32 GB.', 'Raise the heap from 31 GB to 32 GB and watch the reference size. Java 25 also has compact object headers, where the header takes 8 bytes instead of 12.']],
+      ]},
+  },
+};
+/* ---------- Virtual threads ---------- */
+const VT_COL = ['#FFD426', '#FF9BCF', '#62E8AE', '#7FCDFF', '#C3B1FF', '#FFB36B', '#B8F06A', '#FF8F8F'];
+const VT_PROG = ['cpu', 'io', 'io', 'io', 'cpu'], VT_IO = 3, VT_CARRIERS = 2;
+/* A tick-based model of two carrier threads. Blocking I/O either parks the virtual thread (its stack moves to the heap)
+   or keeps the carrier busy: always for a platform pool, and for a virtual thread pinned inside synchronized. */
+function vtSim(n, blocking) {
+  const vs = Array.from({length:n}, (_, i) => ({id:i + 1, pc:0, io:0, st:'queue'}));
+  const queue = vs.slice(), parked = [], cars = Array(VT_CARRIERS).fill(null), ticks = [];
+  for (let t = 0; t < 60 && vs.some(v => v.st !== 'done'); t++) {
+    const cells = [], ev = [];
+    cars.forEach((_, c) => {
+      for (;;) {
+        if (!cars[c]) { if (!queue.length) { cells[c] = {k:'idle'}; break; } cars[c] = queue.shift(); cars[c].st = 'run'; }
+        const v = cars[c], op = VT_PROG[v.pc];
+        if (op === 'cpu') {
+          cells[c] = {k:'cpu', v:v.id}; v.pc++;
+          if (v.pc === VT_PROG.length) { v.st = 'done'; v.end = t + 1; cars[c] = null; ev.push(['evDone', v.id]); }
+          break;
+        }
+        if (!blocking) { v.st = 'park'; v.io = VT_IO; parked.push(v); cars[c] = null; ev.push(['evPark', v.id, c + 1]); continue; }
+        if (!v.io) { v.io = VT_IO; ev.push(['evBlock', v.id, c + 1]); }
+        cells[c] = {k:'io', v:v.id}; v.st = 'block';
+        if (--v.io === 0) { v.pc += VT_IO; v.st = 'run'; }
+        break;
+      }
+    });
+    for (let k = parked.length - 1; k >= 0; k--) {
+      const v = parked[k];
+      if (--v.io === 0) { parked.splice(k, 1); v.pc += VT_IO; v.st = 'queue'; queue.push(v); ev.push(['evWake', v.id]); }
+    }
+    ticks.push({cells, ev, cars:cars.map(v => v && {id:v.id, st:v.st}), parked:parked.map(v => v.id), queue:queue.map(v => v.id), done:vs.filter(v => v.st === 'done').map(v => v.id)});
+  }
+  return ticks;
+}
+const vtChip = (id, cls) => `<span class="vtv${cls ? ' ' + cls : ''}" style="--c:${VT_COL[(id - 1) % VT_COL.length]}">V${id}</span>`;
+function vtStage(st, blocking, pinned) {
+  const T = vtSim(st.n, blocking), cur = st.i ? T[st.i - 1] : {cells:[], ev:[], cars:[null, null], parked:[], queue:Array.from({length:st.n}, (_, i) => i + 1), done:[]};
+  const cars = cur.cars.map((v, c) => {
+    const cell = cur.cells[c];
+    const what = cell && cell.k === 'cpu' ? vtChip(cell.v) : cell && cell.k === 'io' ? vtChip(cell.v, 'io') : `<span class="muted small">${esc(lu('idle'))}</span>`;
+    return `<div class="vtc"><h3>${esc(st.plat ? 'pool-1-thread-' + (c + 1) : 'ForkJoinPool-1-worker-' + (c + 1))}</h3>${what}${cell && cell.k === 'io' ? `<small class="vtnote">${esc(pinned ? lu('pinnedNow') : lu('blockedNow'))}</small>` : ''}</div>`;
+  }).join('');
+  const list = (title, ids, cls, empty) => `<div class="vtbox"><h4>${esc(title)}</h4><div class="vtpool">${ids.length ? ids.map(id => vtChip(id, cls)).join('') : `<span class="muted small">${esc(empty)}</span>`}</div></div>`;
+  const cols = T.length;
+  const tl = Array.from({length:VT_CARRIERS}, (_, c) => `<span class="vtl-h">${st.plat ? 'thread-' : 'worker-'}${c + 1}</span>` + T.map((tk, t) => {
+    if (t >= st.i) return '<i class="fut"></i>';
+    const x = tk.cells[c];
+    if (x.k === 'idle') return '<i class="idle"></i>';
+    return `<i class="${x.k}" style="--c:${VT_COL[(x.v - 1) % VT_COL.length]}">${x.v}</i>`;
+  }).join('')).join('');
+  const ev = cur.ev.length ? cur.ev.slice(0, 2).map(e => ls$(...e)).join(' ') : st.i ? lu('evRun') : lu('evStart');
+  const other = vtSim(st.n, !blocking).length, mine = T.length, finished = st.i >= mine;
+  const cmp = `<div class="gtext"><span><code>${esc(lu('ticks'))}</code> <b>${finished ? mine : '…'}</b></span><span><code>${esc(blocking ? lu('ifPark') : lu('ifBlock'))}</code> <b>${other}</b></span></div>`;
+  return pnl(lu('carriersT'), `<div class="vtcar">${cars}</div><div class="vtrow">${list(st.plat ? lu('queuePlat') : lu('queue'), cur.queue, '', lu('none'))}${st.plat ? '' : list(lu('parked'), cur.parked, 'park', lu('none'))}${list(lu('done'), cur.done, 'done', lu('none'))}</div><p class="explain-s">${rich(ev)}</p>`)
+    + pnl(lu('tlT'), `<div class="vtl" style="grid-template-columns:72px repeat(${cols}, minmax(0, 1fr))">${tl}</div><div class="legend">${tag('sun', 'CPU')}${tag('sky', blocking ? lu('lgBlock') : 'sleep')}</div>${cmp}${finished ? `<p class="verdict ${blocking ? 'bad' : 'ok'}">${esc(ls$(blocking ? 'vBad' : 'vOk', mine, other))}</p>` : ''}`);
+}
+const VT_CODE = {
+  virtual:['try (var ex = Executors.newVirtualThreadPerTaskExecutor()) {', '    for (int i = 1; i <= n; i++)', '        ex.submit(() -> {', '            work();             // CPU', '            Thread.sleep(300);  // I/O', '            work();', '        });', '}'],
+  plat:['try (var ex = Executors.newFixedThreadPool(2)) {', '    for (int i = 1; i <= n; i++)', '        ex.submit(() -> {', '            work();             // CPU', '            Thread.sleep(300);  // I/O', '            work();', '        });', '}'],
+  pin:['ex.submit(() -> {', '    work();', '    synchronized (lock) {', '        Thread.sleep(300);  // pinned', '    }', '    work();', '});'],
+  lock:['ex.submit(() -> {', '    work();', '    lock.lock();            // ReentrantLock', '    try { Thread.sleep(300); }', '    finally { lock.unlock(); }', '    work();', '});'],
+};
+const VT_SCALE = {10000:[50219, 0, 1047], 100000:[500000, 1, 1420], 1000000:[5000000, 1, 5395]};
+LS.vthreads = {
+  init(i) { if (i === 0) return {n:10000}; if (i === 1) return {i:0, n:4, plat:false}; if (i === 2) return {i:0, n:4, pin:true}; return {}; },
+  controls(st, ch) {
+    const b = (act, v, label, sel) => `<button class="btn${sel ? ' sel' : ''}" type="button" data-act="${act}" data-v="${v}" aria-pressed="${!!sel}">${label}</button>`;
+    if (ch === 0) return `<div class="stepbar"><span class="seg">${Object.keys(VT_SCALE).map(n => b('n', n, `<code class="bare">${(+n).toLocaleString('en-US').replace(/,/g, ' ')}</code> task`, st.n === +n)).join('')}</span></div>`;
+    if (ch === 1 || ch === 2) {
+      const total = vtSim(st.n, ch === 1 ? st.plat : st.pin).length;
+      const seg = ch === 1 ? `<span class="seg">${b('mode', '0', 'Virtual thread', !st.plat)}${b('mode', '1', esc(lu('platPool')), st.plat)}${[4, 6, 8].map(n => b('cnt', n, `<code class="bare">n = ${n}</code>`, st.n === n)).join('')}</span>`
+        : `<span class="seg">${b('pin', '1', '<code class="bare">synchronized</code>', st.pin)}${b('pin', '0', '<code class="bare">ReentrantLock</code>', !st.pin)}</span>`;
+      return lsStepper(st.i, total, seg);
+    }
+    return '';
+  },
+  stage(st, ch) {
+    if (ch === 0) {
+      const [pool, crash, vt] = VT_SCALE[st.n], nn = st.n.toLocaleString('en-US').replace(/,/g, ' ');
+      const rows = [[lu('pool200'), pool, 'var(--lilac)', (pool / 1000).toFixed(1) + ' s' + (st.n > 10000 ? ' *' : '')], [lu('perTask'), pool, 'var(--error)', 'OOM'], ['virtual', vt, 'var(--sun)', (vt / 1000).toFixed(2) + ' s']];
+      return pnl(ls$('scaleT', nn), lyBars(rows) + `<p class="muted small">${rich(st.n > 10000 ? ls$('est', nn) : lu('allMeasured'))}</p><p class="explain-s">${rich(lu('perTaskText'))}</p>`)
+        + pnl(lu('errT'), `<pre class="logv">[51.492s][warning][os,thread] Failed to start thread "Unknown thread"
+  - pthread_create failed (EAGAIN) for attributes:
+    stacksize: 2048k, guardsize: 16k, detached.
+Exception in thread "main" java.lang.OutOfMemoryError:
+  unable to create native thread: possibly out of memory
+  or process/resource limits reached</pre>${measured(rich(lu('m0')))}`);
+    }
+    if (ch === 1) {
+      return pnl(lu('codeT'), codeBlock(st.plat ? VT_CODE.plat : VT_CODE.virtual, -1)) + vtStage(st, st.plat, false)
+        + pnl('', `<pre class="logv">VirtualThread[#20]/runnable@ForkJoinPool-1-worker-1
+  -&gt; VirtualThread[#20]/runnable@ForkJoinPool-1-worker-2
+VirtualThread[#22]/runnable@ForkJoinPool-1-worker-2
+  -&gt; VirtualThread[#22]/runnable@ForkJoinPool-1-worker-1</pre>${measured(rich(lu('m1')))}${simplified(rich(lu('model')))}`);
+    }
+    if (ch === 2) {
+      return pnl(lu('codeT'), codeBlock(st.pin ? VT_CODE.pin : VT_CODE.lock, st.pin ? 2 : 2)) + vtStage(st, st.pin, st.pin)
+        + pnl('', `<pre class="logv">-Djdk.tracePinnedThreads=short
+VirtualThread[#31]/runnable@ForkJoinPool-1-worker-2 reason:MONITOR
+    VT.lambda$main$3(VT.java:28) &lt;== monitors:1</pre>${lyBars([['synchronized', 416, 'var(--error)', '416 ms'], ['ReentrantLock', 105, 'var(--mint)', '105 ms']])}${measured(rich(lu('m2')))}`);
+    }
+    return pnl(lu('cpuT'), lyBars([[lu('pool2'), 826, 'var(--lilac)', '826 ms'], ['virtual', 822, 'var(--sun)', '822 ms']]) + measured(rich(lu('m3'))))
+      + pnl(lu('rulesT'), `<ul class="rules">${lu('rules').map(r => `<li class="${r[0] ? 'ok' : 'bad'}"><span>${r[0] ? '✓' : '✗'}</span> ${rich(r[1])}</li>`).join('')}</ul>`);
+  },
+  act(st, a, v, ch) {
+    if (ch === 0 && a === 'n') st.n = +v;
+    if (ch === 1 || ch === 2) {
+      const total = vtSim(st.n, ch === 1 ? st.plat : st.pin).length;
+      if (a === 'next') st.i = Math.min(total, st.i + 1);
+      if (a === 'prev') st.i = Math.max(0, st.i - 1);
+      if (a === 'reset') st.i = 0;
+      if (a === 'mode') { st.plat = v === '1'; st.i = 0; }
+      if (a === 'cnt') { st.n = +v; st.i = 0; }
+      if (a === 'pin') { st.pin = v === '1'; st.i = 0; }
+    }
+  },
+  text: {
+    az: {title:'Virtual Thread-lər', door:'Bir milyon thread necə mümkün olur: carrier, mount və unmount, pinning və virtual thread-in kömək etmədiyi hallar.',
+      ui:{scaleT:n => `${n} task, hər biri 1 saniyə sleep edir`, pool200:'200 thread-lik pool', perTask:'hər task-a platform thread', est:n => `* ${n} task üçün pool vaxtı hesablamadır: task sayı / 200 × 1 s. Qalan rəqəmlər ölçülüb.`, allMeasured:'Bütün rəqəmlər ölçülüb.',
+        perTaskText:'Platform thread əməliyyat sisteminin thread-idir və öz stack-i var. Bu Mac-də hər biri üçün 2 MB stack ayrılır. Hər task-a ayrıca platform thread açanda JVM təxminən 4000-ci thread-də dayandı.',
+        errT:'Hər task-a platform thread', m0:'Bu Mac-də (10 nüvə, JDK 21) ölçülüb. 10 000 task: pool 50.2 s, virtual 1.05 s. 100 000 virtual thread 1.42 s, 1 000 000 virtual thread 5.4 s-də bitdi. Platform thread-lər 4057-ci thread-də `OutOfMemoryError` verdi. `ThreadStackSize` = 2048 KB.',
+        codeT:'Kod', idle:'boşdur', blockedNow:'gözləyir, başqa iş görə bilmir', pinnedNow:'pinned: synchronized daxilində unmount ola bilmir', carriersT:'Carrier thread-lər', queue:'Növbə (runnable)', queuePlat:'Pool növbəsi', parked:'Park olunub: stack heap-dədir', done:'Bitib', none:'yoxdur', tlT:'Zaman xətti',
+        lgBlock:'sleep, thread bloklanıb', ticks:'tick', ifPark:'unmount olsaydı', ifBlock:'bloklansaydı', platPool:'2 thread-lik pool',
+        evStart:'Hamısı növbədədir. Növbəti addımı bas.', evRun:'Carrier-lər CPU işi görür.',
+        evPark:(v, c) => `V${v} \`sleep\`-ə çatdı və worker-${c}-dən unmount oldu. Onun stack-i heap-ə köçürüldü, carrier dərhal növbədəki virtual thread-i götürdü.`,
+        evBlock:(v, c) => `V${v} \`sleep\`-ə çatdı. Thread-${c} gözləyir və bu müddətdə başqa task götürə bilmir.`,
+        evWake:v => `V${v}-in sleep-i bitdi və o, növbəyə qayıtdı. Hansı carrier boşalsa, onun üzərində davam edəcək.`, evDone:v => `V${v} işini bitirdi.`,
+        vOk:(a, b) => `${a} tick-də bitdi. Bloklansaydı ${b} tick çəkərdi.`, vBad:(a, b) => `${a} tick-də bitdi. Unmount olsaydı ${b} tick-ə bitərdi.`,
+        m1:'Real çıxış, JDK 21, `-Djdk.virtualThreadScheduler.parallelism=2`: `sleep`-dən əvvəl və sonra `Thread.currentThread()`. Eyni virtual thread başqa worker-də oyandı.',
+        model:'Hər task-ın 1 tick CPU, 3 tick sleep, sonra yenə 1 tick CPU olduğu sadə model. Default olaraq carrier sayı nüvə sayına bərabərdir, burada 2 götürülüb.',
+        m2:'JDK 21, 2 carrier, 8 task, hər biri öz kilidi ilə 100 ms sleep. `synchronized` 416 ms çəkdi, çünki carrier-lər gözləyirdi. `ReentrantLock` 105 ms çəkdi, çünki virtual thread-lər unmount olurdu.',
+        cpuT:'CPU işi: 8 task, 2 thread', pool2:'2 thread-lik pool', m3:'JDK 21, 2 carrier. Hər task 300 milyon addımlıq hesablama aparır. Virtual thread-lər nüvə əlavə etmir, ona görə vaxt eyni qalır.', rulesT:'Nə vaxt işlətmək lazımdır',
+        rules:[[1, 'Çoxlu gözləmə olan iş: HTTP sorğuları, database, fayllar. Hər sorğuya bir virtual thread aç.'], [1, 'Eyni anda neçə sorğu getdiyini məhdudlaşdırmaq lazımdırsa, `Semaphore` işlət.'], [0, 'Virtual thread-ləri pool-a yığma. Onlar ucuzdur, hər task üçün yenisini aç.'], [0, 'Ağır hesablamanı sürətləndirmir: nüvə sayı dəyişmir.'], [0, 'Java 21-də `synchronized` daxilində uzun gözləmə carrier-i tutur. `ReentrantLock` işlət və ya Java 24-ə keç.'], [0, '`ThreadLocal`-da böyük object saxlamaq: milyon thread olanda milyon kopya yaranır.']]},
+      ch:[
+        ['Platform thread bahalıdır', ['Adi `Thread` əməliyyat sisteminin thread-idir. Onun öz stack-i var, yaradılması və thread-lər arasında keçid bahalıdır.', 'Ona görə serverlər thread pool işlədir. Amma pool-dakı thread cavab gözləyəndə heç nə etmir. 200 thread varsa, eyni anda yalnız 200 sorğu gözləyə bilər.', 'Java 21-də virtual thread-lər gəldi. Onlar JVM-in öz thread-ləridir və milyonlarla yaradıla bilər.']],
+        ['Mount və unmount', ['Virtual thread özü CPU-da işləmir. Onu az sayda platform thread icra edir. Bu thread-lərə carrier deyilir və onlar `ForkJoinPool`-dadır.', 'Virtual thread `sleep`, socket və ya lock gözləyəndə carrier-dən unmount olur: onun stack-i heap-ə köçürülür və carrier növbəti virtual thread-i götürür.', 'Gözləmə bitəndə virtual thread növbəyə qayıdır və boş olan istənilən carrier-də davam edir. Rejimi dəyiş və vaxtları müqayisə et.']],
+        ['Pinning', ['Java 21-də virtual thread `synchronized` daxilində unmount ola bilmir, çünki monitor carrier thread-ə bağlıdır. Buna pinning deyilir: gözləmə müddətində carrier də gözləyir.', 'Native method daxilində də eyni şey olur. `-Djdk.tracePinnedThreads=short` belə yerləri göstərir.', 'Java 21-də həll yolu `ReentrantLock`-dur. Java 24-də (JEP 491) `synchronized` artıq pinning yaratmır.']],
+        ['Nə vaxt kömək etmir', ['Virtual thread-lər gözləyən işi ucuzlaşdırır, hesablamanı isə sürətləndirmir. CPU işi üçün nüvə sayı qədər thread kifayətdir.', 'Onlar sadəcə ucuz thread-lərdir. Eyni anda neçə iş gedəcəyini məhdudlaşdırmaq üçün pool deyil, `Semaphore` işlədilir.']],
+      ]},
+    tr: {title:"Virtual Thread'ler", door:"Bir milyon thread nasıl mümkün olur: carrier, mount ve unmount, pinning ve virtual thread'in yardım etmediği durumlar.",
+      ui:{scaleT:n => `${n} task, her biri 1 saniye sleep eder`, pool200:"200 thread'lik pool", perTask:"her task'a platform thread", est:n => `* ${n} task için pool süresi bir hesaplamadır: task sayısı / 200 × 1 s. Diğer rakamlar ölçüldü.`, allMeasured:'Tüm rakamlar ölçüldü.',
+        perTaskText:"Platform thread işletim sisteminin thread'idir ve kendi stack'i vardır. Bu Mac'te her biri için 2 MB stack ayrılır. Her task'a ayrı platform thread açınca JVM yaklaşık 4000. thread'de durdu.",
+        errT:"Her task'a platform thread", m0:"Bu Mac'te (10 çekirdek, JDK 21) ölçüldü. 10 000 task: pool 50.2 s, virtual 1.05 s. 100 000 virtual thread 1.42 s'de, 1 000 000 virtual thread 5.4 s'de bitti. Platform thread'ler 4057. thread'de `OutOfMemoryError` verdi. `ThreadStackSize` = 2048 KB.",
+        codeT:'Kod', idle:'boş', blockedNow:'bekliyor, başka iş yapamaz', pinnedNow:'pinned: synchronized içinde unmount olamaz', carriersT:"Carrier thread'ler", queue:'Kuyruk (runnable)', queuePlat:'Pool kuyruğu', parked:"Park edildi: stack heap'te", done:'Bitti', none:'yok', tlT:'Zaman çizelgesi',
+        lgBlock:'sleep, thread bloklu', ticks:'tick', ifPark:'unmount olsaydı', ifBlock:'bloklansaydı', platPool:"2 thread'lik pool",
+        evStart:'Hepsi kuyrukta. Sonraki adıma bas.', evRun:"Carrier'lar CPU işi yapıyor.",
+        evPark:(v, c) => `V${v} \`sleep\`'e geldi ve worker-${c}'den unmount oldu. Stack'i heap'e taşındı, carrier hemen kuyruktaki virtual thread'i aldı.`,
+        evBlock:(v, c) => `V${v} \`sleep\`'e geldi. Thread-${c} bekliyor ve bu sürede başka task alamaz.`,
+        evWake:v => `V${v}'in sleep'i bitti ve kuyruğa döndü. Hangi carrier boşalırsa onun üzerinde devam edecek.`, evDone:v => `V${v} işini bitirdi.`,
+        vOk:(a, b) => `${a} tick'te bitti. Bloklansaydı ${b} tick sürerdi.`, vBad:(a, b) => `${a} tick'te bitti. Unmount olsaydı ${b} tick'te biterdi.`,
+        m1:"Gerçek çıktı, JDK 21, `-Djdk.virtualThreadScheduler.parallelism=2`: `sleep`'ten önce ve sonra `Thread.currentThread()`. Aynı virtual thread başka bir worker'da uyandı.",
+        model:"Her task'ın 1 tick CPU, 3 tick sleep ve tekrar 1 tick CPU olduğu basit bir model. Varsayılan carrier sayısı çekirdek sayısına eşittir, burada 2 alındı.",
+        m2:"JDK 21, 2 carrier, 8 task, her biri kendi kilidiyle 100 ms sleep. `synchronized` 416 ms sürdü, çünkü carrier'lar bekliyordu. `ReentrantLock` 105 ms sürdü, çünkü virtual thread'ler unmount oluyordu.",
+        cpuT:'CPU işi: 8 task, 2 thread', pool2:"2 thread'lik pool", m3:"JDK 21, 2 carrier. Her task 300 milyon adımlık bir hesap yapar. Virtual thread'ler çekirdek eklemez, bu yüzden süre aynı kalır.", rulesT:'Ne zaman kullanılmalı',
+        rules:[[1, "Çok bekleme içeren iş: HTTP istekleri, veritabanı, dosyalar. Her isteğe bir virtual thread aç."], [1, "Aynı anda kaç istek gittiğini sınırlamak gerekiyorsa `Semaphore` kullan."], [0, "Virtual thread'leri pool'a koyma. Ucuzdurlar, her task için yenisini aç."], [0, 'Ağır hesaplamayı hızlandırmaz: çekirdek sayısı değişmez.'], [0, "Java 21'de `synchronized` içinde uzun bekleme carrier'ı tutar. `ReentrantLock` kullan veya Java 24'e geç."], [0, "`ThreadLocal`'da büyük object tutmak: milyon thread olunca milyon kopya oluşur."]]},
+      ch:[
+        ['Platform thread pahalıdır', ["Sıradan bir `Thread` işletim sisteminin thread'idir. Kendi stack'i vardır, oluşturmak ve thread'ler arasında geçiş yapmak pahalıdır.", "Bu yüzden sunucular thread pool kullanır. Ama pool'daki thread cevap beklerken hiçbir şey yapmaz. 200 thread varsa aynı anda sadece 200 istek bekleyebilir.", "Java 21'de virtual thread'ler geldi. Onlar JVM'in kendi thread'leridir ve milyonlarca oluşturulabilir."]],
+        ['Mount ve unmount', ["Virtual thread kendisi CPU'da çalışmaz. Onu az sayıda platform thread çalıştırır. Bu thread'lere carrier denir ve `ForkJoinPool`'dadırlar.", "Virtual thread `sleep`, socket veya lock beklerken carrier'dan unmount olur: stack'i heap'e taşınır ve carrier sıradaki virtual thread'i alır.", "Bekleme bitince virtual thread kuyruğa döner ve boş olan herhangi bir carrier'da devam eder. Modu değiştir ve süreleri karşılaştır."]],
+        ['Pinning', ["Java 21'de virtual thread `synchronized` içinde unmount olamaz, çünkü monitor carrier thread'e bağlıdır. Buna pinning denir: bekleme süresince carrier de bekler.", "Native method içinde de aynısı olur. `-Djdk.tracePinnedThreads=short` bu yerleri gösterir.", "Java 21'de çözüm `ReentrantLock`'tur. Java 24'te (JEP 491) `synchronized` artık pinning oluşturmaz."]],
+        ['Ne zaman yardım etmez', ["Virtual thread'ler bekleyen işi ucuzlatır, hesaplamayı hızlandırmaz. CPU işi için çekirdek sayısı kadar thread yeterlidir.", "Onlar sadece ucuz thread'lerdir. Aynı anda kaç iş yürüyeceğini sınırlamak için pool değil, `Semaphore` kullanılır."]],
+      ]},
+    en: {title:'Virtual threads', door:'How a million threads become possible: carriers, mount and unmount, pinning and where virtual threads do not help.',
+      ui:{scaleT:n => `${n} tasks, each sleeps for 1 second`, pool200:'pool of 200 threads', perTask:'a platform thread per task', est:n => `* For ${n} tasks the pool time is a calculation: tasks / 200 × 1 s. The other numbers were measured.`, allMeasured:'All numbers were measured.',
+        perTaskText:'A platform thread is an operating system thread with its own stack. On this Mac each one reserves a 2 MB stack. With one platform thread per task, the JVM stopped at about the 4000th thread.',
+        errT:'A platform thread per task', m0:'Measured on this Mac (10 cores, JDK 21). 10 000 tasks: pool 50.2 s, virtual 1.05 s. 100 000 virtual threads took 1.42 s and 1 000 000 took 5.4 s. Platform threads hit `OutOfMemoryError` at thread 4057. `ThreadStackSize` = 2048 KB.',
+        codeT:'Code', idle:'idle', blockedNow:'waiting, cannot do other work', pinnedNow:'pinned: cannot unmount inside synchronized', carriersT:'Carrier threads', queue:'Queue (runnable)', queuePlat:'Pool queue', parked:'Parked: stack on the heap', done:'Done', none:'none', tlT:'Timeline',
+        lgBlock:'sleep, thread blocked', ticks:'ticks', ifPark:'if it unmounted', ifBlock:'if it blocked', platPool:'pool of 2 threads',
+        evStart:'Everything is queued. Press next.', evRun:'The carriers are doing CPU work.',
+        evPark:(v, c) => `V${v} reached \`sleep\` and unmounted from worker-${c}. Its stack moved to the heap and the carrier took the next virtual thread from the queue right away.`,
+        evBlock:(v, c) => `V${v} reached \`sleep\`. Thread-${c} waits and cannot take another task in the meantime.`,
+        evWake:v => `V${v} finished sleeping and went back to the queue. It continues on whichever carrier is free first.`, evDone:v => `V${v} finished its work.`,
+        vOk:(a, b) => `Done in ${a} ticks. With blocking it would take ${b}.`, vBad:(a, b) => `Done in ${a} ticks. With unmounting it would take ${b}.`,
+        m1:'Real output, JDK 21, `-Djdk.virtualThreadScheduler.parallelism=2`: `Thread.currentThread()` before and after `sleep`. The same virtual thread woke up on another worker.',
+        model:'A simple model where each task does 1 tick of CPU, 3 ticks of sleep and 1 more tick of CPU. By default there is one carrier per core; this model uses 2.',
+        m2:'JDK 21, 2 carriers, 8 tasks, each sleeping 100 ms under its own lock. `synchronized` took 416 ms because the carriers waited. `ReentrantLock` took 105 ms because the virtual threads unmounted.',
+        cpuT:'CPU work: 8 tasks, 2 threads', pool2:'pool of 2 threads', m3:'JDK 21, 2 carriers. Each task runs a 300-million-step computation. Virtual threads do not add cores, so the time stays the same.', rulesT:'When to use them',
+        rules:[[1, 'Work that waits a lot: HTTP calls, databases, files. Start one virtual thread per request.'], [1, 'To limit how many requests run at once, use a `Semaphore`.'], [0, 'Do not pool virtual threads. They are cheap, so start a new one for each task.'], [0, 'They do not speed up heavy computation: the number of cores stays the same.'], [0, 'In Java 21, a long wait inside `synchronized` holds the carrier. Use `ReentrantLock` or move to Java 24.'], [0, 'Keeping big objects in a `ThreadLocal`: a million threads means a million copies.']]},
+      ch:[
+        ['Platform threads are expensive', ['A normal `Thread` is an operating system thread. It has its own stack, and creating it and switching between threads costs a lot.', 'That is why servers use thread pools. But a pooled thread that waits for a response does nothing. With 200 threads, only 200 requests can wait at the same time.', 'Java 21 added virtual threads. They are the JVM’s own threads, and you can create millions of them.']],
+        ['Mount and unmount', ['A virtual thread does not run on the CPU by itself. A few platform threads run it. They are called carriers, and they live in a `ForkJoinPool`.', 'When a virtual thread waits on `sleep`, a socket or a lock, it unmounts from its carrier: its stack moves to the heap and the carrier takes the next virtual thread.', 'When the wait ends, the virtual thread goes back to the queue and continues on any free carrier. Switch the mode and compare the times.']],
+        ['Pinning', ['In Java 21 a virtual thread cannot unmount inside `synchronized`, because the monitor belongs to the carrier thread. This is called pinning: while it waits, the carrier waits too.', 'The same happens inside a native method. `-Djdk.tracePinnedThreads=short` shows where it happens.', 'In Java 21 the fix is `ReentrantLock`. Since Java 24 (JEP 491), `synchronized` no longer pins.']],
+        ['Where they do not help', ['Virtual threads make waiting cheap, but they do not make computation faster. For CPU work, one thread per core is enough.', 'They are just cheap threads. To limit how much runs at once, use a `Semaphore`, not a pool.']],
+      ]},
+  },
+};
 function lsRefresh() { lsRender(); }
 $('ls-prev').onclick = () => lsChapter(lsCh - 1);
 $('ls-next').onclick = () => lsChapter(lsCh + 1);
@@ -5035,7 +5550,6 @@ $('code').value = initial;
 hmOps = HM_OPS[0].slice();
 setLang(LANG, false);
 show(parseHash().route);
-
 </script>
 </body>
 </html>
