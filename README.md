@@ -35,7 +35,11 @@ There is no build step. Open `index.html` in a browser.
 ## Project structure
 
 ```
-index.html                page markup
+tools/template.html       page markup: edit this, not the generated index.html files
+tools/build_pages.py      builds the pages search engines read (see below)
+index.html, az/ tr/ en/   generated pages, one per topic and language
+sitemap.xml, robots.txt   generated for search engines
+og/                       generated link preview images
 css/style.css             all styles
 js/i18n.js                language state and Azerbaijani-keyed translations
 js/engine/parser.js       Mini Java tokenizer and parser
@@ -47,7 +51,19 @@ js/lessons/*.js           one file per lesson
 js/main.js                start-up
 ```
 
-The scripts are plain `<script>` files loaded in order, not ES modules, so the page still works when opened straight from disk. A new lesson goes into `js/lessons/`, is added to `LS_ORDER` in `lessons.js`, gets a `<script>` tag before `main.js` and a card on the home page.
+The scripts are plain `<script>` files loaded in order, not ES modules, so the page still works when opened straight from disk. A new lesson goes into `js/lessons/`, is added to `LS_ORDER` in `lessons.js`, gets a `<script>` tag before `main.js` and a card on the home page in `tools/template.html`.
+
+### Pages for search engines
+
+Every topic has its own address in every language, such as `az/gc/` or `en/hashmap/`. Each page carries its own title, description, `hreflang` links and the full lesson text in HTML, so search engines can read it without running the scripts. The interactive part is the same on every page.
+
+After changing the template or any text, rebuild the pages with Google Chrome installed:
+
+```
+python3 tools/build_pages.py
+```
+
+The script runs the real site from `tools/template.html` in headless Chrome, so the text in the static pages always matches the interactive version. The main address is `https://how-java-works.pages.dev/`; every page points to it as canonical. Do not delete `google974f489a9b676db5.html`: it keeps the Google Search Console verification.
 
 ## How it works
 
@@ -100,7 +116,11 @@ Build addımı yoxdur. `index.html` faylını brauzerdə aç.
 ## Layihənin quruluşu
 
 ```
-index.html                səhifənin HTML-i
+tools/template.html       səhifənin HTML-i: yaradılan index.html-ləri yox, bunu dəyiş
+tools/build_pages.py      axtarış sistemlərinin oxuduğu səhifələri yaradır (aşağıya bax)
+index.html, az/ tr/ en/   yaradılan səhifələr: hər mövzu və dil üçün bir
+sitemap.xml, robots.txt   axtarış sistemləri üçün yaradılır
+og/                       link önizləməsi üçün yaradılan şəkillər
 css/style.css             bütün stillər
 js/i18n.js                dil vəziyyəti və tərcümələr (açar Azərbaycan mətnidir)
 js/engine/parser.js       Mini Java tokenizer-i və parser-i
@@ -112,7 +132,19 @@ js/lessons/*.js           hər dərs üçün bir fayl
 js/main.js                başlanğıc
 ```
 
-Skriptlər ES module deyil, sıra ilə yüklənən adi `<script>` fayllarıdır. Ona görə səhifə diskdən birbaşa açılanda da işləyir. Yeni dərs `js/lessons/`-a əlavə olunur, `lessons.js`-dəki `LS_ORDER`-ə yazılır, `main.js`-dən əvvəl `<script>` teqi və ana səhifədə kartı alır.
+Skriptlər ES module deyil, sıra ilə yüklənən adi `<script>` fayllarıdır. Ona görə səhifə diskdən birbaşa açılanda da işləyir. Yeni dərs `js/lessons/`-a əlavə olunur, `lessons.js`-dəki `LS_ORDER`-ə yazılır, `main.js`-dən əvvəl `<script>` teqi və `tools/template.html`-də ana səhifə kartı alır.
+
+### Axtarış sistemləri üçün səhifələr
+
+Hər mövzunun hər dildə öz ünvanı var, məsələn `az/gc/` və ya `en/hashmap/`. Hər səhifənin öz başlığı, təsviri, `hreflang` linkləri var və dərsin bütün mətni HTML-də yazılıb. Ona görə axtarış sistemləri onu skriptləri işə salmadan oxuya bilir. İnteraktiv hissə bütün səhifələrdə eynidir.
+
+Şablonu və ya hər hansı mətni dəyişəndən sonra səhifələri yenidən yarat. Bunun üçün Google Chrome quraşdırılmalıdır:
+
+```
+python3 tools/build_pages.py
+```
+
+Skript `tools/template.html`-dən real saytı headless Chrome-da işə salır, ona görə statik səhifələrdəki mətn interaktiv versiya ilə həmişə eynidir. Əsas ünvan `https://how-java-works.pages.dev/`-dir, bütün səhifələr canonical olaraq ona istinad edir. `google974f489a9b676db5.html`-i silmə: Google Search Console təsdiqi ondan asılıdır.
 
 ## Necə işləyir
 

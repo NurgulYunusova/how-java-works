@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Java necə işləyir</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<main id="view-home" hidden>
+  <div class="home-in">
+    <div class="home-top">
+      <div>
+        <h1 data-s="site"></h1>
+        <p data-s="siteLede"></p>
+      </div>
+      <div class="langs" role="group">
+          <button type="button" data-lang="az" lang="az" title="Azərbaycanca">AZ</button>
+          <button type="button" data-lang="tr" lang="tr" title="Türkçe">TR</button>
+          <button type="button" data-lang="en" lang="en" title="English">EN</button>
+        </div>
+    </div>
+    <div class="home-groups"><section class="home-group"><h2 data-s="gMem"></h2><div class="doors"><a class="door d-jvm" href="#jvm" data-go="jvm">
+        <h2 data-s="doorJvm"></h2>
+        <p data-s="doorJvmText"></p>
+        <div class="mini" aria-hidden="true">
+          <div class="ms"><span><small>String</small> s</span><i class="mref"></i></div>
+          <div class="ms"><span><small>int</small> a</span><i class="mv4">4</i></div>
+          <div class="ms"><span><small>int[]</small> d</span><i class="mref" style="border-color:var(--sky)"></i></div>
+        </div>
+      </a><a class="door d-ls" href="#gc" data-go="gc"><h2 data-ls-title="gc"></h2><p data-ls-door="gc"></p><pre class="snip" aria-hidden="true">o = null;
+// no root, GC can remove it</pre></a><a class="door d-ls" href="#strings" data-go="strings"><h2 data-ls-title="strings"></h2><p data-ls-door="strings"></p><pre class="snip" aria-hidden="true">"çörek"  5 byte
+"çörək" 10 byte</pre></a><a class="door d-ls" href="#layout" data-go="layout"><h2 data-ls-title="layout"></h2><p data-ls-door="layout"></p><pre class="snip" aria-hidden="true">new Object();
+// 12 byte header + 4 padding</pre></a></div></section><section class="home-group"><h2 data-s="gColl"></h2><div class="doors"><a class="door d-hm" href="#hashmap" data-go="hashmap">
+        <h2 data-s="doorHm"></h2>
+        <p data-s="doorHmText"></p>
+        <div class="mini" aria-hidden="true">
+          <div class="mbk"><code>0</code><span class="mn">"Aa"</span><span class="mx">next</span><span class="mn">"BB"</span></div>
+          <div class="mbk"><code>1</code><em>null</em></div>
+          <div class="mbk hit"><code>14</code><span class="mn">"Aysel"</span></div>
+        </div>
+      </a><a class="door d-ls" href="#treemap" data-go="treemap"><h2 data-ls-title="treemap"></h2><p data-ls-door="treemap"></p><pre class="snip" aria-hidden="true">m.floorKey(35);
+// O(log n)</pre></a></div></section><section class="home-group"><h2 data-s="gConc"></h2><div class="doors"><a class="door d-ls" href="#threads" data-go="threads"><h2 data-ls-title="threads"></h2><p data-ls-door="threads"></p><pre class="snip" aria-hidden="true">count++;
+// read, add, write</pre></a><a class="door d-ls" href="#chm" data-go="chm"><h2 data-ls-title="chm"></h2><p data-ls-door="chm"></p><pre class="snip" aria-hidden="true">map.merge("c", 1, Integer::sum);
+// CAS or a bucket lock</pre></a><a class="door d-ls" href="#vthreads" data-go="vthreads"><h2 data-ls-title="vthreads"></h2><p data-ls-door="vthreads"></p><pre class="snip" aria-hidden="true">Thread.ofVirtual().start(task);
+// 1 000 000 threads: 5.4 s</pre></a></div></section><section class="home-group"><h2 data-s="gHood"></h2><div class="doors"><a class="door d-ls" href="#bytecode" data-go="bytecode"><h2 data-ls-title="bytecode"></h2><p data-ls-door="bytecode"></p><pre class="snip" aria-hidden="true">iload_0
+iinc 0, 1
+istore_0</pre></a><a class="door d-ls" href="#classload" data-go="classload"><h2 data-ls-title="classload"></h2><p data-ls-door="classload"></p><pre class="snip" aria-hidden="true">static { ... }
+super();</pre></a><a class="door d-ls" href="#stream" data-go="stream"><h2 data-ls-title="stream"></h2><p data-ls-door="stream"></p><pre class="snip" aria-hidden="true">.filter(...).map(...)
+.findFirst();</pre></a></div></section></div>
+  </div>
+</main>
+
+<div class="app" id="view-jvm" hidden>
+  <section class="desk" id="desk">
+    <header>
+      <a class="crumb" href="#home" data-go="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span data-s="topics"></span></a>
+      <div class="brand">
+        <h1 id="t-title"></h1>
+        <div class="langs" role="group">
+          <button type="button" data-lang="az" lang="az" title="Azərbaycanca">AZ</button>
+          <button type="button" data-lang="tr" lang="tr" title="Türkçe">TR</button>
+          <button type="button" data-lang="en" lang="en" title="English">EN</button>
+        </div>
+      </div>
+      <p class="lede" id="t-lede"></p>
+    </header>
+    <div class="picker">
+      <label for="samples" id="t-pick"></label>
+      <select id="samples"></select>
+    </div>
+    <div class="editor">
+      <pre id="hl" aria-hidden="true"></pre>
+      <textarea id="code" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" wrap="off"></textarea>
+    </div>
+    <div class="transport">
+      <button class="btn" id="prev" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span id="t-prev"></span></button>
+      <button class="btn primary" id="play" type="button"></button>
+      <button class="btn" id="next" type="button"><span id="t-next"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+      <div class="track">
+        <input id="scrub" type="range" min="0" max="0" value="0">
+        <span class="count" id="count"></span>
+      </div>
+    </div>
+    <div class="explain">
+      <div class="why" id="why" aria-live="polite"></div>
+      <div class="out" id="out" hidden></div>
+    </div>
+  </section>
+
+  <section class="map" id="map">
+    <div class="map-inner" id="inner">
+      <svg class="wires" id="wires" aria-hidden="true">
+        <defs>
+          <marker id="tip-str" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#FF9BCF"/></marker>
+          <marker id="tip-box" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#62E8AE"/></marker>
+          <marker id="tip-arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#7FCDFF"/></marker>
+          <marker id="tip-obj" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#C3B1FF"/></marker>
+          <marker id="tip-dead" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#676C9C"/></marker>
+        </defs>
+        <g id="wire-group"></g>
+      </svg>
+      <div class="stack">
+        <div class="col-head"><h2>Stack</h2><p id="t-stackHint"></p></div>
+        <div class="frames" id="frames"></div>
+      </div>
+      <div class="heap" id="heap">
+        <div class="col-head"><h2>Heap</h2></div>
+        <div class="key">
+          <span><i class="val">4</i> <span id="t-keyValue"></span></span>
+          <span><i class="dot"></i> <span id="t-keyRef"></span></span>
+        </div>
+        <div id="heap-body"></div>
+        <p class="note" id="t-model"></p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="app" id="view-hashmap" hidden>
+  <section class="desk">
+    <header>
+      <a class="crumb" href="#home" data-go="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span data-s="topics"></span></a>
+      <div class="brand">
+        <h1 data-s="hmTitle"></h1>
+        <div class="langs" role="group">
+          <button type="button" data-lang="az" lang="az" title="Azərbaycanca">AZ</button>
+          <button type="button" data-lang="tr" lang="tr" title="Türkçe">TR</button>
+          <button type="button" data-lang="en" lang="en" title="English">EN</button>
+        </div>
+      </div>
+    </header>
+    <div class="hm-nav">
+      <select id="hm-ch" aria-label="HashMap"></select>
+      <button class="btn" id="hm-prev" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span id="hm-t-prev"></span></button>
+      <button class="btn" id="hm-next" type="button"><span id="hm-t-next"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+      <span class="count" id="hm-count"></span>
+    </div>
+    <div class="prose" id="hm-prose" aria-live="polite"></div>
+    <form class="tryit" id="hm-form" autocomplete="off">
+      <h3 data-s="tryIt"></h3>
+      <div class="tr-fields">
+        <label><span data-s="fKey"></span><input id="hm-key" type="text" maxlength="40" spellcheck="false" autocapitalize="off" value="Murad"></label>
+        <label><span data-s="fVal"></span><input id="hm-val" type="text" inputmode="numeric" value="30"></label>
+      </div>
+      <div class="tr-acts">
+        <button class="btn primary" type="submit" style="min-width:0">put</button>
+        <button class="btn" id="hm-get" type="button">get</button>
+        <button class="btn" id="hm-remove" type="button">remove</button>
+        <button class="btn ghost" id="hm-clear" type="button" data-s="clear"></button>
+      </div>
+      <p class="tr-err" id="hm-err" role="alert"></p>
+    </form>
+  </section>
+  <section class="hm-right">
+    <div class="pnl"><h2 data-s="pipe"></h2><div id="hm-pipe" style="display:flex;flex-direction:column;gap:10px"></div></div>
+    <div class="pnl"><h2 data-s="table"></h2><div id="hm-table" style="display:flex;flex-direction:column;gap:10px"></div></div>
+    <div class="pnl-row">
+      <div class="pnl" id="hm-notes" hidden></div>
+      <div class="pnl">
+        <div class="codehead"><h3 data-s="code"></h3><button class="btn" id="hm-open" type="button" data-s="openJvm"></button></div>
+        <pre id="hm-codeview"></pre>
+        <div class="out" id="hm-out" hidden></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="app" id="view-lesson" hidden>
+  <section class="desk">
+    <header>
+      <a class="crumb" href="#home" data-go="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span data-s="topics"></span></a>
+      <div class="brand">
+        <h1 id="ls-title"></h1>
+        <div class="langs" role="group">
+          <button type="button" data-lang="az" lang="az" title="Azərbaycanca">AZ</button>
+          <button type="button" data-lang="tr" lang="tr" title="Türkçe">TR</button>
+          <button type="button" data-lang="en" lang="en" title="English">EN</button>
+        </div>
+      </div>
+    </header>
+    <div class="hm-nav ls-nav">
+      <select id="ls-ch" aria-label="Section"></select>
+      <button class="btn" id="ls-prev" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span class="sr" id="ls-t-prev"></span></button>
+      <button class="btn" id="ls-next" type="button"><span class="sr" id="ls-t-next"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+      <span class="sr" id="ls-count"></span>
+    </div>
+    <div class="prose" id="ls-prose" aria-live="polite"></div>
+    <div id="ls-ctl"></div>
+  </section>
+  <section class="ls-right"><div id="ls-stage"></div></section>
+</div>
+
+<script src="../js/i18n.js"></script>
+<script src="../js/engine/parser.js"></script>
+<script src="../js/engine/interpreter.js"></script>
+<script src="../js/jvm-map.js"></script>
+<script src="../js/site.js"></script>
+<script src="../js/lessons/lessons.js"></script>
+<script src="../js/lessons/gc.js"></script>
+<script src="../js/lessons/threads.js"></script>
+<script src="../js/lessons/chm.js"></script>
+<script src="../js/lessons/bytecode.js"></script>
+<script src="../js/lessons/classload.js"></script>
+<script src="../js/lessons/stream.js"></script>
+<script src="../js/lessons/treemap.js"></script>
+<script src="../js/lessons/strings.js"></script>
+<script src="../js/lessons/layout.js"></script>
+<script src="../js/lessons/vthreads.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

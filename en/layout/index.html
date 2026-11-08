@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" data-route="layout" data-lang="en" data-root="../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Objects in memory · How Java works</title>
+<meta name="description" content="How many bytes an object takes: header, mark word, padding, field order, arrays and the 32 GB line.">
+<link rel="canonical" href="https://how-java-works.pages.dev/en/layout/">
+<link rel="alternate" hreflang="az" href="https://how-java-works.pages.dev/az/layout/">
+<link rel="alternate" hreflang="tr" href="https://how-java-works.pages.dev/tr/layout/">
+<link rel="alternate" hreflang="en" href="https://how-java-works.pages.dev/en/layout/">
+<link rel="alternate" hreflang="x-default" href="https://how-java-works.pages.dev/en/layout/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="How Java works">
+<meta property="og:title" content="Objects in memory · How Java works">
+<meta property="og:description" content="How many bytes an object takes: header, mark word, padding, field order, arrays and the 32 GB line.">
+<meta property="og:url" content="https://how-java-works.pages.dev/en/layout/">
+<meta property="og:image" content="https://how-java-works.pages.dev/og/en.png">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Objects in memory", "description": "How many bytes an object takes: header, mark word, padding, field order, arrays and the 32 GB line.", "inLanguage": "en", "url": "https://how-java-works.pages.dev/en/layout/", "learningResourceType": "interactive lesson", "isPartOf": {"@type": "WebSite", "name": "How Java works", "url": "https://how-java-works.pages.dev/en/"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+<main id="view-home" hidden>
+  <div class="home-in">
+    <div class="home-top">
+      <div>
+        <h1 data-s="site">How Java works</h1>
+        <p data-s="siteLede">Pick a topic, write code and watch what happens inside, step by step.</p>
+      </div>
+      <div class="langs" role="group">
+          <button type="button" data-lang="az" lang="az" title="Azərbaycanca">AZ</button>
+          <button type="button" data-lang="tr" lang="tr" title="Türkçe">TR</button>
+          <button type="button" data-lang="en" lang="en" title="English">EN</button>
+        </div>
+    </div>
+    <div class="home-groups"><section class="home-group"><h2 data-s="gMem">Memory</h2><div class="doors"><a class="door d-jvm" href="../../en/jvm/" data-go="jvm">
+        <h2 data-s="doorJvm">JVM: Stack and Heap</h2>
+        <p data-s="doorJvmText">Primitives, objects, the String Pool, frames and GC. Follow line by line where your code lands in memory.</p>
+        <div class="mini" aria-hidden="true">
+          <div class="ms"><span><small>String</small> s</span><i class="mref"></i></div>
+          <div class="ms"><span><small>int</small> a</span><i class="mv4">4</i></div>
+          <div class="ms"><span><small>int[]</small> d</span><i class="mref" style="border-color:var(--sky)"></i></div>
+        </div>
+      </a><a class="door d-ls" href="../../en/gc/" data-go="gc"><h2 data-ls-title="gc">Garbage Collection</h2><p data-ls-door="gc">When is an object removed? GC roots, mark-sweep, Eden, Survivor, Old and memory leaks.</p><pre class="snip" aria-hidden="true">o = null;
+// no root, GC can remove it</pre></a><a class="door d-ls" href="../../en/strings/" data-go="strings"><h2 data-ls-title="strings">String inside</h2><p data-ls-door="strings">What is inside a String: byte[], LATIN1 and UTF16, emoji length, shared arrays and the cost of +=.</p><pre class="snip" aria-hidden="true">"çörek"  5 byte
+"çörək" 10 byte</pre></a><a class="door d-ls" href="../../en/layout/" data-go="layout"><h2 data-ls-title="layout">Objects in memory</h2><p data-ls-door="layout">How many bytes an object takes: header, mark word, padding, field order, arrays and the 32 GB line.</p><pre class="snip" aria-hidden="true">new Object();
+// 12 byte header + 4 padding</pre></a></div></section><section class="home-group"><h2 data-s="gColl">Collections</h2><div class="doors"><a class="door d-hm" href="../../en/hashmap/" data-go="hashmap">
+        <h2 data-s="doorHm">How HashMap works</h2>
+        <p data-s="doorHmText">hashCode, buckets, collisions and resize. Follow bit by bit how a key finds its place in the table.</p>
+        <div class="mini" aria-hidden="true">
+          <div class="mbk"><code>0</code><span class="mn">"Aa"</span><span class="mx">next</span><span class="mn">"BB"</span></div>
+          <div class="mbk"><code>1</code><em>null</em></div>
+          <div class="mbk hit"><code>14</code><span class="mn">"Aysel"</span></div>
+        </div>
+      </a><a class="door d-ls" href="../../en/treemap/" data-go="treemap"><h2 data-ls-title="treemap">How TreeMap works</h2><p data-ls-door="treemap">Watch a red-black tree live: insert, recolor, rotation, remove and ordered search.</p><pre class="snip" aria-hidden="true">m.floorKey(35);
+// O(log n)</pre></a></div></section><section class="home-group"><h2 data-s="gConc">Concurrency</h2><div class="doors"><a class="door d-ls" href="../../en/threads/" data-go="threads"><h2 data-ls-title="threads">Threads</h2><p data-ls-door="threads">Drive two threads yourself. Race conditions, synchronized, volatile, CAS and deadlock.</p><pre class="snip" aria-hidden="true">count++;
+// read, add, write</pre></a><a class="door d-ls" href="../../en/chm/" data-go="chm"><h2 data-ls-title="chm">How ConcurrentHashMap works</h2><p data-ls-door="chm">A HashMap for several threads. CAS on an empty bucket, a lock on a full one, resize and no nulls.</p><pre class="snip" aria-hidden="true">map.merge("c", 1, Integer::sum);
+// CAS or a bucket lock</pre></a><a class="door d-ls" href="../../en/vthreads/" data-go="vthreads"><h2 data-ls-title="vthreads">Virtual threads</h2><p data-ls-door="vthreads">How a million threads become possible: carriers, mount and unmount, pinning and where virtual threads do not help.</p><pre class="snip" aria-hidden="true">Thread.ofVirtual().start(task);
+// 1 000 000 threads: 5.4 s</pre></a></div></section><section class="home-group"><h2 data-s="gHood">Language and JVM</h2><div class="doors"><a class="door d-ls" href="../../en/bytecode/" data-go="bytecode"><h2 data-ls-title="bytecode">Bytecode</h2><p data-ls-door="bytecode">What does javac write? The operand stack, local variables, the i = i++ trap and what finally really is.</p><pre class="snip" aria-hidden="true">iload_0
+iinc 0, 1
+istore_0</pre></a><a class="door d-ls" href="../../en/classload/" data-go="classload"><h2 data-ls-title="classload">Class loading</h2><p data-ls-door="classload">When is a class loaded? Delegation, three stages, static and constructor order, classic traps.</p><pre class="snip" aria-hidden="true">static { ... }
+super();</pre></a><a class="door d-ls" href="../../en/stream/" data-go="stream"><h2 data-ls-title="stream">How Stream works</h2><p data-ls-door="stream">Streams are lazy. Elements pass one by one, sorted holds them all, and count sometimes runs nothing.</p><pre class="snip" aria-hidden="true">.filter(...).map(...)
+.findFirst();</pre></a></div></section></div>
+  </div>
+</main>
+
+<div class="app" id="view-jvm" hidden>
+  <section class="desk" id="desk">
+    <header>
+      <a class="crumb" href="../../en/" data-go="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span data-s="topics">Topics</span></a>
+      <div class="brand">
+        <h1 id="t-title">JVM: Stack and Heap</h1>
+        <div class="langs" role="group">
+          <button type="button" data-lang="az" lang="az" title="Azərbaycanca">AZ</button>
+          <button type="button" data-lang="tr" lang="tr" title="Türkçe">TR</button>
+          <button type="button" data-lang="en" lang="en" title="English">EN</button>
+        </div>
+      </div>
+      <p class="lede" id="t-lede">Write Java code and follow, line by line, where each variable lands in memory.</p>
+    </header>
+    <div class="picker">
+      <label for="samples" id="t-pick">Choose an example</label>
+      <select id="samples"></select>
+    </div>
+    <div class="editor">
+      <pre id="hl" aria-hidden="true"></pre>
+      <textarea id="code" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" wrap="off"></textarea>
+    </div>
+    <div class="transport">
+      <button class="btn" id="prev" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span id="t-prev">Previous</span></button>
+      <button class="btn primary" id="play" type="button"></button>
+      <button class="btn" id="next" type="button"><span id="t-next">Next</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+      <div class="track">
+        <input id="scrub" type="range" min="0" max="0" value="0">
+        <span class="count" id="count"></span>
+      </div>
+    </div>
+    <div class="explain">
+      <div class="why" id="why" aria-live="polite"></div>
+      <div class="out" id="out" hidden></div>
+    </div>
+  </section>
+
+  <section class="map" id="map">
+    <div class="map-inner" id="inner">
+      <svg class="wires" id="wires" aria-hidden="true">
+        <defs>
+          <marker id="tip-str" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#FF9BCF"/></marker>
+          <marker id="tip-box" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#62E8AE"/></marker>
+          <marker id="tip-arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#7FCDFF"/></marker>
+          <marker id="tip-obj" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#C3B1FF"/></marker>
+          <marker id="tip-dead" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#676C9C"/></marker>
+        </defs>
+        <g id="wire-group"></g>
+      </svg>
+      <div class="stack">
+        <div class="col-head"><h2>Stack</h2><p id="t-stackHint">Cleared when a method ends</p></div>
+        <div class="frames" id="frames"></div>
+      </div>
+      <div class="heap" id="heap">
+        <div class="col-head"><h2>Heap</h2></div>
+        <div class="key">
+          <span><i class="val">4</i> <span id="t-keyValue">the value itself</span></span>
+          <span><i class="dot"></i> <span id="t-keyRef">reference: the value is where the line goes</span></span>
+        </div>
+        <div id="heap-body"></div>
+        <p class="note" id="t-model">This is the memory model of the Java language. While running, the JIT compiler may optimize some objects so they never reach the heap.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="app" id="view-hashmap" hidden>
+  <section class="desk">
+    <header>
+      <a class="crumb" href="../../en/" data-go="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span data-s="topics">Topics</span></a>
+      <div class="brand">
+        <h1 data-s="hmTitle">How HashMap works</h1>
+        <div class="langs" role="group">
+          <button type="button" data-lang="az" lang="az" title="Azərbaycanca">AZ</button>
+          <button type="button" data-lang="tr" lang="tr" title="Türkçe">TR</button>
+          <button type="button" data-lang="en" lang="en" title="English">EN</button>
+        </div>
+      </div>
+    </header>
+    <div class="hm-nav">
+      <select id="hm-ch" aria-label="HashMap"></select>
+      <button class="btn" id="hm-prev" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span id="hm-t-prev"></span></button>
+      <button class="btn" id="hm-next" type="button"><span id="hm-t-next"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+      <span class="count" id="hm-count"></span>
+    </div>
+    <div class="prose" id="hm-prose" aria-live="polite"></div>
+    <form class="tryit" id="hm-form" autocomplete="off">
+      <h3 data-s="tryIt">Try it yourself</h3>
+      <div class="tr-fields">
+        <label><span data-s="fKey">Key (String)</span><input id="hm-key" type="text" maxlength="40" spellcheck="false" autocapitalize="off" value="Murad"></label>
+        <label><span data-s="fVal">Value (int)</span><input id="hm-val" type="text" inputmode="numeric" value="30"></label>
+      </div>
+      <div class="tr-acts">
+        <button class="btn primary" type="submit" style="min-width:0">put</button>
+        <button class="btn" id="hm-get" type="button">get</button>
+        <button class="btn" id="hm-remove" type="button">remove</button>
+        <button class="btn ghost" id="hm-clear" type="button" data-s="clear">Clear</button>
+      </div>
+      <p class="tr-err" id="hm-err" role="alert"></p>
+    </form>
+  </section>
+  <section class="hm-right">
+    <div class="pnl"><h2 data-s="pipe">The path of the key</h2><div id="hm-pipe" style="display:flex;flex-direction:column;gap:10px"></div></div>
+    <div class="pnl"><h2 data-s="table">Table</h2><div id="hm-table" style="display:flex;flex-direction:column;gap:10px"></div></div>
+    <div class="pnl-row">
+      <div class="pnl" id="hm-notes" hidden></div>
+      <div class="pnl">
+        <div class="codehead"><h3 data-s="code">Java code</h3><button class="btn" id="hm-open" type="button" data-s="openJvm">Open in the JVM map</button></div>
+        <pre id="hm-codeview"></pre>
+        <div class="out" id="hm-out" hidden></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="app" id="view-lesson">
+  <section class="desk">
+    <header>
+      <a class="crumb" href="../../en/" data-go="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span data-s="topics">Topics</span></a>
+      <div class="brand">
+        <h1 id="ls-title">Objects in memory</h1>
+        <div class="langs" role="group">
+          <button type="button" data-lang="az" lang="az" title="Azərbaycanca">AZ</button>
+          <button type="button" data-lang="tr" lang="tr" title="Türkçe">TR</button>
+          <button type="button" data-lang="en" lang="en" title="English">EN</button>
+        </div>
+      </div>
+    </header>
+    <div class="hm-nav ls-nav">
+      <select id="ls-ch" aria-label="Section"></select>
+      <button class="btn" id="ls-prev" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span class="sr" id="ls-t-prev"></span></button>
+      <button class="btn" id="ls-next" type="button"><span class="sr" id="ls-t-next"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+      <span class="sr" id="ls-count"></span>
+    </div>
+    <div class="prose" id="ls-prose" aria-live="polite"><section><h2>The header: 12 bytes in every object</h2><p>Every object on the heap starts with a header: an 8-byte mark word and a 4-byte class pointer, which says what class the object is.</p><p>The mark word does several jobs: the identity hash, the GC age and the lock state, all in the same 64 bits. When the object is locked, those bits become a pointer.</p><p>Press the buttons and watch the bits change. Biased locking has been gone since Java 18, so it is not shown here.</p></section><section><h2>Fields and padding</h2><p>Fields are not stored in the order you write them. The JVM places large primitives first, then smaller ones, and references last. Each field goes into the smallest gap it fits.</p><p>Each field starts at an offset divisible by its size: a <code>long</code> at a multiple of 8, an <code>int</code> at a multiple of 4. The object size must be divisible by 8.</p><p>Build your own class and watch where the bytes go. The 4 bytes right after the header are often filled by an <code>int</code> or a reference.</p></section><section><h2>Arrays</h2><p>An array header takes 16 bytes: the mark word, the class pointer and a 4-byte <code>length</code>. The elements follow it.</p><p>A primitive array holds the values itself. An <code>Integer[]</code> holds only references, and each <code>Integer</code> is a separate 16-byte object on the heap.</p><p>That is why 100 numbers take 416 bytes in an <code>int[]</code> and 2016 bytes in an <code>Integer[]</code>.</p></section><section><h2>What collections cost</h2><p>Collections cannot hold primitives, so every number becomes an <code>Integer</code>. Each element also gets internal objects: a <code>Node</code> in HashMap, a doubly linked Node in LinkedList.</p><p>1000 numbers take 4 KB in an <code>int[]</code> and 56 KB in a <code>HashSet&lt;Integer&gt;</code>, 14 times more. With millions of elements, that difference matters.</p><p>Libraries such as Eclipse Collections and fastutil have collections for primitives. They take about as little space as an <code>int[]</code>.</p></section><section><h2>The 32 GB line</h2><p>On a 64-bit JVM a pointer is 8 bytes, but when the heap is small the JVM squeezes it into 4 bytes: compressed oops.</p><p>4 bytes hold 2³² different values. The JVM multiplies them by 8, because objects start at addresses divisible by 8. That reaches up to 32 GB.</p><p>Raise the heap from 31 GB to 32 GB and watch the reference size. Java 25 also has compact object headers, where the header takes 8 bytes instead of 12.</p></section></div>
+    <div id="ls-ctl"></div>
+  </section>
+  <section class="ls-right"><div id="ls-stage"></div></section>
+</div>
+
+<script src="../../js/i18n.js"></script>
+<script src="../../js/engine/parser.js"></script>
+<script src="../../js/engine/interpreter.js"></script>
+<script src="../../js/jvm-map.js"></script>
+<script src="../../js/site.js"></script>
+<script src="../../js/lessons/lessons.js"></script>
+<script src="../../js/lessons/gc.js"></script>
+<script src="../../js/lessons/threads.js"></script>
+<script src="../../js/lessons/chm.js"></script>
+<script src="../../js/lessons/bytecode.js"></script>
+<script src="../../js/lessons/classload.js"></script>
+<script src="../../js/lessons/stream.js"></script>
+<script src="../../js/lessons/treemap.js"></script>
+<script src="../../js/lessons/strings.js"></script>
+<script src="../../js/lessons/layout.js"></script>
+<script src="../../js/lessons/vthreads.js"></script>
+<script src="../../js/main.js"></script>
+</body>
+</html>

@@ -483,8 +483,8 @@ function setLang(lang, keepStep) {
   paintSite();
 }
 function firstLang() {
-  const fromHash = parseHash().lang;
-  if (fromHash) return fromHash;
+  const fromPage = where().lang;
+  if (fromPage) return fromPage;
   try { const s = localStorage.getItem(LANG_STORE); if (UI[s]) return s; } catch (e) {}
   for (const l of navigator.languages || [navigator.language || '']) { const b = l.slice(0, 2).toLowerCase(); if (UI[b]) return b; }
   return 'en';
@@ -494,7 +494,7 @@ document.addEventListener('click', e => {
   if (!b || b.dataset.lang === LANG) return;
   stopPlay();
   setLang(b.dataset.lang, true);
-  try { history.replaceState(null, '', '#' + route + '-' + b.dataset.lang); } catch (err) {}
+  setAddress(false);
 });
 $('samples').addEventListener('change', e => {
   if (e.target.value === 'own') return;

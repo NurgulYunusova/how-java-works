@@ -226,7 +226,7 @@ function paintSite() {
   $('hm-t-next').textContent = t('next');
   document.querySelectorAll('[data-ls-title]').forEach(el => { el.textContent = nb(LS[el.dataset.lsTitle].text[LANG].title); });
   document.querySelectorAll('[data-ls-door]').forEach(el => { el.textContent = nb(LS[el.dataset.lsDoor].text[LANG].door); });
-  document.title = route === 'jvm' ? t('title') : route === 'hashmap' ? s('hmTitle') : LS_ORDER.includes(route) ? nb(LS[route].text[LANG].title) : s('site');
+  document.title = pageTitle(route);
   if (route === 'hashmap') hmRender();
   if (LS_ORDER.includes(route)) { if (lsId !== route) lsOpen(route); else lsRefresh(); }
 }
@@ -235,15 +235,44 @@ function show(r) {
   const isLs = LS_ORDER.includes(r);
   for (const name of ['home', 'jvm', 'hashmap']) $('view-' + name).hidden = name !== r;
   $('view-lesson').hidden = !isLs;
-  document.title = r === 'jvm' ? t('title') : r === 'hashmap' ? s('hmTitle') : s('site');
+  document.title = pageTitle(r);
   if (r === 'jvm') { stopPlay(); render(false); showActiveLine(); redraw(); }
   if (r === 'hashmap') hmRender();
-  if (isLs) { lsOpen(r); document.title = nb(lsX().title); }
+  if (isLs) lsOpen(r);
   window.scrollTo(0, 0);
+}
+/* Every topic has a real page per language, such as az/gc/, so search engines can find it.
+   On the web the address follows the view; opened from disk, the site keeps using #gc-az. Old #gc links still work. */
+const PAGE = document.documentElement.dataset;
+const SITE_ROOT = new URL(PAGE.root || './', location.href);
+const ON_WEB = /^https?:$/.test(location.protocol);
+const ROUTES = () => ['home', 'jvm', 'hashmap', ...LS_ORDER];
+const pageHref = (r, lang) => new URL(lang + '/' + (r === 'home' ? '' : r + '/'), SITE_ROOT).href;
+function pageTitle(r) {
+  const name = r === 'jvm' ? t('title') : r === 'hashmap' ? s('hmTitle') : LS_ORDER.includes(r) ? LS[r].text[LANG].title : '';
+  return (name ? name + ' · ' : '') + s('site');
+}
+function pathRoute() {
+  if (!ON_WEB) return null;
+  const rel = decodeURIComponent(location.pathname).slice(SITE_ROOT.pathname.length);
+  const m = /^([a-z]{2})\/(?:([a-z]+)\/)?(?:index\.html)?$/.exec(rel);
+  if (!m || !UI[m[1]]) return null;
+  const r = m[2] || 'home';
+  return ROUTES().includes(r) ? {route:r, lang:m[1]} : null;
+}
+function where() {
+  if (location.hash.length > 1) return parseHash();
+  return pathRoute() || {route:PAGE.route || 'home', lang:PAGE.lang || null};
+}
+function setAddress(push) {
+  try {
+    const url = ON_WEB ? pageHref(route, LANG) : '#' + route + '-' + LANG;
+    if (push) history.pushState(null, '', url); else history.replaceState(null, '', url);
+  } catch (e) { /* the sandbox may refuse; the view still changes */ }
 }
 function go(r) {
   show(r);
-  try { history.pushState(null, '', '#' + (r === 'home' ? 'home' : r)); } catch (e) { /* the sandbox may refuse; the view still changes */ }
+  setAddress(true);
 }
 function parseHash() {
   const m = /^#?([a-z]+)(?:-([a-z]{2}))?$/.exec(location.hash);
@@ -253,10 +282,17 @@ function parseHash() {
 }
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-go]');
-  if (b) go(b.dataset.go);
+  if (!b || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button) return;
+  e.preventDefault();
+  go(b.dataset.go);
 });
-window.addEventListener('hashchange', () => { const p = parseHash(); if (p.route !== route) show(p.route); });
-window.addEventListener('popstate', () => { const p = parseHash(); if (p.route !== route) show(p.route); });
+function follow() {
+  const p = where();
+  if (p.lang && p.lang !== LANG) setLang(p.lang, true);
+  if (p.route !== route) show(p.route);
+}
+window.addEventListener('hashchange', follow);
+window.addEventListener('popstate', follow);
 $('hm-prev').onclick = () => hmChapter(hmCh - 1);
 $('hm-next').onclick = () => hmChapter(hmCh + 1);
 $('hm-ch').addEventListener('change', e => hmChapter(+e.target.value));

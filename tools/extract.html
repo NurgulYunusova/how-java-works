@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!-- Loaded by build_pages.py in headless Chrome. Runs the real site from template.html and prints,
+     for each language and topic, the text that the static pages need. -->
+<meta charset="utf-8">
+<body>
+<pre id="out"></pre>
+<script>
+const frame = document.createElement('iframe');
+frame.style.cssText = 'width:1400px;height:900px';
+frame.src = 'template.html';
+document.body.appendChild(frame);
+frame.onload = () => {
+  const w = frame.contentWindow, d = w.document, E = code => w.eval(code), out = {};
+  try {
+    const order = E('LS_ORDER'), routes = ['home', 'jvm', 'hashmap', ...order];
+    const section = (title, paras) => `<section><h2>${E('esc')(E('nb')(title))}</h2>${paras.map(p => `<p>${E('rich')(p)}</p>`).join('')}</section>`;
+    for (const lang of ['az', 'tr', 'en']) {
+      w.setLang(lang, false);
+      const texts = {};
+      d.querySelectorAll('[data-s]').forEach(el => { texts[`data-s="${el.dataset.s}"`] = el.textContent; });
+      d.querySelectorAll('[data-ls-title]').forEach(el => { texts[`data-ls-title="${el.dataset.lsTitle}"`] = el.textContent; });
+      d.querySelectorAll('[data-ls-door]').forEach(el => { texts[`data-ls-door="${el.dataset.lsDoor}"`] = el.textContent; });
+      d.querySelectorAll('[id^="t-"]').forEach(el => { texts[`id="${el.id}"`] = el.textContent; });
+      const pages = {};
+      for (const r of routes) {
+        w.show(r);
+        const p = {title: d.title, name: ''};
+        if (r === 'jvm') { p.name = E("t('title')"); p.desc = E("s('doorJvmText')"); }
+        if (r === 'hashmap') { p.name = E("s('hmTitle')"); p.desc = E("s('doorHmText')"); p.prose = E('HM_TEXT')[lang].map(c => section(c[0], c[1])).join(''); }
+        if (order.includes(r)) {
+          const x = E('LS')[r].text[lang];
+          p.name = x.title; p.desc = x.door; p.h1 = E('nb')(x.title);
+          p.prose = x.ch.map(c => section(c[0], c[1])).join('');
+        }
+        pages[r] = p;
+      }
+      out[lang] = {site: E("s('site')"), texts, pages};
+    }
+    out.routes = routes;
+  } catch (e) { out.error = String(e.stack || e); }
+  document.getElementById('out').textContent = JSON.stringify(out);
+};
+</script>

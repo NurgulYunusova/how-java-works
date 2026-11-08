@@ -9,4 +9,5 @@ try { const d = localStorage.getItem(STORE); if (d !== null && d.trim()) initial
 $('code').value = initial;
 hmOps = HM_OPS[0].slice();
 setLang(LANG, false);
-show(parseHash().route);
+show(where().route);
+if (ON_WEB && location.hash.length > 1) setAddress(false);

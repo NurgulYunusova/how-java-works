@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="tr" data-route="bytecode" data-lang="tr" data-root="../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bytecode · Java nasıl çalışır</title>
+<meta name="description" content="javac ne yazar? Operand stack, local variable&#x27;lar, i = i++ tuzağı ve finally&#x27;nin gerçek hali.">
+<link rel="canonical" href="https://how-java-works.pages.dev/tr/bytecode/">
+<link rel="alternate" hreflang="az" href="https://how-java-works.pages.dev/az/bytecode/">
+<link rel="alternate" hreflang="tr" href="https://how-java-works.pages.dev/tr/bytecode/">
+<link rel="alternate" hreflang="en" href="https://how-java-works.pages.dev/en/bytecode/">
+<link rel="alternate" hreflang="x-default" href="https://how-java-works.pages.dev/en/bytecode/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Java nasıl çalışır">
+<meta property="og:title" content="Bytecode · Java nasıl çalışır">
+<meta property="og:description" content="javac ne yazar? Operand stack, local variable&#x27;lar, i = i++ tuzağı ve finally&#x27;nin gerçek hali.">
+<meta property="og:url" content="https://how-java-works.pages.dev/tr/bytecode/">
+<meta property="og:image" content="https://how-java-works.pages.dev/og/tr.png">
+<meta property="og:locale" content="tr_TR">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "LearningResource", "name": "Bytecode", "description": "javac ne yazar? Operand stack, local variable'lar, i = i++ tuzağı ve finally'nin gerçek hali.", "inLanguage": "tr", "url": "https://how-java-works.pages.dev/tr/bytecode/", "learningResourceType": "interactive lesson", "isPartOf": {"@type": "WebSite", "name": "Java nasıl çalışır", "url": "https://how-java-works.pages.dev/tr/"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+<main id="view-home" hidden>
+  <div class="home-in">
+    <div class="home-top">
+      <div>
+        <h1 data-s="site">Java nasıl çalışır</h1>
+        <p data-s="siteLede">Konu seç, kod yaz ve içeride ne olduğunu adım adım gör.</p>
+      </div>
+      <div class="langs" role="group">
+          <button type="button" data-lang="az" lang="az" title="Azərbaycanca">AZ</button>
+          <button type="button" data-lang="tr" lang="tr" title="Türkçe">TR</button>
+          <button type="button" data-lang="en" lang="en" title="English">EN</button>
+        </div>
+    </div>
+    <div class="home-groups"><section class="home-group"><h2 data-s="gMem">Memory</h2><div class="doors"><a class="door d-jvm" href="../../tr/jvm/" data-go="jvm">
+        <h2 data-s="doorJvm">JVM: Stack ve Heap</h2>
+        <p data-s="doorJvmText">Primitive'ler, object'ler, String Pool, frame'ler ve GC. Kodunun memory'de nereye düştüğünü satır satır izle.</p>
+        <div class="mini" aria-hidden="true">
+          <div class="ms"><span><small>String</small> s</span><i class="mref"></i></div>
+          <div class="ms"><span><small>int</small> a</span><i class="mv4">4</i></div>
+          <div class="ms"><span><small>int[]</small> d</span><i class="mref" style="border-color:var(--sky)"></i></div>
+        </div>
+      </a><a class="door d-ls" href="../../tr/gc/" data-go="gc"><h2 data-ls-title="gc">Garbage Collection</h2><p data-ls-door="gc">Object ne zaman silinir? GC root'ları, mark-sweep, Eden, Survivor, Old ve memory leak.</p><pre class="snip" aria-hidden="true">o = null;
+// no root, GC can remove it</pre></a><a class="door d-ls" href="../../tr/strings/" data-go="strings"><h2 data-ls-title="strings">String içeriden</h2><p data-ls-door="strings">String'in iç yapısı: byte[], LATIN1 ve UTF16, emoji uzunluğu, paylaşılan array ve += bedeli.</p><pre class="snip" aria-hidden="true">"çörek"  5 byte
+"çörək" 10 byte</pre></a><a class="door d-ls" href="../../tr/layout/" data-go="layout"><h2 data-ls-title="layout">Object bellekte</h2><p data-ls-door="layout">Bir object kaç byte tutar: header, mark word, padding, field sırası, array’ler ve 32 GB sınırı.</p><pre class="snip" aria-hidden="true">new Object();
+// 12 byte header + 4 padding</pre></a></div></section><section class="home-group"><h2 data-s="gColl">Collection'lar</h2><div class="doors"><a class="door d-hm" href="../../tr/hashmap/" data-go="hashmap">
+        <h2 data-s="doorHm">HashMap nasıl çalışır</h2>
+        <p data-s="doorHmText">hashCode, bucket, collision ve resize. Key'in table'daki yerini nasıl bulduğunu bit bit izle.</p>
+        <div class="mini" aria-hidden="true">
+          <div class="mbk"><code>0</code><span class="mn">"Aa"</span><span class="mx">next</span><span class="mn">"BB"</span></div>
+          <div class="mbk"><code>1</code><em>null</em></div>
+          <div class="mbk hit"><code>14</code><span class="mn">"Aysel"</span></div>
+        </div>
+      </a><a class="door d-ls" href="../../tr/treemap/" data-go="treemap"><h2 data-ls-title="treemap">TreeMap nasıl çalışır</h2><p data-ls-door="treemap">Red-black tree'yi canlı izle: insert, recolor, rotation, remove ve sıralı arama.</p><pre class="snip" aria-hidden="true">m.floorKey(35);
+// O(log n)</pre></a></div></section><section class="home-group"><h2 data-s="gConc">Concurrency</h2><div class="doors"><a class="door d-ls" href="../../tr/threads/" data-go="threads"><h2 data-ls-title="threads">Thread'ler</h2><p data-ls-door="threads">İki thread'i kendin yönet. Race condition, synchronized, volatile, CAS ve deadlock.</p><pre class="snip" aria-hidden="true">count++;
+// read, add, write</pre></a><a class="door d-ls" href="../../tr/chm/" data-go="chm"><h2 data-ls-title="chm">ConcurrentHashMap nasıl çalışır</h2><p data-ls-door="chm">Birden fazla thread için HashMap. Boş bucket'ta CAS, dolu bucket'ta lock, resize ve null yasağı.</p><pre class="snip" aria-hidden="true">map.merge("c", 1, Integer::sum);
+// CAS or a bucket lock</pre></a><a class="door d-ls" href="../../tr/vthreads/" data-go="vthreads"><h2 data-ls-title="vthreads">Virtual Thread'ler</h2><p data-ls-door="vthreads">Bir milyon thread nasıl mümkün olur: carrier, mount ve unmount, pinning ve virtual thread'in yardım etmediği durumlar.</p><pre class="snip" aria-hidden="true">Thread.ofVirtual().start(task);
+// 1 000 000 threads: 5.4 s</pre></a></div></section><section class="home-group"><h2 data-s="gHood">Dil ve JVM</h2><div class="doors"><a class="door d-ls" href="../../tr/bytecode/" data-go="bytecode"><h2 data-ls-title="bytecode">Bytecode</h2><p data-ls-door="bytecode">javac ne yazar? Operand stack, local variable'lar, i = i++ tuzağı ve finally'nin gerçek hali.</p><pre class="snip" aria-hidden="true">iload_0
+iinc 0, 1
+istore_0</pre></a><a class="door d-ls" href="../../tr/classload/" data-go="classload"><h2 data-ls-title="classload">Class loading</h2><p data-ls-door="classload">Class ne zaman yüklenir? Delegation, üç aşama, static ve constructor sırası, klasik tuzaklar.</p><pre class="snip" aria-hidden="true">static { ... }
+super();</pre></a><a class="door d-ls" href="../../tr/stream/" data-go="stream"><h2 data-ls-title="stream">Stream nasıl çalışır</h2><p data-ls-door="stream">Stream lazy'dir. Element'ler tek tek geçer, sorted hepsini tutar, count bazen hiçbir şey çalıştırmaz.</p><pre class="snip" aria-hidden="true">.filter(...).map(...)
+.findFirst();</pre></a></div></section></div>
+  </div>
+</main>
+
+<div class="app" id="view-jvm" hidden>
+  <section class="desk" id="desk">
+    <header>
+      <a class="crumb" href="../../tr/" data-go="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span data-s="topics">Konular</span></a>
+      <div class="brand">
+        <h1 id="t-title">JVM: Stack ve Heap</h1>
+        <div class="langs" role="group">
+          <button type="button" data-lang="az" lang="az" title="Azərbaycanca">AZ</button>
+          <button type="button" data-lang="tr" lang="tr" title="Türkçe">TR</button>
+          <button type="button" data-lang="en" lang="en" title="English">EN</button>
+        </div>
+      </div>
+      <p class="lede" id="t-lede">Java kodu yaz ve her variable'ın bellekte nereye düştüğünü satır satır izle.</p>
+    </header>
+    <div class="picker">
+      <label for="samples" id="t-pick">Hazır örnek seç</label>
+      <select id="samples"></select>
+    </div>
+    <div class="editor">
+      <pre id="hl" aria-hidden="true"></pre>
+      <textarea id="code" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" wrap="off"></textarea>
+    </div>
+    <div class="transport">
+      <button class="btn" id="prev" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span id="t-prev">Önceki</span></button>
+      <button class="btn primary" id="play" type="button"></button>
+      <button class="btn" id="next" type="button"><span id="t-next">Sonraki</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+      <div class="track">
+        <input id="scrub" type="range" min="0" max="0" value="0">
+        <span class="count" id="count"></span>
+      </div>
+    </div>
+    <div class="explain">
+      <div class="why" id="why" aria-live="polite"></div>
+      <div class="out" id="out" hidden></div>
+    </div>
+  </section>
+
+  <section class="map" id="map">
+    <div class="map-inner" id="inner">
+      <svg class="wires" id="wires" aria-hidden="true">
+        <defs>
+          <marker id="tip-str" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#FF9BCF"/></marker>
+          <marker id="tip-box" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#62E8AE"/></marker>
+          <marker id="tip-arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#7FCDFF"/></marker>
+          <marker id="tip-obj" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#C3B1FF"/></marker>
+          <marker id="tip-dead" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#676C9C"/></marker>
+        </defs>
+        <g id="wire-group"></g>
+      </svg>
+      <div class="stack">
+        <div class="col-head"><h2>Stack</h2><p id="t-stackHint">Method bitince silinir</p></div>
+        <div class="frames" id="frames"></div>
+      </div>
+      <div class="heap" id="heap">
+        <div class="col-head"><h2>Heap</h2></div>
+        <div class="key">
+          <span><i class="val">4</i> <span id="t-keyValue">value'nun kendisi</span></span>
+          <span><i class="dot"></i> <span id="t-keyRef">reference: value çizginin gittiği yerde</span></span>
+        </div>
+        <div id="heap-body"></div>
+        <p class="note" id="t-model">Bu, Java dilinin bellek modelidir. JIT compiler'ı çalışırken bazı object'leri optimize edip heap'e hiç koymayabilir.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="app" id="view-hashmap" hidden>
+  <section class="desk">
+    <header>
+      <a class="crumb" href="../../tr/" data-go="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span data-s="topics">Konular</span></a>
+      <div class="brand">
+        <h1 data-s="hmTitle">HashMap nasıl çalışır</h1>
+        <div class="langs" role="group">
+          <button type="button" data-lang="az" lang="az" title="Azərbaycanca">AZ</button>
+          <button type="button" data-lang="tr" lang="tr" title="Türkçe">TR</button>
+          <button type="button" data-lang="en" lang="en" title="English">EN</button>
+        </div>
+      </div>
+    </header>
+    <div class="hm-nav">
+      <select id="hm-ch" aria-label="HashMap"></select>
+      <button class="btn" id="hm-prev" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span id="hm-t-prev"></span></button>
+      <button class="btn" id="hm-next" type="button"><span id="hm-t-next"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+      <span class="count" id="hm-count"></span>
+    </div>
+    <div class="prose" id="hm-prose" aria-live="polite"></div>
+    <form class="tryit" id="hm-form" autocomplete="off">
+      <h3 data-s="tryIt">Kendin dene</h3>
+      <div class="tr-fields">
+        <label><span data-s="fKey">Key (String)</span><input id="hm-key" type="text" maxlength="40" spellcheck="false" autocapitalize="off" value="Murad"></label>
+        <label><span data-s="fVal">Value (int)</span><input id="hm-val" type="text" inputmode="numeric" value="30"></label>
+      </div>
+      <div class="tr-acts">
+        <button class="btn primary" type="submit" style="min-width:0">put</button>
+        <button class="btn" id="hm-get" type="button">get</button>
+        <button class="btn" id="hm-remove" type="button">remove</button>
+        <button class="btn ghost" id="hm-clear" type="button" data-s="clear">Temizle</button>
+      </div>
+      <p class="tr-err" id="hm-err" role="alert"></p>
+    </form>
+  </section>
+  <section class="hm-right">
+    <div class="pnl"><h2 data-s="pipe">Key'in yolu</h2><div id="hm-pipe" style="display:flex;flex-direction:column;gap:10px"></div></div>
+    <div class="pnl"><h2 data-s="table">Table</h2><div id="hm-table" style="display:flex;flex-direction:column;gap:10px"></div></div>
+    <div class="pnl-row">
+      <div class="pnl" id="hm-notes" hidden></div>
+      <div class="pnl">
+        <div class="codehead"><h3 data-s="code">Java kodu</h3><button class="btn" id="hm-open" type="button" data-s="openJvm">JVM haritasında aç</button></div>
+        <pre id="hm-codeview"></pre>
+        <div class="out" id="hm-out" hidden></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="app" id="view-lesson">
+  <section class="desk">
+    <header>
+      <a class="crumb" href="../../tr/" data-go="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span data-s="topics">Konular</span></a>
+      <div class="brand">
+        <h1 id="ls-title">Bytecode</h1>
+        <div class="langs" role="group">
+          <button type="button" data-lang="az" lang="az" title="Azərbaycanca">AZ</button>
+          <button type="button" data-lang="tr" lang="tr" title="Türkçe">TR</button>
+          <button type="button" data-lang="en" lang="en" title="English">EN</button>
+        </div>
+      </div>
+    </header>
+    <div class="hm-nav ls-nav">
+      <select id="ls-ch" aria-label="Section"></select>
+      <button class="btn" id="ls-prev" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span class="sr" id="ls-t-prev"></span></button>
+      <button class="btn" id="ls-next" type="button"><span class="sr" id="ls-t-next"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+      <span class="sr" id="ls-count"></span>
+    </div>
+    <div class="prose" id="ls-prose" aria-live="polite"><section><h2>JVM bir stack machine'dir</h2><p><code>javac</code> Java'yı bytecode'a çevirir, <code>javap -c</code> onu gösterir. CPU register'ları yerine JVM her frame'de küçük bir operand stack kullanır.</p><p>Her instruction değeri stack'e koyar veya oradan alır. <code>a + b</code> için iki değer konur, <code>iadd</code> onları alıp sonucu koyar.</p><p>Local variable'ların adı yoktur, slot numarası vardır: <code>istore_0</code> 0. slot'a yazar.</p></section><section><h2>javac önceden hesaplar</h2><p>Burada <code>1 + 2</code> yazıyor, ama bytecode'da toplama yok: <code>iconst_3</code>. Sabit ifadeyi compiler kendisi hesaplar.</p><p>Aynı kural <code>&quot;a&quot; + &quot;b&quot;</code> için de geçerlidir: sonuç tek literal olur. Bu yüzden <code>&quot;ab&quot; == &quot;a&quot; + &quot;b&quot;</code> <code>true</code> olur.</p></section><section><h2>i = i++ tuzağı</h2><p>Bu kod <code>i</code> değerini değiştirmez, sonuç 5'tir. Adımlara bak: <code>iload_0</code> eski 5'i stack'e koyar, <code>iinc</code> <code>i</code> değerini 6 yapar, <code>istore_0</code> ise eski 5'i geri yazar.</p><p>Düğmeyle <code>i = ++i</code> kodlarına geç: sıra değişir, önce <code>iinc</code>, sonra <code>iload_0</code>. Sonuç 6 olur.</p></section><section><h2>Döngü: if ve goto</h2><p>Bytecode'da <code>for</code> yoktur, koşullu ve koşulsuz geçiş vardır. <code>if_icmpgt</code> stack'ten iki değer alır ve karşılaştırır, <code>goto</code> geri döner.</p><p>Dikkat et: koşul terstir. <code>i &lt;= 3</code> için “<code>i &gt; 3</code> ise çık” yazılır.</p></section><section><h2>Method çağrısı: yeni frame</h2><p>Çağıran method argümanı stack'e koyar. <code>invokestatic</code> yeni frame oluşturur ve değer onun 0. slot'una geçer.</p><p><code>ireturn</code> frame'i siler ve sonucu çağıranın operand stack'ine koyar. Stack overflow bu frame'lerin dolmasıdır.</p></section><section><h2>finally nasıl çalışır?</h2><p>Bu method 2 değil, 1 döndürür. <code>javac</code> döndürülecek değeri önce ayrı bir slot'a yazar (<code>saved</code>), sonra <code>finally</code> kodunu çalıştırır, sonra <code>saved</code> değerini döndürür.</p><p><code>finally</code> bytecode'da ayrı bir blok değildir: kod her çıkış yoluna kopyalanır. Exception yolu 8. satırdan başlar, burada exception olmadığı için çalışmaz.</p></section><section><h2>Autoboxing görünür</h2><p>Java kodunda <code>Integer.valueOf</code> yazmıyor, ama bytecode'da var. <code>Integer b = 4</code> aslında <code>Integer.valueOf(4)</code> çağrısıdır, <code>Integer</code> cache de buradan çalışır.</p><p><code>b + 1</code> için önce <code>intValue()</code> çağrılır. <code>b</code> <code>null</code> olsaydı <code>NullPointerException</code> burada oluşurdu.</p><p>String birleştirme de benzerdir: <code>a + &quot;!&quot;</code>, <code>invokedynamic</code> ile <code>makeConcatWithConstants</code> olur.</p></section></div>
+    <div id="ls-ctl"></div>
+  </section>
+  <section class="ls-right"><div id="ls-stage"></div></section>
+</div>
+
+<script src="../../js/i18n.js"></script>
+<script src="../../js/engine/parser.js"></script>
+<script src="../../js/engine/interpreter.js"></script>
+<script src="../../js/jvm-map.js"></script>
+<script src="../../js/site.js"></script>
+<script src="../../js/lessons/lessons.js"></script>
+<script src="../../js/lessons/gc.js"></script>
+<script src="../../js/lessons/threads.js"></script>
+<script src="../../js/lessons/chm.js"></script>
+<script src="../../js/lessons/bytecode.js"></script>
+<script src="../../js/lessons/classload.js"></script>
+<script src="../../js/lessons/stream.js"></script>
+<script src="../../js/lessons/treemap.js"></script>
+<script src="../../js/lessons/strings.js"></script>
+<script src="../../js/lessons/layout.js"></script>
+<script src="../../js/lessons/vthreads.js"></script>
+<script src="../../js/main.js"></script>
+</body>
+</html>

@@ -207,6 +207,7 @@ svg.wires { position: absolute; inset: 0; width: 100%; height: 100%; pointer-eve
 .brand { align-items: flex-start; }
 .crumb { display: inline-flex; align-items: center; gap: 4px; min-height: 32px; margin: -6px 0 4px -6px; padding: 0 8px 0 2px; border: 0; border-radius: 7px; background: transparent; color: var(--soft); font-size: 13.5px; font-weight: 500; cursor: pointer; transition: color .15s; }
 .crumb:hover { color: var(--sun); }
+a.door, a.crumb { text-decoration: none; }
 .crumb svg { width: 16px; height: 16px; }
 
 #view-home { min-height: 100%; padding: clamp(24px, 5vw, 64px); background-color: var(--night); background-image: radial-gradient(rgba(255,255,255,.085) 1px, transparent 1.4px); background-size: 22px 22px; }
